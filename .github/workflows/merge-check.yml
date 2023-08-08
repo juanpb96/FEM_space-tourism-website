@@ -29,4 +29,5 @@ jobs:
 
       - name: The job has failed
         if: ${{ failure() }}
-        run: echo "Error: Pull Request cannot be merged due to failed checks." && exit 1
+        run: 
+          echo "::error::Pull Request cannot be merged due to failed checks." && exit 1
