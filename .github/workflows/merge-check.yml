@@ -26,3 +26,7 @@ jobs:
       
       - name: Review Code Quality
         run: npm run lint
+
+      - name: The job has failed
+        if: ${{ failure() }}
+        run: echo "Error: Pull Request cannot be merged due to failed checks." && exit 1
