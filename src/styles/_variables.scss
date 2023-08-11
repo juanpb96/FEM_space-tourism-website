@@ -1,0 +1,30 @@
+/* Colors */
+$charcoal: #0B0D17;
+$lilac: #D0D6F9;
+$white: #FFFFFF;
+
+// Opacity
+$opacity-1: 50%;
+$opacity-2: 25%;
+$opacity-2: 10.36%;
+
+/* Typography */
+// TODO: Consider moving this into a Typography component
+// Headings
+$fs-heading-1: 9.375rem;
+$fs-heading-2: 6.25rem;
+$fs-heading-3: 3.5rem;
+$fs-heading-4: 2rem;
+$fs-heading-5: 1.75rem;
+$ls-heading-5: 4.75;
+
+// Subheadings
+$fs-subheading-1: 1.75rem;
+$fs-subheading-2: 0.875rem;
+$ls-subheading-2: 2.35;
+
+// Nav text
+$fs-nav-text: 1rem;
+$ls-nav-text: 2.7;
+
+// TODO: Body text depends on viewport size
