@@ -1,0 +1,9 @@
+@use 'reset';
+@use 'variables';
+@use 'fonts';
+
+body {
+  @include fonts.bellefair;
+  color: variables.$white;
+  background-color: variables.$charcoal;
+}

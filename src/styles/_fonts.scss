@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow&family=Barlow+Condensed&family=Bellefair&display=swap');
+
+@mixin bellefair {
+  font-family: "Bellefair", Georgia, "Times New Roman", Baskerville, serif;
+}
+
+@mixin barlow-condensed {
+  font-family: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", "Roboto Condensed", "Lato", "Open Sans Condensed", sans-serif;
+}
+
+@mixin barlow {
+  font-family: "Barlow", "Arial", "Helvetica Neue", "Roboto", "Lato", sans-serif;
+}
