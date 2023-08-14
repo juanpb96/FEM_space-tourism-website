@@ -1,6 +1,6 @@
 ---
 name: Project custom template
-about: Suggest ideas or report for this project
+about: Suggest ideas or reports for this project
 title: ''
 labels: ''
 assignees: juanpb96
