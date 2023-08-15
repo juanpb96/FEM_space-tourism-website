@@ -27,6 +27,9 @@ jobs:
       - name: Review Code Quality
         run: npm run lint
 
+      - name: Run build
+        run: npm run build
+
       - name: The job has failed
         if: ${{ failure() }}
         run: 
