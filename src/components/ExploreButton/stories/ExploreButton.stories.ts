@@ -14,6 +14,13 @@ const meta = {
   argTypes: {
     backgroundColor: { control: 'color' },
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByRole('button', { name: /Explore/i });
+
+    expect(button).toBeInTheDocument();
+    await userEvent.click(button);
+  }
 } satisfies Meta<typeof ExploreButton>;
 
 export default meta;
@@ -31,12 +38,13 @@ export const ButtonOnMobile: Story = {
     viewport: {
       defaultViewport: 'iphone6'
     }
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const button = canvas.getByRole('button', { name: /Explore/i });
+  }
+};
 
-    expect(button).toBeInTheDocument();
-    await userEvent.click(button);
+export const ButtonOnTablet: Story = {
+  parameters: {
+    viewport: {
+      defaultViewport: 'ipad'
+    }
   }
 };
