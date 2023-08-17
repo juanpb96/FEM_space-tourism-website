@@ -45,10 +45,6 @@ jobs:
         uses: actions/upload-pages-artifact@v2
         with:
           path: './dist'
-      - name: Publish to Chromatic
-        uses: chromaui/action@v1
-        with:
-          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
 
   # Deployment job
   deploy:
