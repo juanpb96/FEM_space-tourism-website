@@ -11,9 +11,6 @@ const meta = {
     layout: 'centered'
   },
   tags: ['autodocs'],
-  argTypes: {
-    backgroundColor: { control: 'color' },
-  },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const button = canvas.getByRole('button', { name: /Explore/i });
@@ -25,13 +22,6 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
-
-export const Primary: Story = {
-  args: {
-    primary: true,
-    label: 'Button',
-  },
-};
 
 export const ButtonOnMobile: Story = {
   parameters: {
@@ -48,3 +38,5 @@ export const ButtonOnTablet: Story = {
     }
   }
 };
+
+export const ButtonOnDesktop: Story = {};
