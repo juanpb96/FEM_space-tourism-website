@@ -12,6 +12,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
+    "test-storybook": "test-storybook",
     "build-storybook": "storybook build",
     "chromatic": "chromatic --exit-zero-on-changes"
   },
@@ -32,6 +33,7 @@
     "@storybook/jest": "^0.2.0",
     "@storybook/react": "7.2.3",
     "@storybook/react-vite": "7.2.3",
+    "@storybook/test-runner": "^0.13.0",
     "@storybook/testing-library": "^0.2.0",
     "@types/jest": "^29.5.3",
     "@types/react": "^18.2.15",
