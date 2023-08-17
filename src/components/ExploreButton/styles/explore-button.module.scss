@@ -51,6 +51,23 @@ button {
   }
 }
 
+@media screen and (min-width: v.$desktop) {
+  button {
+    width: 17.125rem;
+
+    &:is(:active, :hover) {
+      &::before {
+        opacity: v.$opacity-3;
+        box-shadow: 0 0 0 5.5rem v.$white;
+      }
+    }
+    
+    &::before {
+      transition-duration: 0.5s;
+    }
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   button {
     &::before {
