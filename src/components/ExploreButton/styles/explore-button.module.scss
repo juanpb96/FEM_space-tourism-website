@@ -1,0 +1,78 @@
+@use 'src/styles/variables' as v;
+@use 'src/styles/fonts' as fonts;
+
+button {
+  cursor: pointer;
+  position: relative;
+  @include fonts.bellefair;
+  font-size: 1.25rem;
+  color: v.$charcoal;
+  text-transform: uppercase;
+  letter-spacing: 0.07813rem;
+  line-height: normal;
+  width: 9.375rem;
+  aspect-ratio: 1 / 1;
+  padding: 4.25rem 0 3.69rem;
+  border: none;
+  border-radius: 50%;
+  background-color: v.$white;
+
+  &:active {
+    &::before {
+      opacity: v.$opacity-3;
+      box-shadow: 0 0 0 2.75rem v.$white;
+    }
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background-color: v.$white;
+    opacity: 0;
+    box-shadow: 0 0 0 0 v.$white;
+    transition: box-shadow 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  }
+}
+
+@media screen and (min-width: v.$tablet) {
+  button {
+    font-size: v.$fs-heading-4;
+    letter-spacing: 0.125rem;
+    width: 15.125rem;
+    padding: 0;
+
+    &:active {
+      &::before {
+        box-shadow: 0 0 0 4.125rem v.$white;
+      }
+    }    
+  }
+}
+
+@media screen and (min-width: v.$desktop) {
+  button {
+    width: 17.125rem;
+
+    &:is(:active, :hover) {
+      &::before {
+        opacity: v.$opacity-3;
+        box-shadow: 0 0 0 5.5rem v.$white;
+      }
+    }
+    
+    &::before {
+      transition-duration: 0.5s;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  button {
+    &::before {
+      display: none;
+      transition: none;
+    }
+  }
+}
