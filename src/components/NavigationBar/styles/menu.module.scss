@@ -1,0 +1,36 @@
+@use 'src/styles/variables' as v;
+@use 'src/styles/fonts' as fonts;
+
+.menu {
+  width: 15.875rem;
+  height: 100vh;
+  position: fixed;
+  inset: 0 0 0 auto;
+  background-color: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(40.77px);
+
+  & ol {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-top: 7.38rem;
+    padding-left: 2rem;
+    counter-reset: item -1;
+    list-style: none;
+
+    & li {
+      @include fonts.barlow-condensed;
+      text-transform: uppercase;
+      font-size: 1rem;
+      line-height: normal;
+      letter-spacing: 0.1688rem;
+      counter-increment: item;
+
+      &::before {
+        content: counter(item, decimal-leading-zero);
+        margin-right: 0.69rem;
+        font-weight: 700;
+      }
+    }
+  }
+}
