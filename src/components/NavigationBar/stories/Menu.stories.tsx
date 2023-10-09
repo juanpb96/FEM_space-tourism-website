@@ -1,7 +1,13 @@
 import type { Decorator, Meta, StoryObj } from '@storybook/react';
-import { MemoryRouter, Routes, Route } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 
 import { Menu } from '../Menu';
+
+const withRouter: Decorator = (Story) => (
+  <MemoryRouter initialEntries={['/']}>
+    <Story />
+  </MemoryRouter>
+);
 
 const meta = {
   title: 'Components/NavigationBar/Menu',
@@ -10,22 +16,24 @@ const meta = {
     layout: 'centered'
   },
   tags: ['autodocs'],
+  decorators: [withRouter]
 } satisfies Meta<typeof Menu>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const withStoriesRouter: Decorator = (Story) => (
-  <MemoryRouter initialEntries={['/']}>
-    <Story />
-  </MemoryRouter>
-);
-
-export const MenuMobile: Story = {
+export const MenuOnMobile: Story = {
   parameters: {
     viewport: {
       defaultViewport: 'iphone6'
     }
   },
-  decorators: [withStoriesRouter]
+};
+
+export const MenuOnTablet: Story = {
+  parameters: {
+    viewport: {
+      defaultViewport: 'ipad'
+    }
+  },
 };
