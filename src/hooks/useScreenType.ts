@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 
 const BREAKPOINTS = {
-  tablet: '(min-width: 48rem)',
-  desktop: '(min-width: 64rem)',
+  tablet: '(min-width: 48rem) and (max-width: 63.9375rem)',
+  desktop: '(min-width: 64rem) and (max-width: 89.9375rem)',
   'large-desktop': '(min-width: 90rem)',
 };
 
-type ScreenType = keyof typeof BREAKPOINTS | 'mobile';
+export type ScreenType = keyof typeof BREAKPOINTS | 'mobile';
 
 const getWindowType = () => {
   for (const breakpoint in BREAKPOINTS) {     
