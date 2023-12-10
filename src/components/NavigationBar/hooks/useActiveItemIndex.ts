@@ -5,7 +5,7 @@ const barAdditionalWidth = {
   mobile: 0,
   tablet: 38,
   desktop: 48,
-  'large-desktop': 0,
+  'large-desktop': 48,
 };
 
 export const useActiveItemIndex = () => {

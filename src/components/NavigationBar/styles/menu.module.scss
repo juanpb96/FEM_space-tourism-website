@@ -21,7 +21,7 @@
     & li {
       @include fonts.barlow-condensed;
       text-transform: uppercase;
-      font-size: 1rem;
+      font-size: v.$fs-nav-text;
       line-height: normal;
       letter-spacing: 0.1688rem;
       counter-increment: item;
@@ -32,11 +32,11 @@
         text-decoration: none;
       }
 
-      &::before {
-        content: counter(item, decimal-leading-zero);
+      .counter {
         margin-right: 0.69rem;
         font-weight: 700;
       }
+
     }
   }
 }
@@ -66,10 +66,10 @@
       padding: 0 3rem;
 
       & li {
-        font-size: v.$fs-subheading-2;
+        font-size: v.$fs-nav-text;
         letter-spacing: 0.14763rem;
 
-        &::before {
+        .counter {
           display: none;
         }
       }
@@ -80,5 +80,28 @@
     width: 2.25rem;
     height: 0.1875rem;
     inset: auto auto 0 3rem;
+  }
+}
+
+@media screen and (min-width: v.$desktop) {
+  .menu {
+    & ol {
+    flex-direction: row;
+    gap: 3rem;
+    padding-inline: 7.6875rem 10.3125rem;
+
+      & li {
+        font-size: v.$fs-nav-text;
+        letter-spacing: v.$ls-nav-text;
+
+        .counter {
+          display: unset;
+        }
+      }
+    }
+  }
+
+  .bar {
+    left: 7.6875rem;
   }
 }
