@@ -37,3 +37,5 @@ export const MenuOnTablet: Story = {
     }
   },
 };
+
+export const Default: Story = {};
