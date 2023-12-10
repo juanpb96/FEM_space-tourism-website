@@ -1,4 +1,6 @@
 import { useEffect } from 'react';
+import { Outlet } from 'react-router-dom';
+import { MotionConfig } from 'framer-motion';
 import './styles/main.scss';
 
 export const SpaceTourismWebsite = () => {
@@ -16,6 +18,9 @@ export const SpaceTourismWebsite = () => {
   }, []);
 
   return (
-    <div>SpaceTourism</div>
+    <MotionConfig reducedMotion="user">
+      <div>SpaceTourism</div>
+      <Outlet />
+    </MotionConfig>
   )
 };
