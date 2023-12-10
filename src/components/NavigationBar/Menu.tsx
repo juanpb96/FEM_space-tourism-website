@@ -3,6 +3,8 @@ import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import styles from './styles/menu.module.scss';
 import { useScreenType } from '../../hooks/useScreenType';
+import { menuVariants } from './animations/menu.variants';
+import { useActiveItemIndex } from './hooks/useActiveItemIndex';
 
 /* TODO:
   - Include active state for mobile and tablet
@@ -19,9 +21,9 @@ const getActiveClass = ({isActive}: {isActive: boolean}) => {
 const baseFontSize = parseFloat(window.getComputedStyle(document.documentElement).getPropertyValue('font-size'));
 
 export const Menu = () => {
-  const [activeItemIndex, setActiveItemIndex] = useState(0);
   const [initialY, setInitialY] = useState(0);
   const screenType = useScreenType();
+  const {activeItemIndex, setItemList, setActivePosition} = useActiveItemIndex();
   const olRef = useRef<HTMLOListElement>(null);
   const barRef = useRef<HTMLDivElement>(null);  
 
@@ -32,23 +34,43 @@ export const Menu = () => {
     }
   }, [screenType]);
 
+  useEffect(() => {
+    const olElement = olRef.current; 
+    console.log(activeItemIndex);
+
+    // TODO: Set logic for moving bar below active item depending on viewport resize
+    // TODO: Check https://www.componentdriven.org/ and implement menu in main page
+
+    if (olElement) {
+      setItemList([...olElement.children] as HTMLLinkElement[]);
+      setActivePosition(activeItemIndex);
+    }
+
+    const timeoutId = setTimeout(() => {
+      const barElement = barRef.current; 
+      if (barElement && screenType !== 'mobile') {
+        const element = (olElement?.children[activeItemIndex] as HTMLLinkElement);
+        barElement.style.width = `${element.offsetWidth / baseFontSize}rem`;
+      } 
+    }, 200);
+
+    return () => {
+      clearTimeout(timeoutId);
+    }
+  }, [screenType]);
+
   const onLinkClick = (e: MouseEvent<HTMLAnchorElement, globalThis.MouseEvent>, index: number) => {
-    // TODO: Add fix for mobile
+    e.preventDefault();   
+    setActivePosition(index);
+
     if (screenType === 'mobile') {
-      return setActiveItemIndex(index);
+      return;
     }
 
     const elementSize = (e.target as HTMLLinkElement).offsetWidth / baseFontSize 
+    
     if (barRef.current) {
       barRef.current.style.width = `${elementSize}rem`;
-    }
-
-    if (olRef.current) {     
-      setActiveItemIndex(
-        index === 0 
-        ? index 
-        : [...olRef.current.children].slice(0, index).reduce((sum, item) => sum + (item as HTMLLinkElement).offsetWidth + 38, 0)
-      );
     }
   };
 
@@ -63,6 +85,7 @@ export const Menu = () => {
                 className={getActiveClass}
                 onClick={(e) => onLinkClick(e, index)}
               >
+                <span className={styles['counter']}>0{index}</span>
                 {page}
               </NavLink>
             </li>
@@ -75,16 +98,10 @@ export const Menu = () => {
             key={initialY}
             ref={barRef}
             className={styles['bar']}
-            initial={
-              screenType === 'mobile'
-              ? { y: initialY }
-              : { x: 0 }
-            }
-            animate={
-              screenType === 'mobile'
-              ? { y: activeItemIndex * 50 + initialY }
-              : { x: activeItemIndex }
-            }
+            initial={false}
+            custom={{activeItemIndex, initialY}}
+            animate={screenType}
+            variants={menuVariants}
           />
         )
       }
