@@ -20,7 +20,7 @@ const getActiveClass = ({isActive}: {isActive: boolean}) => {
 
 const baseFontSize = parseFloat(window.getComputedStyle(document.documentElement).getPropertyValue('font-size'));
 
-export const Menu = () => {
+const Menu = () => {
   const [initialY, setInitialY] = useState(0);
   const screenType = useScreenType();
   const {activeItemIndex, setItemList, setActivePosition} = useActiveItemIndex();
@@ -108,3 +108,5 @@ export const Menu = () => {
     </nav>
   );
 };
+
+export default Menu;

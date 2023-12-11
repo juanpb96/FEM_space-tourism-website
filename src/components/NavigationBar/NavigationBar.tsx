@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { Suspense, lazy, useState } from 'react';
 import { MenuButton } from './MenuButton';
-import { Menu } from './Menu';
+// import { Menu } from './Menu';
+
+const Menu = lazy(() => import('./Menu'));
 
 export const NavigationBar = () => {
   // TODO: Remove Menu button on tablet
@@ -13,7 +15,11 @@ export const NavigationBar = () => {
   return (
     <div>
       <MenuButton isOpen={isOpen} onToggle={onToggle} />
-      <Menu />
+      {isOpen && (
+        <Suspense fallback={<div>Loading...</div>}>
+          <Menu />
+        </Suspense>
+      )}
     </div>
   );
 };
