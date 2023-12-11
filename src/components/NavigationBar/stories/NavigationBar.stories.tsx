@@ -1,11 +1,20 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Decorator, Meta, StoryObj } from '@storybook/react';
+import { MemoryRouter } from 'react-router-dom';
 
 import { NavigationBar } from '../NavigationBar';
+
+//TODO: Move this into a utils or decorators folder
+const withRouter: Decorator = (Story) => (
+  <MemoryRouter initialEntries={['/']}>
+    <Story />
+  </MemoryRouter>
+);
 
 const meta = {
   title: 'Components/NavigationBar',
   component: NavigationBar,
   tags: ['autodocs'],
+  decorators: [withRouter]
 } satisfies Meta<typeof NavigationBar>;
 
 export default meta;
