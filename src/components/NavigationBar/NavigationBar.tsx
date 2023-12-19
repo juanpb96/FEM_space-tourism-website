@@ -1,12 +1,21 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { MenuButton } from './MenuButton';
 import { Menu } from './Menu';
 import styles from './styles/navigation-bar.module.scss';
+import { useScreenType } from '../../hooks/useScreenType';
 
 export const NavigationBar = () => {
-  // TODO: Remove Menu button on tablet
   const [isOpen, setIsOpen] = useState(false);
+  const screenType = useScreenType();
   
+  // TODO: Check behavior resizing the screen
+  useEffect(() => {
+    if (screenType !== 'mobile') {
+      setIsOpen(true);
+    }
+  }, [screenType])
+  
+
   const onToggle = () => {
     setIsOpen(!isOpen);
   };

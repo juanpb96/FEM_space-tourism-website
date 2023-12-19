@@ -2,7 +2,7 @@ import { MouseEvent, useEffect, useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import styles from './styles/menu.module.scss';
-import { useScreenType } from '../../hooks/useScreenType';
+import { useScreenType, ScreenType } from '../../hooks/useScreenType';
 import { menuVariants, optionsVariants } from './animations/menu.variants';
 import { useActiveItemIndex } from './hooks/useActiveItemIndex';
 
@@ -16,6 +16,14 @@ const PAGES = ['Home', 'Destination', 'Crew', 'Technology'];
 
 const getActiveClass = ({isActive}: {isActive: boolean}) => {
   return isActive ? styles['active'] : '';
+};
+
+const getAnimation = (isOpen: boolean, screenType: ScreenType) => {
+  if (screenType === 'mobile') {
+    return isOpen ? "open" : "closed"
+  }
+
+  return "";
 };
 
 const baseFontSize = parseFloat(window.getComputedStyle(document.documentElement).getPropertyValue('font-size'));
@@ -77,7 +85,7 @@ export const Menu = ({ isOpen = true }) => {
   return (
     <motion.nav
         initial={false}
-        animate={isOpen ? "open" : "closed"}
+        animate={getAnimation(isOpen, screenType)}
         variants={optionsVariants}
         className={styles['menu']}
     >

@@ -37,3 +37,5 @@ export const NavigationBarOnTablet: Story = {
     }
   },
 };
+
+export const NavigationBarDesktop: Story = {}
