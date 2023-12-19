@@ -2,6 +2,7 @@ import type { Decorator, Meta, StoryObj } from '@storybook/react';
 import { MemoryRouter } from 'react-router-dom';
 
 import { NavigationBar } from '../NavigationBar';
+import { defaultViewport } from '../../constants/stories-viewports';
 
 //TODO: Move this into a utils or decorators folder
 const withRouter: Decorator = (Story) => (
@@ -24,7 +25,15 @@ type Story = StoryObj<typeof meta>;
 export const NavigationBarOnMobile: Story = {
   parameters: {
     viewport: {
-      defaultViewport: 'iphone6'
+      defaultViewport: defaultViewport.mobile
+    }
+  },
+};
+
+export const NavigationBarOnTablet: Story = {
+  parameters: {
+    viewport: {
+      defaultViewport: defaultViewport.tablet
     }
   },
 };
