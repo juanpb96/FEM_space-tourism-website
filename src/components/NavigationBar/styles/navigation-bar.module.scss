@@ -1,0 +1,9 @@
+.nav-container {
+  position: relative;
+
+  & button {
+    position: absolute;
+    inset: 0 0 0 auto;
+    z-index: 1;
+  }
+}
