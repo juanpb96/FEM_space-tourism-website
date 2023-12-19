@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import styles from './styles/menu.module.scss';
 import { useScreenType } from '../../hooks/useScreenType';
-import { menuVariants } from './animations/menu.variants';
+import { menuVariants, optionsVariants } from './animations/menu.variants';
 import { useActiveItemIndex } from './hooks/useActiveItemIndex';
 
 /* TODO:
@@ -20,7 +20,7 @@ const getActiveClass = ({isActive}: {isActive: boolean}) => {
 
 const baseFontSize = parseFloat(window.getComputedStyle(document.documentElement).getPropertyValue('font-size'));
 
-const Menu = () => {
+export const Menu = ({ isOpen = true }) => {
   const [initialY, setInitialY] = useState(0);
   const screenType = useScreenType();
   const {activeItemIndex, setItemList, setActivePosition} = useActiveItemIndex();
@@ -75,7 +75,12 @@ const Menu = () => {
   };
 
   return (
-    <nav className={styles['menu']}>
+    <motion.nav
+        initial={false}
+        animate={isOpen ? "open" : "closed"}
+        variants={optionsVariants}
+        className={styles['menu']}
+    >
       <ol ref={olRef}>
         {
           PAGES.map((page, index) => (
@@ -105,8 +110,6 @@ const Menu = () => {
           />
         )
       }
-    </nav>
+    </motion.nav>
   );
 };
-
-export default Menu;
