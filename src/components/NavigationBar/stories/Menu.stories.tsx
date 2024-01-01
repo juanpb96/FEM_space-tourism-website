@@ -1,7 +1,6 @@
 import type { Decorator, Meta, StoryObj } from '@storybook/react';
 import { MemoryRouter } from 'react-router-dom';
-
-import Menu from '../Menu';
+import { Menu } from '../Menu';
 
 const withRouter: Decorator = (Story) => (
   <MemoryRouter initialEntries={['/']}>
