@@ -2,9 +2,9 @@ import { MouseEvent, useEffect, useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import styles from './styles/menu.module.scss';
-import { useScreenType, ScreenType } from '../../hooks/useScreenType';
+import { useScreenType } from '../../hooks/useScreenType';
 import { menuVariants, optionsVariants } from './animations/menu.variants';
-import { useActiveItemIndex } from './hooks/useActiveItemIndex';
+import { getActiveClass, getMobileAnimation, getBarAnimation } from './utils/Menu.utils';
 
 /* TODO:
   - Include active state for mobile and tablet
@@ -14,62 +14,31 @@ import { useActiveItemIndex } from './hooks/useActiveItemIndex';
 
 const PAGES = ['Home', 'Destination', 'Crew', 'Technology'];
 
-const getActiveClass = ({isActive}: {isActive: boolean}) => {
-  return isActive ? styles['active'] : '';
-};
-
-const getAnimation = (isOpen: boolean, screenType: ScreenType) => {
-  if (screenType === 'mobile') {
-    return isOpen ? "open" : "closed"
-  }
-
-  return "";
-};
-
 const baseFontSize = parseFloat(window.getComputedStyle(document.documentElement).getPropertyValue('font-size'));
 
 export const Menu = ({ isOpen = true }) => {
-  const [initialY, setInitialY] = useState(0);
+  const [activeMenuOptionIndex, setActiveMenuOptionIndex] = useState(0);
+  const [options, setOptions] = useState<HTMLLIElement[]>([]);
   const screenType = useScreenType();
-  const {activeItemIndex, setItemList, setActivePosition} = useActiveItemIndex();
   const olRef = useRef<HTMLOListElement>(null);
   const barRef = useRef<HTMLDivElement>(null);  
 
   useEffect(() => {
-    if (olRef.current?.firstElementChild) {
-      const rect = olRef.current.firstElementChild.getBoundingClientRect();
-      setInitialY(rect.top);
+    const olElement = olRef.current;
+    const barElement = barRef.current;
+    
+    if (screenType !== 'mobile' && olElement && barElement) {
+      const liElements = Array.from(olElement.getElementsByTagName('li'));
+      setOptions(liElements);
+      
+      const activeMenuOption = liElements[activeMenuOptionIndex];
+      barElement.style.width = `${activeMenuOption.offsetWidth / baseFontSize}rem`;      
     }
-  }, [screenType]);
-
-  useEffect(() => {
-    const olElement = olRef.current; 
-    console.log(activeItemIndex);
-
-    // TODO: Set logic for moving bar below active item depending on viewport resize
-    // TODO: Check https://www.componentdriven.org/ and implement menu in main page
-
-    if (olElement) {
-      setItemList([...olElement.children] as HTMLLinkElement[]);
-      setActivePosition(activeItemIndex);
-    }
-
-    const timeoutId = setTimeout(() => {
-      const barElement = barRef.current; 
-      if (barElement && screenType !== 'mobile') {
-        const element = (olElement?.children[activeItemIndex] as HTMLLinkElement);
-        barElement.style.width = `${element.offsetWidth / baseFontSize}rem`;
-      } 
-    }, 200);
-
-    return () => {
-      clearTimeout(timeoutId);
-    }
-  }, [screenType]);
+  }, []);
 
   const onLinkClick = (e: MouseEvent<HTMLAnchorElement, globalThis.MouseEvent>, index: number) => {
     e.preventDefault();   
-    setActivePosition(index);
+    setActiveMenuOptionIndex(index);
 
     if (screenType === 'mobile') {
       return;
@@ -85,7 +54,7 @@ export const Menu = ({ isOpen = true }) => {
   return (
     <motion.nav
         initial={false}
-        animate={getAnimation(isOpen, screenType)}
+        animate={getMobileAnimation(isOpen, screenType)}
         variants={optionsVariants}
         className={styles['menu']}
     >
@@ -105,19 +74,18 @@ export const Menu = ({ isOpen = true }) => {
           ))
         }
       </ol>
-      {
-        initialY > 0 && (
-          <motion.div
-            key={initialY}
-            ref={barRef}
-            className={styles['bar']}
-            initial={false}
-            custom={{activeItemIndex, initialY}}
-            animate={screenType}
-            variants={menuVariants}
-          />
-        )
-      }
+      <motion.div
+        ref={barRef}
+        className={styles['bar']}
+        initial={false}
+        custom={{
+          screenType,
+          options,
+          index: activeMenuOptionIndex
+        }}
+        animate={getBarAnimation(screenType)}
+        variants={menuVariants}
+      />
     </motion.nav>
   );
 };
