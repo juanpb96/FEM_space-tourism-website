@@ -12,7 +12,7 @@ const withRouter: Decorator = (Story) => (
 );
 
 const meta = {
-  title: 'Components/NavigationBar',
+  title: 'Components/NavigationBar/NavigationBar',
   component: NavigationBar,
   tags: ['autodocs'],
   decorators: [withRouter]
