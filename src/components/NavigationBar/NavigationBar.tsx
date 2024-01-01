@@ -8,13 +8,12 @@ export const NavigationBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const screenType = useScreenType();
   
-  // TODO: Check behavior resizing the screen
+  // TODO: Check behavior when resizing the screen
   useEffect(() => {
     if (screenType !== 'mobile') {
       setIsOpen(true);
     }
   }, [screenType])
-  
 
   const onToggle = () => {
     setIsOpen(!isOpen);
