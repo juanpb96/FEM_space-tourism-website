@@ -1,27 +1,36 @@
-interface MobileProps {
-  activeItemIndex: number,
-  initialY: number
+import { ScreenType } from '../../../hooks/useScreenType';
+
+interface MenuVerticalVariantProps {
+  index: number;
 };
 
-interface TabletProps {
-  activeItemIndex: number,
+interface WithOptionsProps extends MenuVerticalVariantProps {
+  options: HTMLLIElement[];
+}
+
+interface MenuHorizontalVariantProps extends WithOptionsProps {
+  screenType: ScreenType;
 };
 
-// TODO: Continue working on the desktop variant
+// TODO: Check if it could be a better approach to move functions to another file
+const sumOptionsWidth = ({options, index}: WithOptionsProps) => {    
+  return options.slice(0, index).reduce((acc, option) => acc + option.offsetWidth, 0);
+};
+
+// TODO: Create constant values for numbers without a clear explanation
+const calculateHorizontalMoveByViewport = ({options, index, screenType}: MenuHorizontalVariantProps) => {
+  const optionsGap = screenType === 'tablet' ? 38 : 48;
+  return sumOptionsWidth({options, index}) + index * optionsGap;
+};
+
 const menuVariants = {
-  mobile: ({activeItemIndex, initialY}: MobileProps) => ({
-    y: activeItemIndex * 50 + initialY
+  vertical: ({index}: MenuVerticalVariantProps) => ({
+    y: 118 + index * 51
   }),
-  tablet: ({activeItemIndex}: TabletProps) => ({
-    x: activeItemIndex
+  horizontal: ({screenType, options, index}: MenuHorizontalVariantProps) => ({
+    x: calculateHorizontalMoveByViewport({screenType, options, index})
   }),
-  desktop: ({activeItemIndex}: TabletProps) => ({
-    x: activeItemIndex
-  }),
-  'large-desktop': ({activeItemIndex}: TabletProps) => ({
-    x: activeItemIndex
-  })
-};
+}
 
 // TODO: Get more knowledge on the declaration added in the transition object
 const optionsVariants = {
