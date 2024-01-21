@@ -3,6 +3,8 @@ import { useArgs } from '@storybook/preview-api';
 
 import { MenuButton } from '../MenuButton';
 import { MotionConfig } from 'framer-motion';
+import { userEvent, within } from '@storybook/testing-library';
+import { expect } from '@storybook/jest';
 
 const meta = {
   title: 'Components/NavigationBar/MenuButton',
@@ -19,6 +21,13 @@ const meta = {
     onToggle: () => {}
   },
   tags: ['autodocs'],
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByRole('button', { name: /menu/i });
+
+    expect(button).toBeInTheDocument();
+    await userEvent.click(button);
+  }
 } satisfies Meta<typeof MenuButton>;
 
 export default meta;

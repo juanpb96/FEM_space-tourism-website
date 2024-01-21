@@ -1,6 +1,8 @@
 import type { Decorator, Meta, StoryObj } from '@storybook/react';
 import { MemoryRouter } from 'react-router-dom';
 import { Menu } from '../Menu';
+import { userEvent, within } from '@storybook/testing-library';
+import { expect } from '@storybook/jest';
 
 const withRouter: Decorator = (Story) => (
   <MemoryRouter initialEntries={['/']}>
@@ -15,7 +17,14 @@ const meta = {
     layout: 'centered'
   },
   tags: ['autodocs'],
-  decorators: [withRouter]
+  decorators: [withRouter],
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const anchorElement = canvas.getByRole('link', { name: /crew/i });
+    
+    expect(anchorElement).toBeInTheDocument();
+    await userEvent.click(anchorElement);
+  }
 } satisfies Meta<typeof Menu>;
 
 export default meta;
