@@ -24,6 +24,7 @@ export const MenuButton = ({isOpen, onToggle}: MenuButtonProps) => {
 
   return (
     <button
+      aria-label={`${isOpen ? "Close" : "Open"} menu`}
       type="button"
       onClick={onToggle}
       className={styles['menu-button']}
@@ -37,6 +38,7 @@ export const MenuButton = ({isOpen, onToggle}: MenuButtonProps) => {
         initial={false}
         animate={animateVariant}
         variants={svgVariants}
+        role="presentation"
       >
         <Rect
           className="top"
