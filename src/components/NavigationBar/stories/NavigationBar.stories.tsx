@@ -22,7 +22,7 @@ const meta = {
     const canvas = within(canvasElement);
     const anchorElement = canvas.getByRole('link', { name: /technology/i });
 
-    expect(anchorElement).toBeInTheDocument();
+    await expect(anchorElement).toBeInTheDocument();
     await userEvent.click(anchorElement);
   }
 } satisfies Meta<typeof NavigationBar>;
@@ -35,16 +35,16 @@ export const NavigationBarOnMobile: Story = {
   parameters: {
     viewport: {
       defaultViewport: defaultViewport.mobile
-    }
+    },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const button = canvas.getByRole('button', { name: /menu/i });
+    const button = await canvas.findByRole('button', { name: /menu/i });
     const anchorElement = canvas.getByRole('link', { name: /technology/i });
 
-    expect(button).toBeInTheDocument();
+    await expect(button).toBeInTheDocument();
     await userEvent.click(button);
-    expect(anchorElement).toBeInTheDocument();
+    await expect(anchorElement).toBeInTheDocument();
     await userEvent.click(anchorElement);
   }
 };
