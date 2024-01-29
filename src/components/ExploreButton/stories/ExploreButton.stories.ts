@@ -3,6 +3,7 @@ import { userEvent, within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
 
 import { ExploreButton } from '../ExploreButton';
+import { defaultViewport } from '../../constants/stories-viewports';
 
 const meta = {
   title: 'Components/ExploreButton',
@@ -26,7 +27,7 @@ type Story = StoryObj<typeof meta>;
 export const ButtonOnMobile: Story = {
   parameters: {
     viewport: {
-      defaultViewport: 'iphone6'
+      defaultViewport: defaultViewport.mobile
     }
   }
 };
@@ -34,7 +35,7 @@ export const ButtonOnMobile: Story = {
 export const ButtonOnTablet: Story = {
   parameters: {
     viewport: {
-      defaultViewport: 'ipad'
+      defaultViewport: defaultViewport.tablet
     }
   }
 };

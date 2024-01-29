@@ -1,0 +1,18 @@
+@use 'src/styles/variables' as v;
+
+.nav-container {
+  position: relative;
+
+  & button {
+    position: absolute;
+    inset: 0 0 0 auto;
+    height: fit-content;
+    z-index: 1;
+  }
+}
+
+@media screen and (min-width: v.$tablet) {
+  .nav-container button {
+    display: none;
+  }
+}
