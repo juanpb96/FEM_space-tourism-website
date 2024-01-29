@@ -34,7 +34,7 @@ export const Menu = ({ isOpen = true }) => {
       const activeMenuOption = liElements[activeMenuOptionIndex];
       barElement.style.width = `${activeMenuOption.offsetWidth / baseFontSize}rem`;      
     }
-  }, []);
+  }, [activeMenuOptionIndex, screenType]);
 
   const onLinkClick = (e: MouseEvent<HTMLAnchorElement, globalThis.MouseEvent>, index: number) => {
     e.preventDefault();   

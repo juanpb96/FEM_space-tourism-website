@@ -35,6 +35,7 @@ type Story = StoryObj<typeof meta>;
 
 export const MenuButtonMobile: Story = {
   render: () => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [{ isOpen }, updateArgs] = useArgs();    
     const onToggle = () => updateArgs({ isOpen: !isOpen });
 

@@ -22,7 +22,7 @@ const meta = {
     const canvas = within(canvasElement);
     const anchorElement = canvas.getByRole('link', { name: /crew/i });
     
-    expect(anchorElement).toBeInTheDocument();
+    await expect(anchorElement).toBeInTheDocument();
     await userEvent.click(anchorElement);
   }
 } satisfies Meta<typeof Menu>;

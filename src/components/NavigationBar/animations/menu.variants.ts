@@ -1,16 +1,16 @@
 import { ScreenType } from '../../../hooks/useScreenType';
 
 interface MenuVerticalVariantProps {
-  index: number;
-};
+  index: number,
+}
 
 interface WithOptionsProps extends MenuVerticalVariantProps {
-  options: HTMLLIElement[];
+  options: HTMLLIElement[],
 }
 
 interface MenuHorizontalVariantProps extends WithOptionsProps {
-  screenType: ScreenType;
-};
+  screenType: ScreenType,
+}
 
 // TODO: Check if it could be a better approach to move functions to another file
 const sumOptionsWidth = ({options, index}: WithOptionsProps) => {    
