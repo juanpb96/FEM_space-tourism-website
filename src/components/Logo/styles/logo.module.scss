@@ -1,0 +1,16 @@
+@use 'src/styles/variables' as v;
+
+.wrapper {
+  width: 40px;
+  aspect-ratio: 1 / 1;
+}
+
+.image {
+  height: 100%;
+}
+
+@media screen and (min-width: v.$tablet) {
+  .wrapper {
+    width: 48px;
+  }
+}

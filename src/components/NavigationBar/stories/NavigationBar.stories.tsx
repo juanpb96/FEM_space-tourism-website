@@ -36,7 +36,7 @@ export const NavigationBarOnMobile: Story = {
     viewport: {
       defaultViewport: defaultViewport.mobile
     },
-    chromatic: { viewports: [375, 667] },
+    chromatic: { viewports: [375] },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
