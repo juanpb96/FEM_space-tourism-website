@@ -4,6 +4,7 @@ import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 
 const DEFAULT_VIEWPORT_SIZE = { width: 1280, height: 720 };
 
+// TODO: Fix types
 const config: TestRunnerConfig = {
   async preRender(page, story) {
     const context = await getStoryContext(page, story);
@@ -19,8 +20,6 @@ const config: TestRunnerConfig = {
         }),
         {}
       );
-
-      console.log({viewportSize});
       
       page.setViewportSize(viewportSize);
     } else {
