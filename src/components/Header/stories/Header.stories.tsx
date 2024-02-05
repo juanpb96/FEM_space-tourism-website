@@ -38,4 +38,4 @@ export const HeaderOnTablet: Story = {
   }
 };
 
-export const Default: Story = {};
+export const HeaderOnDesktop: Story = {};

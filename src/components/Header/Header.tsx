@@ -4,9 +4,10 @@ import { NavigationBar } from '../NavigationBar/NavigationBar';
 
 export const Header = () => {
   return (
-    <div className={styles['wrapper']}>
+    <header className={styles['header']}>
       <Logo />
+      <div className={styles['line']} />
       <NavigationBar />
-    </div>
+    </header>
   );
 };
