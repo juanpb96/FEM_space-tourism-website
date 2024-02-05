@@ -1,5 +1,17 @@
+@use 'src/styles/variables' as v;
+
 .wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-top: 24px;
+  padding-inline: 24px;
 }
+
+@media screen and (min-width: v.$tablet) {
+  .wrapper {
+    padding-top: 0;
+    padding-inline: 40px 0;
+  }
+}
+

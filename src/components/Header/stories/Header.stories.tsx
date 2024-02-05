@@ -7,7 +7,10 @@ import { withRouter } from '../../helpers/stories/withRouter';
 const meta: Meta<typeof Header> = {
   title: 'Components/Header',
   component: Header,
-  decorators: [withRouter]
+  decorators: [withRouter],
+  parameters: {
+    layout: 'fullscreen'
+  }
 };
 
 export default meta;
@@ -20,6 +23,17 @@ export const HeaderOnMobile: Story = {
     },
     chromatic: {
       viewports: [chromaticViewport.mobile]
+    }
+  }
+};
+
+export const HeaderOnTablet: Story = {
+  parameters: {
+    viewport: {
+      defaultViewport: defaultViewport.tablet
+    },
+    chromatic: {
+      viewports: [chromaticViewport.tablet]
     }
   }
 };
