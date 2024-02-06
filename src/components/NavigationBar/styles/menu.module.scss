@@ -109,6 +109,7 @@
     align-items: center;
     width: auto;
     height: 6rem;
+    position: revert;
     // TODO: Check backdrop behavior
     // backdrop-filter: unset;
 
@@ -118,7 +119,7 @@
       padding: 0 3rem;
 
       & li {
-        font-size: v.$fs-nav-text;
+        font-size: v.$fs-secondary-nav-text;
         letter-spacing: 0.14763rem;
 
         .counter {

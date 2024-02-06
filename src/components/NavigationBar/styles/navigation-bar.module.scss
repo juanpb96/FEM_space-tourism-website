@@ -2,6 +2,8 @@
 
 .nav-container {
   position: relative;
+  min-width: 24px;
+  min-height: 21px;
 
   & button {
     position: absolute;

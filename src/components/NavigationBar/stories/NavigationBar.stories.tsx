@@ -1,17 +1,10 @@
-import type { Decorator, Meta, StoryObj } from '@storybook/react';
-import { MemoryRouter } from 'react-router-dom';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { NavigationBar } from '../NavigationBar';
-import { defaultViewport } from '../../constants/stories-viewports';
+import { defaultViewport, chromaticViewport } from '../../constants/stories-viewports';
 import { userEvent, within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
-
-//TODO: Move this into a utils or decorators folder
-const withRouter: Decorator = (Story) => (
-  <MemoryRouter initialEntries={['/']}>
-    <Story />
-  </MemoryRouter>
-);
+import { withRouter } from '../../helpers/stories/withRouter';
 
 const meta = {
   title: 'Components/NavigationBar/NavigationBar',
@@ -36,7 +29,9 @@ export const NavigationBarOnMobile: Story = {
     viewport: {
       defaultViewport: defaultViewport.mobile
     },
-    chromatic: { viewports: [375] },
+    chromatic: {
+      viewports: [chromaticViewport.mobile]
+    },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -54,6 +49,9 @@ export const NavigationBarOnTablet: Story = {
   parameters: {
     viewport: {
       defaultViewport: defaultViewport.tablet
+    },
+    chromatic: {
+      viewports: [chromaticViewport.tablet]
     }
   },
 };
