@@ -24,3 +24,15 @@
     }
   }
 }
+
+@media screen and (min-width: v.$tablet) {
+  .subtitle {
+    font-size: 1.25rem;
+  }
+}
+
+@media screen and (min-width: v.$desktop) {
+  .subtitle {
+    font-size: 1.75rem;
+  }
+}

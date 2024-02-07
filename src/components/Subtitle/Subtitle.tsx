@@ -6,7 +6,7 @@ interface SubtitleProps {
 }
 
 export const Subtitle = ({prefix, title}: SubtitleProps) => {
-  const withPrefix = prefix ? styles['subtitle--with-prefix'] : false;
+  const withPrefix = prefix ? styles['subtitle--with-prefix'] : '';
 
   return (
     <h2 className={`${styles['subtitle']} ${withPrefix}`}>
