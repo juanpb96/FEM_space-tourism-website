@@ -1,1 +1,17 @@
-.wrapper {}
+@use 'src/styles/variables' as v;
+@use 'src/styles/fonts' as fonts;
+
+.subtitle {
+  @include fonts.barlow-condensed;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.1688em;
+  color: v.$white;
+  text-transform: uppercase;
+
+  span {
+    font-weight: 700;
+    margin-right: 18px;
+    opacity: v.$opacity-2;
+  }
+}

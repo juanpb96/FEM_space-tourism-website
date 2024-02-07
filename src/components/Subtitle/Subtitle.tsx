@@ -1,9 +1,15 @@
 import styles from './styles/subtitle.module.scss';
 
-export const Subtitle = () => {
+interface SubtitleProps {
+  prefix?: '01' | '02' | '03';
+  title: string;
+}
+
+export const Subtitle = ({prefix, title}: SubtitleProps) => {
   return (
-    <div className={styles['wrapper']}>
-      Subtitle
-    </div>
+    <h2 className={styles['subtitle']}>
+      {prefix && <span>{prefix}</span>}
+      {title}
+    </h2>
   );
 };
