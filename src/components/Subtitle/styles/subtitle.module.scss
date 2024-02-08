@@ -1,0 +1,38 @@
+@use 'src/styles/variables' as v;
+@use 'src/styles/fonts' as fonts;
+
+.subtitle {
+  @include fonts.barlow-condensed;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.1688em;
+  color: v.$lilac;
+  text-transform: uppercase;
+
+  span {
+    display: none;
+  }
+
+  &--with-prefix {
+    color: v.$white;
+
+    span {
+      display: initial;
+      font-weight: 700;
+      margin-right: 18px;
+      opacity: v.$opacity-2;
+    }
+  }
+}
+
+@media screen and (min-width: v.$tablet) {
+  .subtitle {
+    font-size: 1.25rem;
+  }
+}
+
+@media screen and (min-width: v.$desktop) {
+  .subtitle {
+    font-size: 1.75rem;
+  }
+}
