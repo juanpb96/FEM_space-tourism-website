@@ -9,7 +9,7 @@ interface HeadingProps {
 
 export const Heading = ({text, variant}: HeadingProps) => {
   return (
-    <h3 className={[styles['heading'], styles[`heading--${variant}`]].join(' ')}>
+    <h3 className={`${styles['heading']} ${styles[`heading--${variant}`]}`}>
       {text}
     </h3>
   );
