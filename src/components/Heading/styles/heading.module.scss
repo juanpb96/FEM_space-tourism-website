@@ -1,0 +1,56 @@
+@use 'src/styles/variables' as v;
+
+.heading {
+  color: v.$white;
+  text-transform: uppercase;
+  font-weight: 400;
+
+  &--small {
+    font-size: 1.5rem;
+  }
+
+  &--medium {
+    font-size: 3.5rem;
+  }
+
+  &--large {
+    $line-height: 100;
+    $font-size: 80;
+
+    font-size: 5rem;
+    line-height: calc($line-height / $font-size);
+  }
+}
+
+@media screen and (min-width: v.$tablet) {
+  .heading {
+    &--small {
+      font-size: 2.5rem;
+    }
+  
+    &--medium {
+      font-size: 5rem;
+    }
+  
+    &--large {
+      $line-height: 150;
+      $font-size: 150;
+  
+      font-size: 9.375rem;
+      line-height: calc($line-height / $font-size);
+    }
+  }
+}
+
+@media screen and (min-width: v.$desktop) {
+  .heading {
+    &--small {
+      font-size: 3.5rem;
+    }
+  
+    &--medium {
+      font-size: 6.25rem;
+    }
+
+  }
+}
