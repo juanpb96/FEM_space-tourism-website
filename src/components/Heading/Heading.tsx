@@ -1,9 +1,16 @@
 import styles from './styles/heading.module.scss';
 
-export const Heading = () => {
+type Variant = 'small' | 'medium' | 'large';
+
+interface HeadingProps {
+  text: string;
+  variant: Variant;
+}
+
+export const Heading = ({text, variant}: HeadingProps) => {
   return (
-    <div className={styles['wrapper']}>
-      Heading
-    </div>
+    <h3 className={[styles['heading'], styles[`heading--${variant}`]].join(' ')}>
+      {text}
+    </h3>
   );
 };

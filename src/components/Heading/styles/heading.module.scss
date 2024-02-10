@@ -1,3 +1,22 @@
-.wrapper {
-  display: block;
+@use 'src/styles/variables' as v;
+
+.heading {
+  color: v.$white;
+  text-transform: uppercase;
+  font-weight: 400;
+
+  &--small {
+    font-size: 1.5rem;
+  }
+
+  &--medium {
+    font-size: 3.5rem;
+  }
+
+  &--large {
+    font-size: 5rem;
+    line-height: calc(100 / 80); // line-height in px / font-size in px
+  }
 }
+
+// TODO: Add styles for tablet and desktop
