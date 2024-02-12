@@ -1,9 +1,10 @@
+import React from 'react';
 import styles from './styles/description.module.scss';
 
-export const Description = () => {
+export const Description = ({children}: React.PropsWithChildren) => {
   return (
-    <div className={styles['description']}>
-      Description
-    </div>
+    <p className={styles['description']}>
+      {children}
+    </p>
   );
 };
