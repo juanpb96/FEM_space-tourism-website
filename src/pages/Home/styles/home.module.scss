@@ -1,0 +1,16 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 48px 24px;
+}
+
+.introduction {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.explore {
+  margin: 81px auto 0;
+}
