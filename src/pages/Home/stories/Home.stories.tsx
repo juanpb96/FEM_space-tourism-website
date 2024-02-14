@@ -27,4 +27,15 @@ export const HomeOnMobile: Story = {
   }
 };
 
+export const HomeOnTablet: Story = {
+  parameters: {
+    viewport: {
+      defaultViewport: defaultViewport.tablet
+    },
+    chromatic: {
+      viewports: [chromaticViewport.tablet]
+    }
+  }
+};
+
 export const Default: Story = {};
