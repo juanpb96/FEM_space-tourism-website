@@ -10,6 +10,16 @@
   gap: 81px;
   max-width: 1110px;
   box-sizing: content-box;
+
+  &::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url(./assets/home/background-home-mobile.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1;
+  }
 }
 
 .introduction {
@@ -25,6 +35,10 @@
     padding-block: 106px 90px;
     gap: 156px;
     margin-inline: auto;
+
+    &::before {
+      background-image: url(./assets/home/background-home-tablet.jpg);
+    }
   }
 
   .introduction {
@@ -38,6 +52,10 @@
     flex-direction: row;
     justify-content: space-between;
     gap: unset;
+
+    &::before {
+      background-image: url(./assets/home/background-home-desktop.jpg);
+    }
   }
 
   .introduction {
