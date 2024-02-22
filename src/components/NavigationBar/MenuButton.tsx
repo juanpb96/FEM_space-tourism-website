@@ -7,6 +7,7 @@ const Rect = (props: SVGMotionProps<SVGRectElement>) => {
     <motion.rect
       width="24"
       height="3"
+      viewBox="0 0 24 3"
       fill="#D0D6F9"
       {...props}
     />
@@ -39,12 +40,14 @@ export const MenuButton = ({isOpen, onToggle}: MenuButtonProps) => {
         animate={animateVariant}
         variants={svgVariants}
         role="presentation"
+        className={styles['svg']}
       >
         <Rect
           className="top"
           initial={false}
           animate={animateVariant}
           variants={topRectVariants}
+          style={{ originX: '12px', originY: '1.5px' }}
         />
         <Rect
           className="middle"
@@ -60,6 +63,7 @@ export const MenuButton = ({isOpen, onToggle}: MenuButtonProps) => {
           initial={false}
           animate={animateVariant}
           variants={bottomRectVariants}
+          style={{ originX: '12px', originY: '19.5px' }}
         />
       </motion.svg>               
     </button>
