@@ -3,8 +3,8 @@ import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import styles from './styles/menu.module.scss';
 import { useScreenType } from '../../hooks/useScreenType';
-import { menuVariants, optionsVariants } from './animations/menu.variants';
-import { getActiveClass, getMobileAnimation, getBarAnimation } from './utils/Menu.utils';
+import { menuVariants } from './animations/menu.variants';
+import { getActiveClass, getBarAnimation } from './utils/Menu.utils';
 
 /* TODO:
   - Include active state for mobile and tablet
@@ -16,7 +16,7 @@ const PAGES = ['Home', 'Destination', 'Crew', 'Technology'];
 
 const baseFontSize = parseFloat(window.getComputedStyle(document.documentElement).getPropertyValue('font-size'));
 
-export const Menu = ({ isOpen = true }) => {
+export const Menu = () => {
   const [activeMenuOptionIndex, setActiveMenuOptionIndex] = useState(0);
   const [options, setOptions] = useState<HTMLLIElement[]>([]);
   const screenType = useScreenType();
@@ -52,12 +52,7 @@ export const Menu = ({ isOpen = true }) => {
   };
 
   return (
-    <motion.nav
-        initial={false}
-        animate={getMobileAnimation(isOpen, screenType)}
-        variants={optionsVariants}
-        className={styles['menu']}
-    >
+    <nav className={styles['menu']}>
       <ol ref={olRef}>
         {
           PAGES.map((page, index) => (
@@ -86,6 +81,6 @@ export const Menu = ({ isOpen = true }) => {
         animate={getBarAnimation(screenType)}
         variants={menuVariants}
       />
-    </motion.nav>
+    </nav>
   );
 };
