@@ -18,7 +18,7 @@ const sumOptionsWidth = ({options, index}: WithOptionsProps) => {
 };
 
 // TODO: Create constant values for numbers without a clear explanation
-const calculateHorizontalMoveByViewport = ({options, index, screenType}: MenuHorizontalVariantProps) => {
+const calculateHorizontalMoveByViewport = ({screenType, options, index}: MenuHorizontalVariantProps) => {
   const optionsGap = screenType === 'tablet' ? 38 : 48;
   return sumOptionsWidth({options, index}) + index * optionsGap;
 };

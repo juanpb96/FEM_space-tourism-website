@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Decorator, Meta, StoryObj } from '@storybook/react';
 
 import { NavigationBar } from '../NavigationBar';
 import { defaultViewport, chromaticViewport } from '../../constants/stories-viewports';
@@ -11,6 +11,9 @@ const meta = {
   component: NavigationBar,
   tags: ['autodocs'],
   decorators: [withRouter],
+  parameters: {
+    layout: 'fullscreen'
+  },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const anchorElement = canvas.getByRole('link', { name: /technology/i });
@@ -23,7 +26,6 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// TODO: Add background image to test blur effect
 export const NavigationBarOnMobile: Story = {
   parameters: {
     viewport: {
@@ -33,6 +35,13 @@ export const NavigationBarOnMobile: Story = {
       viewports: [chromaticViewport.mobile]
     },
   },
+  decorators: [
+    (Story) => (
+      <div style={{ padding: '24px' }}>
+        <Story />
+      </div>
+    ),
+  ],
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const button = await canvas.findByRole('button', { name: /menu/i });
@@ -45,6 +54,12 @@ export const NavigationBarOnMobile: Story = {
   }
 };
 
+const withWrapper: Decorator = (Story) => (
+  <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+    <Story />
+  </div>
+);
+
 export const NavigationBarOnTablet: Story = {
   parameters: {
     viewport: {
@@ -54,6 +69,9 @@ export const NavigationBarOnTablet: Story = {
       viewports: [chromaticViewport.tablet]
     }
   },
+  decorators: [withWrapper],
 };
 
-export const NavigationBarDesktop: Story = {}
+export const NavigationBarDesktop: Story = {
+  decorators: [withWrapper],
+}
