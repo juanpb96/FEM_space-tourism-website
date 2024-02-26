@@ -6,12 +6,6 @@ import { useScreenType } from '../../hooks/useScreenType';
 import { menuVariants } from './animations/menu.variants';
 import { getActiveClass, getBarAnimation } from './utils/Menu.utils';
 
-/* TODO:
-  - Include active state for mobile and tablet
-  - Check keyboard navigation
-  - Validate behavior on viewport resize 
-*/
-
 const PAGES = ['Home', 'Destination', 'Crew', 'Technology'];
 
 const baseFontSize = parseFloat(window.getComputedStyle(document.documentElement).getPropertyValue('font-size'));
@@ -25,30 +19,40 @@ export const Menu = () => {
 
   useEffect(() => {
     const olElement = olRef.current;
-    const barElement = barRef.current;
-    
-    if (screenType !== 'mobile' && olElement && barElement) {
+
+    if (olElement) {
       const liElements = Array.from(olElement.getElementsByTagName('li'));
       setOptions(liElements);
-      
-      const activeMenuOption = liElements[activeMenuOptionIndex];
-      barElement.style.width = `${activeMenuOption.offsetWidth / baseFontSize}rem`;      
     }
-  }, [activeMenuOptionIndex, screenType]);
+  }, [])
+
+  useEffect(() => {
+    const barElement = barRef.current;
+
+    const resizeObserver = new ResizeObserver((entries) => {      
+      if (barElement) {
+        const activeMenuOptionWidth = Math.round(entries[0].contentBoxSize[0].inlineSize);
+        barElement.style.width = `${activeMenuOptionWidth / baseFontSize}rem`; 
+      }
+    });
+    
+    const calculateBarWidth = () => {
+      if (options.length && barElement) {    
+        const activeMenuOption = options[activeMenuOptionIndex];            
+        resizeObserver.observe(activeMenuOption);
+      }
+    }
+
+    calculateBarWidth();
+
+    return () => {
+      resizeObserver.disconnect();
+    }
+  }, [activeMenuOptionIndex, options]);
 
   const onLinkClick = (e: MouseEvent<HTMLAnchorElement, globalThis.MouseEvent>, index: number) => {
     e.preventDefault();   
     setActiveMenuOptionIndex(index);
-
-    if (screenType === 'mobile') {
-      return;
-    }
-
-    const elementSize = (e.target as HTMLLinkElement).offsetWidth / baseFontSize 
-    
-    if (barRef.current) {
-      barRef.current.style.width = `${elementSize}rem`;
-    }
   };
 
   return (
