@@ -3,20 +3,14 @@ import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import styles from './styles/menu.module.scss';
 import { useScreenType } from '../../hooks/useScreenType';
-import { menuVariants, optionsVariants } from './animations/menu.variants';
-import { getActiveClass, getMobileAnimation, getBarAnimation } from './utils/Menu.utils';
-
-/* TODO:
-  - Include active state for mobile and tablet
-  - Check keyboard navigation
-  - Validate behavior on viewport resize 
-*/
+import { menuVariants } from './animations/menu.variants';
+import { getActiveClass, getBarAnimation } from './utils/Menu.utils';
 
 const PAGES = ['Home', 'Destination', 'Crew', 'Technology'];
 
 const baseFontSize = parseFloat(window.getComputedStyle(document.documentElement).getPropertyValue('font-size'));
 
-export const Menu = ({ isOpen = true }) => {
+export const Menu = () => {
   const [activeMenuOptionIndex, setActiveMenuOptionIndex] = useState(0);
   const [options, setOptions] = useState<HTMLLIElement[]>([]);
   const screenType = useScreenType();
@@ -25,39 +19,44 @@ export const Menu = ({ isOpen = true }) => {
 
   useEffect(() => {
     const olElement = olRef.current;
-    const barElement = barRef.current;
-    
-    if (screenType !== 'mobile' && olElement && barElement) {
+
+    if (olElement) {
       const liElements = Array.from(olElement.getElementsByTagName('li'));
       setOptions(liElements);
-      
-      const activeMenuOption = liElements[activeMenuOptionIndex];
-      barElement.style.width = `${activeMenuOption.offsetWidth / baseFontSize}rem`;      
     }
-  }, [activeMenuOptionIndex, screenType]);
+  }, [])
+
+  useEffect(() => {
+    const barElement = barRef.current;
+
+    const resizeObserver = new ResizeObserver((entries) => {      
+      if (barElement) {
+        const activeMenuOptionWidth = Math.round(entries[0].contentBoxSize[0].inlineSize);
+        barElement.style.width = `${activeMenuOptionWidth / baseFontSize}rem`; 
+      }
+    });
+    
+    const calculateBarWidth = () => {
+      if (options.length && barElement) {    
+        const activeMenuOption = options[activeMenuOptionIndex];            
+        resizeObserver.observe(activeMenuOption);
+      }
+    }
+
+    calculateBarWidth();
+
+    return () => {
+      resizeObserver.disconnect();
+    }
+  }, [activeMenuOptionIndex, options]);
 
   const onLinkClick = (e: MouseEvent<HTMLAnchorElement, globalThis.MouseEvent>, index: number) => {
     e.preventDefault();   
     setActiveMenuOptionIndex(index);
-
-    if (screenType === 'mobile') {
-      return;
-    }
-
-    const elementSize = (e.target as HTMLLinkElement).offsetWidth / baseFontSize 
-    
-    if (barRef.current) {
-      barRef.current.style.width = `${elementSize}rem`;
-    }
   };
 
   return (
-    <motion.nav
-        initial={false}
-        animate={getMobileAnimation(isOpen, screenType)}
-        variants={optionsVariants}
-        className={styles['menu']}
-    >
+    <nav className={styles['menu']}>
       <ol ref={olRef}>
         {
           PAGES.map((page, index) => (
@@ -86,6 +85,6 @@ export const Menu = ({ isOpen = true }) => {
         animate={getBarAnimation(screenType)}
         variants={menuVariants}
       />
-    </motion.nav>
+    </nav>
   );
 };
