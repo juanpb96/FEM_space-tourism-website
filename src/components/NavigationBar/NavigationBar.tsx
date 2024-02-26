@@ -25,7 +25,7 @@ export const NavigationBar = () => {
         ? <MenuMobile isOpen={isOpen} />
         : <Menu />
       }
-      {/* TODO: Increase button clickable area to enhance usability */}
+      {/* TODO: Increase button clickable area to enhance usability - Issue #48 */}
       <MenuButton isOpen={isOpen} onToggle={onToggle} />
     </div>
   );

@@ -11,6 +11,11 @@ interface MenuMobileProps {
   isOpen: boolean;
 }
 
+/**
+ * TODO: Increase menu options clickable area to enhance usability - Issue #48
+ * - Update hover query by including pointer fine
+ */
+ 
 export const MenuMobile = ({ isOpen }: MenuMobileProps) => {
   const [activeMenuOptionIndex, setActiveMenuOptionIndex] = useState(0);
   const olRef = useRef<HTMLOListElement>(null);
