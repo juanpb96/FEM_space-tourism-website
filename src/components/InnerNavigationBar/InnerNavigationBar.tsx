@@ -4,7 +4,7 @@ const PAGES = ['Moon', 'Mars', 'Europa', 'Titan'];
 
 export const InnerNavigationBar = () => {
   return (
-    <nav className={styles['wrapper']}>
+    <nav className={styles['nav']}>
       <ol>
         {PAGES.map(page => (
           <li key={page}>

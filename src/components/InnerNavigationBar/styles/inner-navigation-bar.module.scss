@@ -1,0 +1,26 @@
+@use 'src/styles/fonts' as fonts;
+
+@function convertToRem($px) {
+  @return calc($px / 16 * 1rem);
+}
+
+.nav {
+  width: fit-content;
+  min-height: convertToRem(28);
+  border-bottom: 1px solid red;
+}
+
+.nav ol {
+  display: flex;
+  gap: convertToRem(26);
+  padding: 0;
+  width: inherit;
+
+  & li {
+    @include fonts.barlow-condensed;
+    list-style-type: none;
+    text-transform: uppercase;
+    font-size: convertToRem(14);
+    letter-spacing: convertToRem(2.36);
+  }
+}
