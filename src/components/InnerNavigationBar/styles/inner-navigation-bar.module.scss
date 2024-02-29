@@ -1,18 +1,21 @@
+@use 'src/styles/variables' as v;
 @use 'src/styles/fonts' as fonts;
 
-@function convertToRem($px) {
+@function convertPxToRem($px) {
   @return calc($px / 16 * 1rem);
 }
 
 .nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: fit-content;
-  min-height: convertToRem(28);
-  border-bottom: 1px solid red;
+  min-height: convertPxToRem(28);
 }
 
 .nav ol {
   display: flex;
-  gap: convertToRem(26);
+  gap: convertPxToRem(26);
   padding: 0;
   width: inherit;
 
@@ -20,7 +23,15 @@
     @include fonts.barlow-condensed;
     list-style-type: none;
     text-transform: uppercase;
-    font-size: convertToRem(14);
-    letter-spacing: convertToRem(2.36);
+    color: v.$white;
+    font-size: convertPxToRem(14);
+    letter-spacing: convertPxToRem(2.36);
   }
+}
+
+.bar {
+  width: 36px;
+  height: 3px;
+  margin-top: 8px;
+  background-color: v.$white;
 }

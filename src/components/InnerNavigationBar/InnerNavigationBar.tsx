@@ -12,6 +12,7 @@ export const InnerNavigationBar = () => {
           </li>
         ))}
       </ol>
+      <div className={styles['bar']} />
     </nav>
   );
 };
