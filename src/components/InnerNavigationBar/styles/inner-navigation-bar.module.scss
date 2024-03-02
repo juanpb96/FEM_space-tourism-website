@@ -20,6 +20,7 @@
   width: inherit;
 
   & li {
+    cursor: pointer;
     @include fonts.barlow-condensed;
     list-style-type: none;
     text-transform: uppercase;
@@ -30,7 +31,6 @@
 }
 
 .bar {
-  width: 36px;
   height: 3px;
   margin-top: 8px;
   background-color: v.$white;
