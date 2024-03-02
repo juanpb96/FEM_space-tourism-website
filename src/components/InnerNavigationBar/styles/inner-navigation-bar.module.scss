@@ -13,6 +13,12 @@
   min-height: convertPxToRem(28);
 }
 
+@media screen and (min-width: v.$tablet) {
+  .nav {
+    min-height: convertPxToRem(34);
+  }
+}
+
 .nav ol {
   display: flex;
   gap: convertPxToRem(26);
@@ -27,6 +33,17 @@
     color: v.$white;
     font-size: convertPxToRem(14);
     letter-spacing: convertPxToRem(2.36);
+  }
+}
+
+@media screen and (min-width: v.$tablet) {
+  .nav ol {
+    gap: convertPxToRem(36);
+
+    & li {
+      font-size: 1rem;
+      letter-spacing: convertPxToRem(2.7);
+    }
   }
 }
 
