@@ -1,0 +1,54 @@
+@use 'src/styles/variables' as v;
+@use 'src/styles/fonts' as fonts;
+
+@function convertPxToRem($px) {
+  @return calc($px / 16 * 1rem);
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: fit-content;
+  min-height: convertPxToRem(28);
+}
+
+@media screen and (min-width: v.$tablet) {
+  .nav {
+    min-height: convertPxToRem(34);
+  }
+}
+
+.nav ol {
+  display: flex;
+  gap: convertPxToRem(26);
+  padding: 0;
+  width: inherit;
+
+  & li {
+    cursor: pointer;
+    @include fonts.barlow-condensed;
+    list-style-type: none;
+    text-transform: uppercase;
+    color: v.$white;
+    font-size: convertPxToRem(14);
+    letter-spacing: convertPxToRem(2.36);
+  }
+}
+
+@media screen and (min-width: v.$tablet) {
+  .nav ol {
+    gap: convertPxToRem(36);
+
+    & li {
+      font-size: 1rem;
+      letter-spacing: convertPxToRem(2.7);
+    }
+  }
+}
+
+.bar {
+  height: 3px;
+  margin-top: 8px;
+  background-color: v.$white;
+}
