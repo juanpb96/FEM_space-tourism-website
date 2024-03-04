@@ -1,0 +1,27 @@
+@use 'src/styles/variables' as v;
+@use 'src/styles/fonts' as fonts;
+
+// TODO: Move into a file for SCSS functions
+@function convertPxToRem($px) {
+  @return calc($px / 16 * 1rem);
+}
+
+.wrapper {
+  width: fit-content;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.wrapper h4 {
+  @include fonts.barlow-condensed;
+  color: v.$lilac;
+  font-size: convertPxToRem(14);
+  font-weight: 400;
+  letter-spacing: convertPxToRem(2.36);
+  margin-bottom: 12px;
+}
+
+.wrapper p {
+  color: v.$white;
+  font-size: convertPxToRem(28);
+}
