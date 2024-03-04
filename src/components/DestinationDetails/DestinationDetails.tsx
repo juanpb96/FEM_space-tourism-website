@@ -1,9 +1,15 @@
 import styles from './styles/destination-details.module.scss';
 
-export const DestinationDetails = () => {
+interface DestinationDetailsProps {
+  title: string;
+  value: string;
+}
+
+export const DestinationDetails = ({title, value}: DestinationDetailsProps) => {
   return (
-    <div className={styles['wrapper']}>
-      DestinationDetails
-    </div>
+    <section className={styles['wrapper']}>
+      <h4>{title}</h4>
+      <p>{value}</p>
+    </section>
   );
 };
