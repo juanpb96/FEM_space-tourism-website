@@ -14,6 +14,7 @@ export const Destination = () => {
       />
       <img src="./assets/destination/image-moon.png" alt="" />
       <InnerNavigationBar />
+      <div className={styles['spacer']}/>
       <Heading
         text='Moon'
         variant='medium'
@@ -21,15 +22,17 @@ export const Destination = () => {
       <Description>
         See our planet as you’ve never seen it before. A perfect relaxing trip away to help regain perspective and come back refreshed. While you’re there, take in some history by visiting the Luna 2 and Apollo 11 landing sites.
       </Description>
-      <hr />
-      <DestinationDetails
-        title='Avg. Distance'
-        value='384,400 km'
-      />
-      <DestinationDetails
-        title='Est. Travel Time'
-        value='3 days'
-      />
+      <hr className={styles['hr']} />
+      <div className={styles['details']}>
+        <DestinationDetails
+          title='Avg. Distance'
+          value='384,400 km'
+        />
+        <DestinationDetails
+          title='Est. Travel Time'
+          value='3 days'
+        />
+      </div>
     </main>
   );
 };
