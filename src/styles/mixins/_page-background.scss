@@ -1,0 +1,11 @@
+@mixin page-background($default-image, $image-tablet, $image-desktop) {
+  &::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url($default-image);
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1;
+  }
+}
