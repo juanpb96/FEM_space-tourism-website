@@ -1,3 +1,5 @@
+@use '../variables' as v;
+
 @mixin page-background($default-image, $image-tablet, $image-desktop) {
   &::before {
     content: '';
@@ -7,5 +9,13 @@
     background-repeat: no-repeat;
     background-size: cover;
     z-index: -1;
+
+    @media screen and (min-width: v.$tablet) {
+      background-image: url($image-tablet);
+    }
+
+    @media screen and (min-width: v.$desktop) {
+      background-image: url($image-desktop);
+    }
   }
 }
