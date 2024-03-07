@@ -13,25 +13,26 @@ export const Destination = () => {
         title='Pick your destination'
       />
       <img src="./assets/destination/image-moon.png" alt="" />
-      <InnerNavigationBar />
-      <div className={styles['spacer']}/>
-      <Heading
-        text='Moon'
-        variant='medium'
-      />
-      <Description>
-        See our planet as you’ve never seen it before. A perfect relaxing trip away to help regain perspective and come back refreshed. While you’re there, take in some history by visiting the Luna 2 and Apollo 11 landing sites.
-      </Description>
-      <hr className={styles['hr']} />
-      <div className={styles['details']}>
-        <DestinationDetails
-          title='Avg. Distance'
-          value='384,400 km'
+      <div className={styles['info']}>
+        <InnerNavigationBar />
+        <div className={styles['spacer']}/>
+        <Heading
+          text='Moon'
+          variant='medium'
         />
-        <DestinationDetails
-          title='Est. Travel Time'
-          value='3 days'
-        />
+        <Description>
+          See our planet as you’ve never seen it before. A perfect relaxing trip away to help regain perspective and come back refreshed. While you’re there, take in some history by visiting the Luna 2 and Apollo 11 landing sites.
+        </Description>
+        <div className={styles['details']}>
+          <DestinationDetails
+            title='Avg. Distance'
+            value='384,400 km'
+          />
+          <DestinationDetails
+            title='Est. Travel Time'
+            value='3 days'
+          />
+        </div>
       </div>
     </main>
   );

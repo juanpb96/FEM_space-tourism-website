@@ -10,6 +10,10 @@
   width: fit-content;
   text-align: center;
   text-transform: uppercase;
+
+  @media screen and (min-width: v.$desktop) {
+    text-align: initial;
+  }
 }
 
 .wrapper h4 {
