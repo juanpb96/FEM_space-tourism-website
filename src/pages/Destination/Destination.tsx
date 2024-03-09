@@ -12,7 +12,10 @@ export const Destination = () => {
         prefix='01'
         title='Pick your destination'
       />
-      <img src="./assets/destination/image-moon.png" alt="" />
+      <picture>
+        <source srcSet='./assets/destination/image-moon.webp' type='image/webp' />
+        <img src='./assets/destination/image-moon.png' alt='' />
+      </picture>
       <div className={styles['info']}>
         <InnerNavigationBar />
         <div className={styles['spacer']}/>
