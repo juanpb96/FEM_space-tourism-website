@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { MouseEvent } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useScreenType } from '../../hooks/useScreenType';
 import { menuVariants } from './animations/menu.variants';
@@ -13,8 +12,7 @@ export const Menu = () => {
   const { olRef, barRef, options, activeMenuOptionIndex, setActiveMenuOptionIndex } = useLocationBar();
   const screenType = useScreenType();
 
-  const onLinkClick = (e: MouseEvent, index: number) => {
-    e.preventDefault();
+  const onLinkClick = (index: number) => {
     setActiveMenuOptionIndex(index);
   };
 
@@ -25,9 +23,9 @@ export const Menu = () => {
           PAGES.map((page, index) => (
             <li key={page}>
               <NavLink
-                to={`/${page}`}
+                to={`/${page.toLowerCase()}`}
                 className={getActiveClass}
-                onClick={(e) => onLinkClick(e, index)}
+                onClick={() => onLinkClick(index)}
               >
                 <span className={styles['counter']}>0{index}</span>
                 {page}

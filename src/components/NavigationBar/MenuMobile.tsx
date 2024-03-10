@@ -1,4 +1,4 @@
-import { MouseEvent, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { getActiveClass, getBarAnimation, getMobileAnimation } from "./utils/Menu.utils";
 import { motion } from "framer-motion";
@@ -23,8 +23,8 @@ export const MenuMobile = ({ isOpen }: MenuMobileProps) => {
   const olRef = useRef<HTMLOListElement>(null);
   const barRef = useRef<HTMLDivElement>(null);  
 
-  const onLinkClick = (e: MouseEvent<HTMLAnchorElement, globalThis.MouseEvent>, index: number) => {
-    e.preventDefault();
+  const onLinkClick = (index: number) => {
+    // TODO: Investigate if closing the Menu here enhances UX
     setActiveMenuOptionIndex(index);
   };
 
@@ -42,7 +42,7 @@ export const MenuMobile = ({ isOpen }: MenuMobileProps) => {
               <NavLink
                 to={`/${page}`}
                 className={getActiveClass}
-                onClick={(e) => onLinkClick(e, index)}
+                onClick={() => onLinkClick(index)}
               >
                 <span className={styles['counter']}>0{index}</span>
                 {page}
