@@ -3,8 +3,8 @@ import {
   RouterProvider
 } from 'react-router-dom';
 import { SpaceTourismWebsite } from '../SpaceTourismWebsite';
-import { Destination } from '../pages/Destination';
 import { Home } from '../pages/Home/Home';
+import { Destination } from '../pages/Destination/Destination';
 
 const router = createBrowserRouter([
   {
