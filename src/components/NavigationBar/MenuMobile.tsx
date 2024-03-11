@@ -24,7 +24,7 @@ export const MenuMobile = ({ isOpen }: MenuMobileProps) => {
   const barRef = useRef<HTMLDivElement>(null);  
 
   const onLinkClick = (index: number) => {
-    // TODO: Investigate if closing the Menu here enhances UX
+    // TODO: Investigate if closing the Menu here enhances UX - Issue #48
     setActiveMenuOptionIndex(index);
   };
 
