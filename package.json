@@ -48,7 +48,9 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
     "eslint-plugin-storybook": "^0.6.13",
+    "json-server": "^1.0.0-alpha.23",
     "storybook": "7.2.3",
+    "ts-jest": "^29.1.2",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
   },
