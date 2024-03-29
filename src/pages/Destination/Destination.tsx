@@ -1,11 +1,22 @@
 import { Description } from '../../components/Description/Description';
+import { DestinationDetails } from '../../components/DestinationDetails/DestinationDetails';
 import { Heading } from '../../components/Heading/Heading';
 import { InnerNavigationBar } from '../../components/InnerNavigationBar/InnerNavigationBar';
 import { Subtitle } from '../../components/Subtitle/Subtitle';
+import { useDestination } from './hooks/useDestination';
 import styles from './styles/destination.module.scss';
-import { DestinationDetails } from '../../components/DestinationDetails/DestinationDetails';
 
 export const Destination = () => {
+  const { destinations, details, setActiveDestination } = useDestination();  
+  const {
+    name,
+    images,
+    description,
+    distance,
+    travel,
+  } = details;
+  const pages = destinations.map(destination => destination.name);
+
   return (
     <main className={styles['wrapper']}>
       <Subtitle
@@ -13,27 +24,27 @@ export const Destination = () => {
         title='Pick your destination'
       />
       <picture>
-        <source srcSet='./assets/destination/image-moon.webp' type='image/webp' />
-        <img src='./assets/destination/image-moon.png' alt='' />
+        <source srcSet={images.webp} type='image/webp' />
+        <img src={images.png} alt='' />
       </picture>
       <div className={styles['info']}>
-        <InnerNavigationBar />
+        <InnerNavigationBar pages={pages} setActivePage={setActiveDestination} />
         <div className={styles['spacer']}/>
         <Heading
-          text='Moon'
+          text={name}
           variant='medium'
         />
         <Description>
-          See our planet as you’ve never seen it before. A perfect relaxing trip away to help regain perspective and come back refreshed. While you’re there, take in some history by visiting the Luna 2 and Apollo 11 landing sites.
+          {description}
         </Description>
         <div className={styles['details']}>
           <DestinationDetails
             title='Avg. Distance'
-            value='384,400 km'
+            value={distance}
           />
           <DestinationDetails
             title='Est. Travel Time'
-            value='3 days'
+            value={travel}
           />
         </div>
       </div>
