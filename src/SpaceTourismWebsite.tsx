@@ -9,9 +9,6 @@ export const SpaceTourismWebsite = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // TODO: Remove this after testing on published site
-    console.log('Current pathname: ' + location.pathname);
-
     if (location.pathname === '/') {
       navigate('/home');
     }
