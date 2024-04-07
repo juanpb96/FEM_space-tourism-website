@@ -13,6 +13,10 @@ const meta: Meta<typeof InnerNavigationBar> = {
     
     await expect(liElement).toBeInTheDocument();
     await userEvent.click(liElement);
+  },
+  args: {
+    pages: ['Moon', 'Mars', 'Europa', 'Titan'],
+    setActivePage: () => {}
   }
 };
 
