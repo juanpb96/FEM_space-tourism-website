@@ -3,6 +3,7 @@ import type { Destinations } from "../types";
 const getDestinations = async () => {
   try {
     // TODO: Update URL when resource is defined for prod env
+    // TODO: Test on mobile when prod gets defined
     const response = await fetch('http://localhost:3000/destinations');
     const data = await response.json();
     return data;

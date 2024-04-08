@@ -14,7 +14,7 @@ interface InnerNavigationBarProps {
 // TODO: Increase options clickable area to enhance usability - Issue #48
 // TODO: Rename the component to be more specific
 export const InnerNavigationBar = ({pages, setActivePage}: InnerNavigationBarProps) => {
-  const { olRef, barRef, options, activeMenuOptionIndex, setActiveMenuOptionIndex } = useLocationBar();
+  const { olRef, barRef, options, activeMenuOptionIndex, setActiveMenuOptionIndex } = useLocationBar(pages);
   const screenType = useScreenType();
 
   const onLinkClick = (e: MouseEvent, index: number) => {
