@@ -4,23 +4,29 @@ import { useLocationBar } from '../../hooks/useLocationBar';
 import { useScreenType } from '../../hooks/useScreenType';
 import { calculateHorizontalMoveByViewport } from './animations/horizontal-move';
 import styles from './styles/inner-navigation-bar.module.scss';
+import type { DestinationName } from '../../pages/Destination/types';
 
-const PAGES = ['Moon', 'Mars', 'Europa', 'Titan'];
+interface InnerNavigationBarProps {
+  pages: DestinationName[];
+  setActivePage: (page: DestinationName) => void;
+}
 
 // TODO: Increase options clickable area to enhance usability - Issue #48
-export const InnerNavigationBar = () => {
-  const { olRef, barRef, options, activeMenuOptionIndex, setActiveMenuOptionIndex } = useLocationBar();
+// TODO: Rename the component to be more specific
+export const InnerNavigationBar = ({pages, setActivePage}: InnerNavigationBarProps) => {
+  const { olRef, barRef, options, activeMenuOptionIndex, setActiveMenuOptionIndex } = useLocationBar(pages);
   const screenType = useScreenType();
 
   const onLinkClick = (e: MouseEvent, index: number) => {
     e.preventDefault();
     setActiveMenuOptionIndex(index);
+    setActivePage(pages[index]);
   };
 
   return (
     <nav className={styles['nav']}>
       <ol ref={olRef}>
-        {PAGES.map((page, index) => (
+        {pages.map((page, index) => (
           <li key={page} onClick={(e) => onLinkClick(e, index)}>
             {page}
           </li>
