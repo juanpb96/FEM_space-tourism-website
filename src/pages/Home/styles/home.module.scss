@@ -15,7 +15,7 @@
     content: '';
     position: fixed;
     inset: 0;
-    background-image: url(./assets/home/background-home-mobile.jpg);
+    background-image: url("/assets/home/background-home-mobile.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     z-index: -1;
@@ -37,7 +37,7 @@
     margin-inline: auto;
 
     &::before {
-      background-image: url(./assets/home/background-home-tablet.jpg);
+      background-image: url("/assets/home/background-home-tablet.jpg");
     }
   }
 
@@ -54,7 +54,7 @@
     gap: unset;
 
     &::before {
-      background-image: url(./assets/home/background-home-desktop.jpg);
+      background-image: url("/assets/home/background-home-desktop.jpg");
     }
   }
 
