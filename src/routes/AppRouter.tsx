@@ -6,7 +6,7 @@ import { SpaceTourismWebsite } from '../SpaceTourismWebsite';
 import { Home } from '../pages/Home/Home';
 import { Destination } from '../pages/Destination/Destination';
 
-const router = createBrowserRouter([
+const routes = [
   {
     path: '/',
     element: <SpaceTourismWebsite />,
@@ -26,7 +26,11 @@ const router = createBrowserRouter([
       },
     ]
   }
-]);
+];
+
+const router = createBrowserRouter(routes, {
+  basename: '/FEM_space-tourism-website/'
+});
 
 export const AppRouter = () => {
   return (
