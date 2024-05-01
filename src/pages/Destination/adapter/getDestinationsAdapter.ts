@@ -7,7 +7,6 @@ const endpoint = '/destinations';
 
 const getDestinations = async () => {
   try {
-    // TODO: Test on mobile when prod gets defined
     const response = await fetch(`${apiUrl}${endpoint}`);
 
     if (!response.ok) {

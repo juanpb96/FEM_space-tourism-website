@@ -8,6 +8,11 @@ import styles from './styles/destination.module.scss';
 
 export const Destination = () => {
   const { destinations, details, setActiveDestination } = useDestination();  
+
+  if (!details) {
+    return;
+  }
+
   const {
     name,
     images,
@@ -15,7 +20,7 @@ export const Destination = () => {
     distance,
     travel,
   } = details;
-  const pages = destinations.map(destination => destination.name);
+  const pages = destinations.map(destination => destination.name); 
 
   return (
     <main className={styles['wrapper']}>
