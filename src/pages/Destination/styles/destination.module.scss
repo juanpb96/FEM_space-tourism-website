@@ -1,7 +1,7 @@
 @use 'src/styles/variables' as v;
 @use 'src/styles/mixins/page-background' as m;
 
-$assets-path: '/assets/destination/';
+$assets-path: './assets/destination/';
 $background-mobile: $assets-path + 'background-destination-mobile.jpg';
 $background-tablet: $assets-path + 'background-destination-tablet.jpg';
 $background-desktop: $assets-path + 'background-destination-desktop.jpg';

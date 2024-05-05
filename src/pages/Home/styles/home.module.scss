@@ -1,5 +1,10 @@
 @use 'src/styles/variables' as v;
 
+$assets-path: './assets/home/';
+$background-mobile: $assets-path + 'background-home-mobile.jpg';
+$background-tablet: $assets-path + 'background-home-tablet.jpg';
+$background-desktop: $assets-path + 'background-home-desktop.jpg';
+
 .wrapper {
   $side-padding: 24px;
 
@@ -15,7 +20,7 @@
     content: '';
     position: fixed;
     inset: 0;
-    background-image: url("/assets/home/background-home-mobile.jpg");
+    background-image: url($background-mobile);
     background-repeat: no-repeat;
     background-size: cover;
     z-index: -1;
@@ -37,7 +42,7 @@
     margin-inline: auto;
 
     &::before {
-      background-image: url("/assets/home/background-home-tablet.jpg");
+      background-image: url($background-tablet);
     }
   }
 
@@ -54,7 +59,7 @@
     gap: unset;
 
     &::before {
-      background-image: url("/assets/home/background-home-desktop.jpg");
+      background-image: url($background-desktop);
     }
   }
 
