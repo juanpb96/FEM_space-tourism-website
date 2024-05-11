@@ -13,12 +13,21 @@
   width: 10px;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
-  background-color: v.$grey;
+  background-color: v.$white;
+  border-color: v.$grey;
+  opacity: 0.1744;
 
   &.active {
-    background-color: v.$white;
+    opacity: 1;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      opacity: 0.5;
+    }
   }
 }
+
 
 @media screen and (min-width: v.$desktop) {
   .wrapper {
