@@ -1,0 +1,31 @@
+@use 'src/styles/variables' as v;
+
+.wrapper {
+  display: flex;
+  width: fit-content;
+  flex-wrap: nowrap;
+  gap: 16px;
+  list-style-type: none;
+  padding: 0;
+}
+
+.wrapper li {
+  width: 10px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background-color: v.$grey;
+
+  &.active {
+    background-color: v.$white;
+  }
+}
+
+@media screen and (min-width: v.$desktop) {
+  .wrapper {
+    gap: 24px;
+  }
+  
+  .wrapper li {
+    width: 15px;
+  }
+}
