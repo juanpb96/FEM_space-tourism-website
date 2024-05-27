@@ -1,0 +1,46 @@
+@use 'src/styles/variables' as v;
+@use 'src/styles/fonts' as fonts;
+@use 'src/styles/mixins/page-background' as m;
+
+// TODO: Consider creating a function to handle this repetitive code
+$assets-path: './assets/crew/';
+$background-mobile: $assets-path + 'background-crew-mobile.jpg';
+$background-tablet: $assets-path + 'background-crew-tablet.jpg';
+$background-desktop: $assets-path + 'background-crew-desktop.jpg';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
+
+  // TODO: Apply opacity as per figma design
+  @include m.page-background($background-mobile, $background-tablet, $background-desktop);
+}
+
+.crew-member {
+  height: 222px;
+  margin-top: 32px;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  border: none;
+  background-color: v.$ship-grey;
+  margin-bottom: 32px;
+}
+
+.rank {
+  @include fonts.bellefair;
+  color: v.$white;
+  opacity: 0.4941;
+  font-size: 1rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin-block: 32px 8px;
+}
+
+.spacer {
+  height: 16px;
+}
