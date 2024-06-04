@@ -19,11 +19,14 @@ export const Crew = () => {
             text="Douglas Hurley"
           />
           <div className={styles["spacer"]}></div>
-          <Description>
-            Douglas Gerald Hurley is an American engineer, former Marine Corps pilot and former NASA astronaut. He launched into space for the third time as commander of Crew Dragon Demo-2.
-          </Description>
+          <div className={styles["description-wrapper"]}>
+            <Description>
+              Douglas Gerald Hurley is an American engineer, former Marine Corps pilot and former NASA astronaut. He launched into space for the third time as commander of Crew Dragon Demo-2.
+            </Description>
+          </div>
+          {/* TODO: Need to pass custom styles and fix styles for all viewports */}
+          <CrewPagination /> 
         </section>
-        <CrewPagination />
         <div>
           <picture>
             <source srcSet="./assets/crew/image-douglas-hurley.webp" type='image/webp' />

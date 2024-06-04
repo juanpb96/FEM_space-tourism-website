@@ -17,10 +17,15 @@ $background-desktop: $assets-path + 'background-crew-desktop.jpg';
 
   // TODO: Centralize this code for the 3 pages - Issue #73
   @media screen and (min-width: v.$tablet) {
-    padding: 40px 0;
+    padding: 40px 0 0;
     // TODO: Check once validating page view with the navigation bar
     width: calc(573 / 16 * 1rem);
     margin-inline: auto;
+  }
+
+  @media screen and (min-width: v.$large-desktop) {
+    width: min(80%, 1110px);
+    text-align: left;
   }
 }
 
@@ -45,6 +50,12 @@ $background-desktop: $assets-path + 'background-crew-desktop.jpg';
   @media screen and (min-width: v.$tablet) {
     flex-direction: column;
   }
+
+  @media screen and (min-width: v.$large-desktop) {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+  }
 }
 
 .details {
@@ -61,6 +72,10 @@ $background-desktop: $assets-path + 'background-crew-desktop.jpg';
   @media screen and (min-width: v.$tablet) {
     height: 532px;
     margin-top: 40px;
+  }
+
+  @media screen and (min-width: v.$large-desktop) {
+    height: initial;
   }
 }
 
@@ -89,6 +104,19 @@ $background-desktop: $assets-path + 'background-crew-desktop.jpg';
     opacity: 0.4994; 
     font-size: 1.5rem;
     margin-block: 60px 0;
+  }
+
+  @media screen and (min-width: v.$large-desktop) {
+    opacity: 0.5042; 
+    font-size: 2rem;
+    margin-top: 154px;
+  }
+}
+
+.description-wrapper {
+  @media screen and (min-width: v.$large-desktop) {
+    width: 27.75rem;
+    margin-bottom: 120px;
   }
 }
 
