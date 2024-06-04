@@ -1,0 +1,133 @@
+@use 'src/styles/variables' as v;
+@use 'src/styles/fonts' as fonts;
+@use 'src/styles/mixins/page-background' as m;
+
+// TODO: Consider creating a function to handle this repetitive code - Issue #73
+$assets-path: './assets/crew/';
+$background-mobile: $assets-path + 'background-crew-mobile.jpg';
+$background-tablet: $assets-path + 'background-crew-tablet.jpg';
+$background-desktop: $assets-path + 'background-crew-desktop.jpg';
+
+.wrapper {
+  padding: 24px;
+  text-align: center;
+
+  @include m.page-background($background-mobile, $background-tablet, $background-desktop);
+
+  &::before {
+    opacity: 0.25;
+  }
+
+  // TODO: Centralize this code for the 3 pages - Issue #73
+  @media screen and (min-width: v.$tablet) {
+    padding: 0;
+    padding-top: 40px;
+    // TODO: Check once validating page view with the navigation bar
+    width: calc(573 / 16 * 1rem);
+    margin-inline: auto;
+  }
+
+  @media screen and (min-width: v.$large-desktop) {
+    width: min(1110px, 80%);
+    text-align: left;
+  }
+}
+
+// TODO: Centralize this code for the 3 pages - Issue #73
+.wrapper h2 {
+  @media screen and (min-width: v.$tablet) {
+    text-align: left;
+    margin-left: -58px;
+  }
+
+  @media screen and (min-width: v.$large-desktop) {
+    flex-basis: 100%;
+    margin: 0;
+  }
+}
+
+.wrapper article {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+
+  @media screen and (min-width: v.$tablet) {
+    flex-direction: column;
+  }
+
+  @media screen and (min-width: v.$large-desktop) {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+  }
+}
+
+.details {
+  @media screen and (min-width: v.$tablet) {
+    margin-bottom: 40px;
+  }
+}
+
+.photo {
+  height: 222px;
+  margin-top: 32px;
+
+  // TODO: Need to check how it looks when the screen displays the navbar
+  @media screen and (min-width: v.$tablet) {
+    height: 532px;
+    margin-top: 40px;
+  }
+
+  @media screen and (min-width: v.$large-desktop) {
+    height: initial;
+  }
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  border: none;
+  background-color: v.$ship-grey;
+  margin-bottom: 32px;
+
+  @media screen and (min-width: v.$tablet) {
+    display: none;
+  }
+}
+
+.rank {
+  @include fonts.bellefair;
+  color: v.$white;
+  opacity: 0.4951;
+  font-size: 1rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin-block: 32px 8px;
+
+  @media screen and (min-width: v.$tablet) {
+    opacity: 0.4994; 
+    font-size: 1.5rem;
+    margin-block: 60px 0;
+  }
+
+  @media screen and (min-width: v.$large-desktop) {
+    opacity: 0.5042; 
+    font-size: 2rem;
+    margin-top: 154px;
+  }
+}
+
+.description-wrapper {
+  @media screen and (min-width: v.$large-desktop) {
+    width: 27.75rem;
+    margin-bottom: 120px;
+  }
+}
+
+.spacer {
+  height: 16px;
+
+  @media screen and (min-width: v.$tablet) {
+    height: 6px;
+  }
+}

@@ -3,8 +3,10 @@ import {
   RouterProvider
 } from 'react-router-dom';
 import { SpaceTourismWebsite } from '../SpaceTourismWebsite';
+// TODO: Use barrel exports for page components - Issue #50
 import { Home } from '../pages/Home/Home';
 import { Destination } from '../pages/Destination/Destination';
+import { Crew } from '../pages/Crew/Crew';
 
 const routes = [
   {
@@ -18,6 +20,10 @@ const routes = [
       {
         path: 'destination',
         element: <Destination />
+      },
+      {
+        path: 'crew',
+        element: <Crew />
       },
       {
         // TODO: Create a 404 page to use it here
