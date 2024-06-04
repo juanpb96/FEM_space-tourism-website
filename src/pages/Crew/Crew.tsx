@@ -2,9 +2,13 @@ import { CrewPagination } from "../../components/CrewPagination/CrewPagination";
 import { Description } from "../../components/Description/Description";
 import { Heading } from "../../components/Heading/Heading";
 import { Subtitle } from "../../components/Subtitle/Subtitle";
+import { useScreenType } from "../../hooks/useScreenType";
 import styles from './styles/crew.module.scss';
 
 export const Crew = () => {
+  const screenType = useScreenType();
+  const isSmallDevice = screenType === 'mobile' || screenType === 'tablet';
+
   return (
     <main className={styles["wrapper"]}>
       <Subtitle
@@ -25,8 +29,9 @@ export const Crew = () => {
             </Description>
           </div>
           {/* TODO: Need to pass custom styles and fix styles for all viewports */}
-          <CrewPagination /> 
+          {!isSmallDevice && <CrewPagination /> }
         </section>
+        {isSmallDevice && <CrewPagination />}
         <div>
           <picture>
             <source srcSet="./assets/crew/image-douglas-hurley.webp" type='image/webp' />
