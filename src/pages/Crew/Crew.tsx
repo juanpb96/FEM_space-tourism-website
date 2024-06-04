@@ -18,6 +18,7 @@ export const Crew = () => {
       <article>
         <section className={styles["details"]}>
           <h4 className={styles["rank"]}>Commander</h4>
+          {/* TODO: Consider changing the heading tag based on a prop (i.e. as="h4") */}
           <Heading
             variant="small"
             text="Douglas Hurley"
@@ -31,7 +32,9 @@ export const Crew = () => {
           {/* TODO: Need to pass custom styles and fix styles for all viewports */}
           {!isSmallDevice && <CrewPagination /> }
         </section>
+        
         {isSmallDevice && <CrewPagination />}
+        
         <div>
           <picture>
             <source srcSet="./assets/crew/image-douglas-hurley.webp" type='image/webp' />
