@@ -1,21 +1,26 @@
 @use '../variables' as v;
 
-@mixin page-background($default-image, $image-tablet, $image-desktop) {
+@mixin page-background($page-name) {
+  $assets-path: './assets/#{$page-name}';
+  $background-mobile: '#{$assets-path}/background-#{$page-name}-mobile.jpg';
+  $background-tablet: '#{$assets-path}/background-#{$page-name}-tablet.jpg';
+  $background-desktop: '#{$assets-path}/background-#{$page-name}-desktop.jpg';
+
   &::before {
     content: '';
     position: fixed;
     inset: 0;
-    background-image: url($default-image);
+    background-image: url($background-mobile);
     background-repeat: no-repeat;
     background-size: cover;
     z-index: -1;
 
     @media screen and (min-width: v.$tablet) {
-      background-image: url($image-tablet);
+      background-image: url($background-tablet);
     }
 
     @media screen and (min-width: v.$desktop) {
-      background-image: url($image-desktop);
+      background-image: url($background-desktop);
     }
   }
 }
