@@ -1,14 +1,13 @@
 @use 'src/styles/variables' as v;
 @use 'src/styles/fonts' as fonts;
+@use 'src/styles/mixins/responsive-font' as m;
 
-// TODO: It would be nice to have a function which return line-height calculation instead of constantly repeating it
 .description {
   $font-size: 15;
   $line-height: 25;
 
   @include fonts.barlow;
-  font-size: 0.9375rem;
-  line-height: calc($line-height / $font-size);
+  @include m.responsive-font($font-size, $line-height);
   color: v.$lilac;
   text-align: center;
 }
@@ -17,9 +16,7 @@
   .description {
     $font-size: 16;
     $line-height: 28;
-
-    font-size: 1rem;
-    line-height: calc($line-height / $font-size);
+    @include m.responsive-font($font-size, $line-height);
   }
 }
 
@@ -27,9 +24,7 @@
   .description {
     $font-size: 18;
     $line-height: 32;
-
-    font-size: 1.125rem;
-    line-height: calc($line-height / $font-size);
+    @include m.responsive-font($font-size, $line-height);
     text-align: initial;
   }
 }
