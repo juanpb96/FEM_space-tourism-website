@@ -1,5 +1,17 @@
 @use '../variables' as v;
 
+/**
+ * Mixin: page-background
+ * This mixin sets up a responsive background image for a page. It changes the background
+ * image based on the screen size, using different images for mobile, tablet, and desktop.
+ *
+ * @param {string} $page-name - The name of the page, used to construct the paths to the background images.
+ *                              The mixin expects images to be named in the format:
+ *                              background-<page-name>-mobile.jpg and to be located in the assets folder.
+ *
+ * Usage:
+ *   @include page-background('crew');
+ */
 @mixin page-background($page-name) {
   $assets-path: './assets/#{$page-name}';
   $background-mobile: '#{$assets-path}/background-#{$page-name}-mobile.jpg';
