@@ -1,10 +1,6 @@
 @use 'src/styles/variables' as v;
 @use 'src/styles/fonts' as fonts;
-
-// TODO: Move into a file for SCSS functions
-@function convertPxToRem($px) {
-  @return calc($px / 16 * 1rem);
-}
+@use 'src/styles/mixins/responsive-font' as m;
 
 .wrapper {
   width: fit-content;
@@ -18,14 +14,18 @@
 
 .wrapper h4 {
   @include fonts.barlow-condensed;
+  $font-size: 14;
+  $line-height: 17;
+  @include m.responsive-font($font-size, $line-height);
   color: v.$lilac;
-  font-size: convertPxToRem(14);
   font-weight: 400;
-  letter-spacing: convertPxToRem(2.36);
+  letter-spacing: 0.1475rem;
   margin-bottom: 12px;
 }
 
 .wrapper p {
+  $font-size: 28;
+  $line-height: 32;
+  @include m.responsive-font($font-size, $line-height);
   color: v.$white;
-  font-size: convertPxToRem(28);
 }

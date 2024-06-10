@@ -1,21 +1,38 @@
 @use '../variables' as v;
 
-@mixin page-background($default-image, $image-tablet, $image-desktop) {
+/**
+ * Mixin: page-background
+ * This mixin sets up a responsive background image for a page. It changes the background
+ * image based on the screen size, using different images for mobile, tablet, and desktop.
+ *
+ * @param {string} $page-name - The name of the page, used to construct the paths to the background images.
+ *                              The mixin expects images to be named in the format:
+ *                              background-<page-name>-mobile.jpg and to be located in the assets folder.
+ *
+ * Usage:
+ *   @include page-background('crew');
+ */
+@mixin page-background($page-name) {
+  $assets-path: './assets/#{$page-name}';
+  $background-mobile: '#{$assets-path}/background-#{$page-name}-mobile.jpg';
+  $background-tablet: '#{$assets-path}/background-#{$page-name}-tablet.jpg';
+  $background-desktop: '#{$assets-path}/background-#{$page-name}-desktop.jpg';
+
   &::before {
     content: '';
     position: fixed;
     inset: 0;
-    background-image: url($default-image);
+    background-image: url($background-mobile);
     background-repeat: no-repeat;
     background-size: cover;
     z-index: -1;
 
     @media screen and (min-width: v.$tablet) {
-      background-image: url($image-tablet);
+      background-image: url($background-tablet);
     }
 
     @media screen and (min-width: v.$desktop) {
-      background-image: url($image-desktop);
+      background-image: url($background-desktop);
     }
   }
 }

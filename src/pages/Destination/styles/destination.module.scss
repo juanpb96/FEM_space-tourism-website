@@ -1,10 +1,7 @@
 @use 'src/styles/variables' as v;
 @use 'src/styles/mixins/page-background' as m;
 
-$assets-path: './assets/destination/';
-$background-mobile: $assets-path + 'background-destination-mobile.jpg';
-$background-tablet: $assets-path + 'background-destination-tablet.jpg';
-$background-desktop: $assets-path + 'background-destination-desktop.jpg';
+$page-name: 'destination';
 
 .wrapper {
   display: flex;
@@ -12,7 +9,7 @@ $background-desktop: $assets-path + 'background-destination-desktop.jpg';
   align-items: center;
   padding: 24px;
 
-  @include m.page-background($background-mobile, $background-tablet, $background-desktop);
+  @include m.page-background($page-name);
 
   @media screen and (min-width: v.$tablet) {
     padding: 40px 0;
@@ -96,13 +93,12 @@ $background-desktop: $assets-path + 'background-destination-desktop.jpg';
   border-top: 1px solid v.$ship-grey;
 
   @media screen and (min-width: v.$tablet) {
-    width: 100%;
     flex-direction: row;
     justify-content: space-evenly;
   }
 
   @media screen and (min-width: v.$desktop) {
-      justify-content: flex-start;
-      gap: 80px;
+    justify-content: flex-start;
+    gap: 80px;
   }
 }

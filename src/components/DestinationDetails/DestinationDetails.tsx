@@ -5,7 +5,8 @@ interface DestinationDetailsProps {
   value: string;
 }
 
-export const DestinationDetails = ({title, value}: DestinationDetailsProps) => {
+// TODO: Move this component within Destination folder - Issue #50
+export const DestinationDetails = ({ title, value }: DestinationDetailsProps) => {
   return (
     <section className={styles['wrapper']}>
       <h4>{title}</h4>

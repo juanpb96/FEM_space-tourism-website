@@ -1,9 +1,12 @@
 @use 'src/styles/variables' as v;
 @use 'src/styles/fonts' as fonts;
+@use 'src/styles/mixins/responsive-font' as m;
 
 .subtitle {
   @include fonts.barlow-condensed;
-  font-size: 1rem;
+  $font-size: 16;
+  $line-height: 19;
+  @include m.responsive-font($font-size, $line-height);
   font-weight: 400;
   letter-spacing: 0.1688em;
   color: v.$lilac;
@@ -27,12 +30,16 @@
 
 @media screen and (min-width: v.$tablet) {
   .subtitle {
-    font-size: 1.25rem;
+    $font-size: 20;
+    $line-height: 24;
+    @include m.responsive-font($font-size, $line-height);
   }
 }
 
 @media screen and (min-width: v.$desktop) {
   .subtitle {
-    font-size: 1.75rem;
+    $font-size: 28;
+    $line-height: 34;
+    @include m.responsive-font($font-size, $line-height);
   }
 }

@@ -1,0 +1,15 @@
+/**
+ * Mixin: responsive-font
+ * This mixin adjusts the font size and line height responsively.
+ *
+ * @param {number} $font-size - The font size in pixels.
+ * @param {number} $line-height - The line height in pixels.
+ *
+ * Usage:
+ *   @include responsive-font(16, 24);
+ */
+@mixin responsive-font($font-size, $line-height) {
+  $base-rem: 16;
+  font-size: calc($font-size / $base-rem * 1rem);
+  line-height: calc($line-height / $font-size);
+}
