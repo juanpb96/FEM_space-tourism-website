@@ -4,12 +4,10 @@
 $page-name: 'home';
 
 .wrapper {
-  $side-padding: 24px;
-
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 48px $side-padding;
+  padding: 48px 24px 24px;
   gap: 81px;
   max-width: 1110px;
   box-sizing: content-box;
@@ -27,7 +25,7 @@ $page-name: 'home';
 
 @media screen and (min-width: v.$tablet) {
   .wrapper {
-    padding-block: 106px 90px;
+    padding-block: 106px 48px;
     gap: 156px;
     margin-inline: auto;
   }
@@ -39,7 +37,7 @@ $page-name: 'home';
 
 @media screen and (min-width: v.$desktop) {
   .wrapper {
-    padding-block: 251px 131px;
+    padding-block: 251px 106px;
     flex-direction: row;
     justify-content: space-between;
     gap: unset;
