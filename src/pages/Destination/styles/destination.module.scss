@@ -93,7 +93,6 @@ $page-name: 'destination';
   border-top: 1px solid v.$ship-grey;
 
   @media screen and (min-width: v.$tablet) {
-    width: 100%;
     flex-direction: row;
     justify-content: space-evenly;
   }
