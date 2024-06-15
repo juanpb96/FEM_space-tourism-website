@@ -1,0 +1,43 @@
+@use 'src/styles/variables' as v;
+@use 'src/styles/fonts' as fonts;
+@use 'src/styles/mixins/page-background' as bg;
+@use 'src/styles/mixins/responsive-font' as m;
+
+$page-name: 'technology';
+
+.wrapper {
+  padding: 24px;
+  text-align: center;
+
+  @include bg.page-background($page-name);
+}
+
+.photo {
+  $side-margin: 24px;
+  margin-block: 32px 34px;
+  margin-left: -$side-margin;
+  width: calc(100% + ($side-margin * 2));
+  max-width: unset;
+  min-height: 170px;
+  object-fit: cover;
+}
+
+.pagination {
+  margin-bottom: 26px;
+}
+
+// TODO: Move this code into a separated component and reuse it in destination details
+.terminology {
+  @include fonts.barlow-condensed;
+  $font-size: 14;
+  $line-height: 17;
+  @include m.responsive-font($font-size, $line-height);
+  color: v.$lilac;
+  font-weight: 400;
+  letter-spacing: 0.1475rem;
+  margin-bottom: 9px; // This value will change hence it cannot be a standard
+}
+
+.spacer {
+  height: 16px;
+}
