@@ -10,6 +10,10 @@ $page-name: 'technology';
   text-align: center;
 
   @include bg.page-background($page-name);
+
+  &::before {
+    opacity: 0.25;
+  }
 }
 
 .photo {
