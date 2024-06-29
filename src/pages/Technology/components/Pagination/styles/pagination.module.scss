@@ -41,3 +41,15 @@
     font-size: 1.5rem;
   }
 }
+
+@media screen and (min-width: v.$desktop) {
+  .wrapper {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .wrapper li {
+    width: 80px;
+    font-size: 2rem;
+  }
+}
