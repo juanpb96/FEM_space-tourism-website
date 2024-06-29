@@ -1,1 +1,37 @@
-.wrapper {}
+@use 'src/styles/variables' as v;
+@use 'src/styles/fonts' as fonts;
+
+.wrapper {
+  list-style-type: none;
+  padding: 0;
+  width: fit-content;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 16px;
+}
+
+.wrapper li {
+  cursor: pointer;
+  width: 40px;
+  aspect-ratio: 1 / 1;
+  border: 1px solid hsl(0 0% 100% / .25);
+  border-radius: 50%;
+  display: grid;
+  place-content: center;
+  @include fonts.bellefair;
+  font-size: 1rem;
+  letter-spacing: 0.0625rem;
+  transition: all .3s ease-in-out;
+
+  &.active {
+    color: v.$charcoal;
+    background-color: v.$white;
+    border-color: v.$white;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      border-color: v.$white;
+    }
+  }
+}
