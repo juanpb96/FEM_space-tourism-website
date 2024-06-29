@@ -20,7 +20,6 @@
   place-content: center;
   @include fonts.bellefair;
   font-size: 1rem;
-  letter-spacing: 0.0625rem;
   transition: all .3s ease-in-out;
 
   &.active {
@@ -33,5 +32,12 @@
     &:hover {
       border-color: v.$white;
     }
+  }
+}
+
+@media screen and (min-width: v.$tablet) {
+  .wrapper li {
+    width: 60px;
+    font-size: 1.5rem;
   }
 }
