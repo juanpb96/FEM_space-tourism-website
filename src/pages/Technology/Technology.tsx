@@ -29,9 +29,11 @@ export const Technology = () => {
 
       <div className={styles["spacer"]} />
 
-      <Description>
-        A launch vehicle or carrier rocket is a rocket-propelled vehicle used to carry a payload from Earth's surface to space, usually to Earth orbit or beyond. Our WEB-X carrier rocket is the most powerful in operation. Standing 150 metres tall, it's quite an awe-inspiring sight on the launch pad!
-      </Description>
+      <div className={styles["description-wrapper"]}>
+        <Description>
+          A launch vehicle or carrier rocket is a rocket-propelled vehicle used to carry a payload from Earth's surface to space, usually to Earth orbit or beyond. Our WEB-X carrier rocket is the most powerful in operation. Standing 150 metres tall, it's quite an awe-inspiring sight on the launch pad!
+        </Description>
+      </div>
     </main>
   );
 };
