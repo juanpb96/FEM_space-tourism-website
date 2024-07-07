@@ -115,7 +115,7 @@ article {
     width: 28.625rem;
   }
 
-  @media screen and (min-width: v.$tablet) {
+  @media screen and (min-width: v.$desktop) {
     width: 27.75rem;
     margin-inline: revert;
   }
