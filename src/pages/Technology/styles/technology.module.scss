@@ -22,8 +22,31 @@ $page-name: 'technology';
       text-align: left;
     }
   }
+
+  @media screen and (min-width: v.$desktop) {
+    padding-block: 76px 101px;
+    padding-inline: 0;
+    margin-inline: auto 0;
+    max-width: 1275px;
+    text-align: left;
+  }
+
+  // TODO: Adjust once breakpoints get updated - Issue #59
+  @media screen and (min-width: 100rem) {
+    margin-inline: auto;
+  }
 }
 
+.content {
+  @media screen and (min-width: v.$desktop) {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    gap: 130px;
+    margin-top: 26px;
+  }
+}
 
 .photo {
   $side-margin: 24px;
@@ -38,8 +61,20 @@ $page-name: 'technology';
     margin-block: 60px 56px;
     min-height: 310px;
   }
+
+  @media screen and (min-width: v.$desktop) {
+    margin: 0;
+    width: revert;
+    min-height: 527px;
+  }
 }
 
+article {
+  @media screen and (min-width: v.$desktop) {
+    display: flex;
+    gap: 80px;
+  }
+}
 
 .pagination {
   display: flex;
@@ -52,7 +87,7 @@ $page-name: 'technology';
 }
 
 
-// TODO: Move terminology styles into a separated component and reuse it in destination details
+// TODO: Move terminology styles into a separated component and reuse it in destination details - Issue #50
 .terminology {
   @include fonts.barlow-condensed;
   $font-size: 14;
@@ -72,16 +107,16 @@ $page-name: 'technology';
   }
 }
 
-
-.spacer {
-  height: 16px;
-}
-
-// TODO: Consider if spacer style could be implemented here
 .description-wrapper {
+  margin-top: 16px;
   margin-inline: auto;
 
   @media screen and (min-width: v.$tablet) {
     width: 28.625rem;
+  }
+
+  @media screen and (min-width: v.$tablet) {
+    width: 27.75rem;
+    margin-inline: revert;
   }
 }
