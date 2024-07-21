@@ -7,6 +7,7 @@ import { SpaceTourismWebsite } from '../SpaceTourismWebsite';
 import { Home } from '../pages/Home/Home';
 import { Destination } from '../pages/Destination/Destination';
 import { Crew } from '../pages/Crew/Crew';
+import { Technology } from '../pages/Technology/Technology';
 
 const routes = [
   {
@@ -24,6 +25,10 @@ const routes = [
       {
         path: 'crew',
         element: <Crew />
+      },
+      {
+        path: 'technology',
+        element: <Technology />
       },
       {
         // TODO: Create a 404 page to use it here

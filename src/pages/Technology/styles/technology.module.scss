@@ -1,0 +1,122 @@
+@use 'src/styles/variables' as v;
+@use 'src/styles/fonts' as fonts;
+@use 'src/styles/mixins/page-background' as bg;
+@use 'src/styles/mixins/responsive-font' as m;
+
+$page-name: 'technology';
+
+.wrapper {
+  padding: 24px;
+  text-align: center;
+
+  @include bg.page-background($page-name);
+
+  &::before {
+    opacity: 0.25;
+  }
+
+  @media screen and (min-width: v.$tablet) {
+    padding-top: 40px;
+
+    & h2 {
+      text-align: left;
+    }
+  }
+
+  @media screen and (min-width: v.$desktop) {
+    padding-block: 76px 101px;
+    padding-inline: 0;
+    margin-inline: auto 0;
+    max-width: 1275px;
+    text-align: left;
+  }
+
+  // TODO: Adjust once breakpoints get updated - Issue #59
+  @media screen and (min-width: 100rem) {
+    margin-inline: auto;
+  }
+}
+
+.content {
+  @media screen and (min-width: v.$desktop) {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    gap: 130px;
+    margin-top: 26px;
+  }
+}
+
+.photo {
+  $side-margin: 24px;
+  margin-block: 32px 34px;
+  margin-left: -$side-margin;
+  width: calc(100% + ($side-margin * 2));
+  max-width: unset;
+  min-height: 170px;
+  object-fit: cover;
+
+  @media screen and (min-width: v.$tablet) {
+    margin-block: 60px 56px;
+    min-height: 310px;
+  }
+
+  @media screen and (min-width: v.$desktop) {
+    margin: 0;
+    width: revert;
+    min-height: 527px;
+  }
+}
+
+article {
+  @media screen and (min-width: v.$desktop) {
+    display: flex;
+    gap: 80px;
+  }
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 26px;
+
+  @media screen and (min-width: v.$tablet) {
+    margin-bottom: 44px;
+  }
+}
+
+
+// TODO: Move terminology styles into a separated component and reuse it in destination details - Issue #50
+.terminology {
+  @include fonts.barlow-condensed;
+  $font-size: 14;
+  $line-height: 17;
+  @include m.responsive-font($font-size, $line-height);
+  color: v.$lilac;
+  font-weight: 400;
+  letter-spacing: 0.1475rem;
+  margin-bottom: 9px; // This value will likely change hence it cannot be a standard
+
+  @media screen and (min-width: v.$tablet) {
+    $font-size: 16;
+    $line-height: 19;
+    @include m.responsive-font($font-size, $line-height);
+    letter-spacing: 0.1688rem;
+    margin-bottom: 16px;
+  }
+}
+
+.description-wrapper {
+  margin-top: 16px;
+  margin-inline: auto;
+
+  @media screen and (min-width: v.$tablet) {
+    width: 28.625rem;
+  }
+
+  @media screen and (min-width: v.$desktop) {
+    width: 27.75rem;
+    margin-inline: revert;
+  }
+}

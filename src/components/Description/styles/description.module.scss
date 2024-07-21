@@ -10,6 +10,7 @@
   @include m.responsive-font($font-size, $line-height);
   color: v.$lilac;
   text-align: center;
+  word-break: keep-all;
 }
 
 @media screen and (min-width: v.$tablet) {
