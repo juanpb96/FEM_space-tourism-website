@@ -5,7 +5,9 @@ import { Subtitle } from "../../components/Subtitle/Subtitle";
 import styles from "./styles/crew.module.scss";
 import { useCrew } from "./useCrew";
 
-// TODO: Check this article to get inspiration: https://www.freecodecamp.org/news/build-an-image-carousel-with-react-and-framer-motion/
+// TODO: Check this before working on the Carousel: https://www.w3.org/WAI/tutorials/carousels/ - Issue #80
+// Check this article to get inspiration: https://www.freecodecamp.org/news/build-an-image-carousel-with-react-and-framer-motion/
+// And this one: https://www.framer.com/motion/examples/#exit-animations
 export const Crew = () => {
   const { crew, currentCrewMember, onPaginationClick } = useCrew();
 
@@ -32,7 +34,7 @@ export const Crew = () => {
         <div className={styles["pagination"]}>
           <CrewPagination
             crew={crew}
-            currentCrewMember={currentCrewMember}
+            currentCrewMemberName={currentCrewMember.name}
             onClick={onPaginationClick}
           />
         </div>

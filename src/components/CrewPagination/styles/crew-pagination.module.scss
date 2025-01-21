@@ -1,4 +1,4 @@
-@use 'src/styles/variables' as v;
+@use "src/styles/variables" as v;
 
 .wrapper {
   display: flex;
@@ -9,9 +9,15 @@
   padding: 0;
 }
 
-.wrapper li {
+// TODO: Check how to increase the size of this element without altering the current structure - Issue #48
+// .clickable-area {
+// }
+
+.button {
+  cursor: pointer;
   width: 10px;
   aspect-ratio: 1 / 1;
+  border: none;
   border-radius: 50%;
   background-color: v.$white;
   border-color: v.$grey;
@@ -28,13 +34,12 @@
   }
 }
 
-
 @media screen and (min-width: v.$desktop) {
   .wrapper {
     gap: 24px;
   }
-  
-  .wrapper li {
+
+  .button {
     width: 15px;
   }
 }
