@@ -2,46 +2,54 @@ import { CrewPagination } from "../../components/CrewPagination/CrewPagination";
 import { Description } from "../../components/Description/Description";
 import { Heading } from "../../components/Heading/Heading";
 import { Subtitle } from "../../components/Subtitle/Subtitle";
-import { useScreenType } from "../../hooks/useScreenType";
-import styles from './styles/crew.module.scss';
+import styles from "./styles/crew.module.scss";
+import { useCrew } from "./useCrew";
 
+// TODO: Check this before working on the Carousel: https://www.w3.org/WAI/tutorials/carousels/ - Issue #80
+// Check this article to get inspiration: https://www.freecodecamp.org/news/build-an-image-carousel-with-react-and-framer-motion/
+// And this one: https://www.framer.com/motion/examples/#exit-animations
 export const Crew = () => {
-  const screenType = useScreenType();
-  const isSmallDevice = screenType === 'mobile' || screenType === 'tablet';
+  const { crew, currentCrewMember, onPaginationClick } = useCrew();
+
+  // TODO: Consider adding a loading screen instead of returning nothing
+  if (!currentCrewMember) {
+    return <></>;
+  }
 
   return (
     <main className={styles["wrapper"]}>
-      <Subtitle
-        prefix="02"
-        title="Meet your crew"
-      />
+      <Subtitle prefix="02" title="Meet your crew" />
       <article>
-        <section className={styles["details"]}>
-          <h4 className={styles["rank"]}>Commander</h4>
-          {/* TODO: Consider changing the heading tag based on a prop (i.e. as="h4") */}
-          <Heading
-            variant="small"
-            text="Douglas Hurley"
+        <picture className={styles["photo-wrapper"]}>
+          <source srcSet={currentCrewMember.images.webp} type="image/webp" />
+          <img
+            className={styles["photo"]}
+            src={currentCrewMember.images.png}
+            alt=""
           />
-          <div className={styles["spacer"]}></div>
-          <div className={styles["description-wrapper"]}>
-            <Description>
-              Douglas Gerald Hurley is an American engineer, former Marine Corps pilot and former NASA astronaut. He launched into space for the third time as commander of Crew Dragon Demo-2.
-            </Description>
-          </div>
-          {/* TODO: Need to pass custom styles and fix styles for all viewports */}
-          {!isSmallDevice && <CrewPagination /> }
-        </section>
-        
-        {isSmallDevice && <CrewPagination />}
-        
-        <div>
-          <picture>
-            <source srcSet="./assets/crew/image-douglas-hurley.webp" type='image/webp' />
-            <img className={styles["photo"]} src="./assets/crew/image-douglas-hurley.png" alt="" />
-          </picture>
-          <hr className={styles["divider"]}/>
+        </picture>
+
+        <hr className={styles["divider"]} />
+
+        <div className={styles["pagination"]}>
+          <CrewPagination
+            crew={crew}
+            currentCrewMemberName={currentCrewMember.name}
+            onClick={onPaginationClick}
+          />
         </div>
+
+        <section className={styles["details"]}>
+          <h4 className={styles["rank"]}>{currentCrewMember.role}</h4>
+
+          <Heading variant="small" text={currentCrewMember.name} />
+
+          <div className={styles["spacer"]} />
+
+          <div className={styles["description-wrapper"]}>
+            <Description>{currentCrewMember.bio}</Description>
+          </div>
+        </section>
       </article>
     </main>
   );
