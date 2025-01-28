@@ -1,11 +1,30 @@
+import { Technology } from "../../types";
 import styles from "./styles/pagination.module.scss";
 
-export const Pagination = () => {
+interface PaginationProps {
+  technologies: Technology[];
+  selectedTechnologyName: string;
+  onClick: (name: string) => void;
+}
+
+export const Pagination = ({
+  technologies,
+  selectedTechnologyName,
+  onClick,
+}: PaginationProps) => {
   return (
     <ol className={styles["wrapper"]}>
-      <li className={styles["active"]}>1</li>
-      <li>2</li>
-      <li>3</li>
+      {technologies.map((technology, index) => (
+        <li
+          key={technology.name}
+          onClick={() => onClick(technology.name)}
+          className={
+            selectedTechnologyName === technology.name ? styles["active"] : ""
+          }
+        >
+          {index + 1}
+        </li>
+      ))}
     </ol>
   );
 };
