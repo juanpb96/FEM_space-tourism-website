@@ -4,4 +4,5 @@ export const API_URL = "https://fem-space-tourism-backend.onrender.com/api";
 export const ENDPOINT = {
   destinations: `${API_URL}/destinations`,
   crew: `${API_URL}/crew`,
+  technology: `${API_URL}/technology`,
 } as const;
