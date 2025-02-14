@@ -1,7 +1,7 @@
 import type { Destinations } from "../types";
-import jsonData from "../../../services/data.json";
 import { ENDPOINT } from "../../../services/endpoint";
 
+// TODO: If data is retrieved properly, look for any message presented to the user telling them that "we are using backup data" and remove it
 const getDestinations = async () => {
   try {
     const response = await fetch(ENDPOINT.destinations);
@@ -16,9 +16,6 @@ const getDestinations = async () => {
     if (error instanceof Error) {
       console.error(error.message);
     }
-
-    // Returning local JSON data in case backend is not available for any reason
-    return jsonData.destinations;
   }
 };
 
