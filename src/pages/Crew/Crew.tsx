@@ -2,14 +2,18 @@ import { CrewPagination } from "../../components/CrewPagination/CrewPagination";
 import { Description } from "../../components/Description/Description";
 import { Heading } from "../../components/Heading/Heading";
 import { Subtitle } from "../../components/Subtitle/Subtitle";
+import { usePageData } from "../../hooks/usePageData";
 import styles from "./styles/crew.module.scss";
-import { useCrew } from "./useCrew";
 
 // TODO: Check this before working on the Carousel: https://www.w3.org/WAI/tutorials/carousels/ - Issue #80
 // Check this article to get inspiration: https://www.freecodecamp.org/news/build-an-image-carousel-with-react-and-framer-motion/
 // And this one: https://www.framer.com/motion/examples/#exit-animations
 export const Crew = () => {
-  const { crew, currentCrewMember, onPaginationClick } = useCrew();
+  const {
+    pageData: crew,
+    currentTab: currentCrewMember,
+    onPaginationClick,
+  } = usePageData("crew");
 
   // TODO: Consider adding a loading screen instead of returning nothing
   if (!currentCrewMember) {

@@ -1,20 +1,29 @@
-import { motion } from 'framer-motion';
-import { MouseEvent } from 'react';
-import { useLocationBar } from '../../hooks/useLocationBar';
-import { useScreenType } from '../../hooks/useScreenType';
-import { calculateHorizontalMoveByViewport } from './animations/horizontal-move';
-import styles from './styles/inner-navigation-bar.module.scss';
-import type { DestinationName } from '../../pages/Destination/types';
+import { motion } from "framer-motion";
+import { MouseEvent } from "react";
+import { useLocationBar } from "../../hooks/useLocationBar";
+import { useScreenType } from "../../hooks/useScreenType";
+import { calculateHorizontalMoveByViewport } from "./animations/horizontal-move";
+import styles from "./styles/inner-navigation-bar.module.scss";
 
 interface InnerNavigationBarProps {
-  pages: DestinationName[];
-  setActivePage: (page: DestinationName) => void;
+  pages: string[];
+  setActivePage: (page: string) => void;
 }
 
 // TODO: Increase options clickable area to enhance usability - Issue #48
 // TODO: Rename the component to be more specific
-export const InnerNavigationBar = ({pages, setActivePage}: InnerNavigationBarProps) => {
-  const { olRef, barRef, options, activeMenuOptionIndex, setActiveMenuOptionIndex } = useLocationBar(pages);
+// TODO: Consider if keeping the onClick function in this component is the best approach or if it should be received as a prop
+export const InnerNavigationBar = ({
+  pages,
+  setActivePage,
+}: InnerNavigationBarProps) => {
+  const {
+    olRef,
+    barRef,
+    options,
+    activeMenuOptionIndex,
+    setActiveMenuOptionIndex,
+  } = useLocationBar(pages);
   const screenType = useScreenType();
 
   const onLinkClick = (e: MouseEvent, index: number) => {
@@ -24,7 +33,7 @@ export const InnerNavigationBar = ({pages, setActivePage}: InnerNavigationBarPro
   };
 
   return (
-    <nav className={styles['nav']}>
+    <nav className={styles["nav"]}>
       <ol ref={olRef}>
         {pages.map((page, index) => (
           <li key={page} onClick={(e) => onLinkClick(e, index)}>
@@ -35,13 +44,13 @@ export const InnerNavigationBar = ({pages, setActivePage}: InnerNavigationBarPro
 
       <motion.div
         ref={barRef}
-        className={styles['bar']}
+        className={styles["bar"]}
         animate={{
           x: calculateHorizontalMoveByViewport({
             screenType,
             options,
-            index: activeMenuOptionIndex
-          })
+            index: activeMenuOptionIndex,
+          }),
         }}
       />
     </nav>

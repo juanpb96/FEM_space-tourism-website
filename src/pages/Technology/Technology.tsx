@@ -1,16 +1,19 @@
 import { Description } from "../../components/Description/Description";
 import { Heading } from "../../components/Heading/Heading";
 import { Subtitle } from "../../components/Subtitle/Subtitle";
+import { usePageData } from "../../hooks/usePageData";
 import { Pagination } from "./components/Pagination";
 import styles from "./styles/technology.module.scss";
-import { useTechnology } from "./useTechnology";
 
 export const Technology = () => {
-  const { technologies, onPaginationClick, selectedTechnology } =
-    useTechnology();
+  const {
+    pageData: technologies,
+    currentTab: currentTechnology,
+    onPaginationClick,
+  } = usePageData("technology");
 
   // TODO: Add a loading screen instead of returning nothing
-  if (!selectedTechnology) {
+  if (!currentTechnology) {
     return <></>;
   }
 
@@ -23,7 +26,7 @@ export const Technology = () => {
         <picture>
           <source
             media="(min-width: 64rem)"
-            srcSet={selectedTechnology.images.portrait}
+            srcSet={currentTechnology.images.portrait}
           />
           {/* <source
             srcSet="./assets/technology/image-launch-vehicle-landscape.avif"
@@ -31,7 +34,7 @@ export const Technology = () => {
           /> */}
           <img
             className={styles["photo"]}
-            src={selectedTechnology.images.landscape}
+            src={currentTechnology.images.landscape}
             alt=""
           />
         </picture>
@@ -40,7 +43,7 @@ export const Technology = () => {
           <div className={styles["pagination"]}>
             <Pagination
               technologies={technologies}
-              selectedTechnologyName={selectedTechnology.name}
+              selectedTechnologyName={currentTechnology.name}
               onClick={onPaginationClick}
             />
           </div>
@@ -48,10 +51,10 @@ export const Technology = () => {
           <div>
             <p className={styles["terminology"]}>THE TERMINOLOGY…</p>
 
-            <Heading variant="small" text={selectedTechnology.name} />
+            <Heading variant="small" text={currentTechnology.name} />
 
             <div className={styles["description-wrapper"]}>
-              <Description>{selectedTechnology.description}</Description>
+              <Description>{currentTechnology.description}</Description>
             </div>
           </div>
         </article>

@@ -1,6 +1,7 @@
-import { getCrewAdapter } from "../../adapter/getCrewAdapter";
-import { CrewMember } from "../../types";
-describe("getCrewAdapter", () => {
+import { CrewMember } from "../../pages/Crew/types";
+import { getPageAdapter } from "../getPageAdapter";
+
+describe("getPageAdapter", () => {
   it("should return the crew", async () => {
     const expectedCrew: CrewMember[] = [
       {
@@ -24,7 +25,7 @@ describe("getCrewAdapter", () => {
     ];
 
     const fake = () => Promise.resolve(expectedCrew);
-    const getCrew = getCrewAdapter({ get: fake });
+    const getCrew = getPageAdapter("crew", { get: fake });
 
     const result = await getCrew();
 
