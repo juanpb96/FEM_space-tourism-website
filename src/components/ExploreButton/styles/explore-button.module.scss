@@ -1,15 +1,18 @@
-@use 'src/styles/variables' as v;
-@use 'src/styles/fonts' as fonts;
+@use "src/styles/variables" as v;
+@use "src/styles/fonts" as fonts;
 
 .button-explore {
   cursor: pointer;
   position: relative;
+  text-decoration: none;
   @include fonts.bellefair;
   font-size: 1.25rem;
   color: v.$charcoal;
   text-transform: uppercase;
   letter-spacing: 0.07813rem;
   line-height: normal;
+  display: grid;
+  place-items: center;
   width: 9.375rem;
   aspect-ratio: 1 / 1;
   padding: 4.25rem 0 3.69rem;
@@ -25,7 +28,7 @@
   }
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
     border-radius: 50%;
@@ -47,7 +50,7 @@
       &::before {
         box-shadow: 0 0 0 4.125rem v.$white;
       }
-    }    
+    }
   }
 }
 
@@ -61,7 +64,7 @@
         box-shadow: 0 0 0 5.5rem v.$white;
       }
     }
-    
+
     &::before {
       transition-duration: 0.5s;
     }
