@@ -1,6 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from "react";
 
-const baseFontSize = parseFloat(window.getComputedStyle(document.documentElement).getPropertyValue('font-size'));
+const baseFontSize = parseFloat(
+  window
+    .getComputedStyle(document.documentElement)
+    .getPropertyValue("font-size")
+);
 
 export const useLocationBar = (items?: unknown[]) => {
   const olRef = useRef<HTMLOListElement>(null);
@@ -12,33 +16,35 @@ export const useLocationBar = (items?: unknown[]) => {
     const olElement = olRef.current;
 
     if (olElement) {
-      const liElements = Array.from(olElement.getElementsByTagName('li'));
+      const liElements = Array.from(olElement.getElementsByTagName("li"));
       setOptions(liElements);
     }
-  }, [items])
+  }, [items]);
 
   useEffect(() => {
     const barElement = barRef.current;
 
     const resizeObserver = new ResizeObserver((entries) => {
       if (barElement) {
-        const activeMenuOptionWidth = Math.round(entries[0].contentBoxSize[0].inlineSize);
+        const activeMenuOptionWidth = Math.round(
+          entries[0].contentBoxSize[0].inlineSize
+        );
         barElement.style.width = `${activeMenuOptionWidth / baseFontSize}rem`;
       }
     });
 
     const calculateBarWidth = () => {
-      if (options.length && barElement) {
+      if (options.length > 0 && barElement) {
         const activeMenuOption = options[activeMenuOptionIndex];
         resizeObserver.observe(activeMenuOption);
       }
-    }
+    };
 
     calculateBarWidth();
 
     return () => {
       resizeObserver.disconnect();
-    }
+    };
   }, [activeMenuOptionIndex, options]);
 
   return {
@@ -46,6 +52,6 @@ export const useLocationBar = (items?: unknown[]) => {
     barRef,
     options,
     activeMenuOptionIndex,
-    setActiveMenuOptionIndex
+    setActiveMenuOptionIndex,
   };
 };

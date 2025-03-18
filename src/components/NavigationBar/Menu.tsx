@@ -25,7 +25,9 @@ export const Menu = () => {
       location.pathname.slice(1).toLowerCase()
     );
 
-    setActiveMenuOptionIndex(newIndex);
+    if (newIndex >= 0) {
+      setActiveMenuOptionIndex(newIndex);
+    }
   }, [location.pathname, setActiveMenuOptionIndex]);
 
   const onLinkClick = (index: number) => {
