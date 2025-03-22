@@ -1,13 +1,17 @@
-import styles from './styles/explore-button.module.scss';
+import styles from "./styles/explore-button.module.scss";
+import { NavLink } from "react-router-dom";
 
 interface ExploreButtonProps {
   className?: string;
 }
 
-export const ExploreButton = ({className}: ExploreButtonProps) => {
+export const ExploreButton = ({ className }: ExploreButtonProps) => {
   return (
-    <button type="button" className={`${styles['button-explore']} ${className}`}>
+    <NavLink
+      to={"/destination"}
+      className={`${styles["button-explore"]} ${className}`}
+    >
       Explore
-    </button>
+    </NavLink>
   );
 };
