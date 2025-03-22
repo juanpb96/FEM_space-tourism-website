@@ -22,7 +22,7 @@ const meta = {
   tags: ["autodocs"],
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const button = canvas.getByRole("button", { name: /Explore/i });
+    const button = canvas.getByRole("link", { name: /Explore/i });
 
     expect(button).toBeInTheDocument();
     await userEvent.click(button);
