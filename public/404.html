@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
+    <meta charset="utf-8" />
     <title>404 Not Found - Redirecting...</title>
+    <script type="text/javascript">
+      (function (location) {
+        location.replace("/index.html");
+      })(window.location);
+    </script>
   </head>
   <body>
-    <script type="text/javascript">
-      window.location = "/";
-    </script>
+    <p>Redirecting...</p>
   </body>
 </html>
