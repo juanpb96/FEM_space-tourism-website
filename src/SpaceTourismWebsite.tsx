@@ -1,30 +1,33 @@
-import { useEffect } from 'react';
-import { Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { MotionConfig } from 'framer-motion';
-import { Header } from './components/Header/Header';
-import './styles/main.scss';
+import { useEffect } from "react";
+import {
+  Outlet,
+  //  useLocation, useNavigate
+} from "react-router-dom";
+import { MotionConfig } from "framer-motion";
+import { Header } from "./components/Header/Header";
+import "./styles/main.scss";
 
 export const SpaceTourismWebsite = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
+  // TODO: Uncomment the following lines after testing the Issue #64
+  // const location = useLocation();
+  // const navigate = useNavigate();
 
-  useEffect(() => {
-    if (location.pathname === '/') {
-      navigate('/home');
-    }
-  }, [location.pathname, navigate]);
-  
+  // useEffect(() => {
+  //   if (location.pathname === '/') {
+  //     navigate('/home');
+  //   }
+  // }, [location.pathname, navigate]);
 
   useEffect(() => {
     const removeStyleAttribute = () => {
-      document.body.removeAttribute('style');
-    }
+      document.body.removeAttribute("style");
+    };
 
-    window.addEventListener('load', removeStyleAttribute);
-  
+    window.addEventListener("load", removeStyleAttribute);
+
     return () => {
-      window.removeEventListener('load', removeStyleAttribute);
-    }
+      window.removeEventListener("load", removeStyleAttribute);
+    };
   }, []);
 
   return (
@@ -32,5 +35,5 @@ export const SpaceTourismWebsite = () => {
       <Header />
       <Outlet />
     </MotionConfig>
-  )
+  );
 };
