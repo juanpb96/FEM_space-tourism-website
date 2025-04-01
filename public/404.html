@@ -5,7 +5,12 @@
     <title>404 Not Found - Redirecting...</title>
     <script type="text/javascript">
       (function (location) {
-        location.replace("/index.html");
+        location.replace(
+          location.pathname.replace(
+            /\/[^\/]*$/,
+            "/FEM_space-tourism-website/index.html"
+          )
+        );
       })(window.location);
     </script>
   </head>
