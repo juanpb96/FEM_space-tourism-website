@@ -1,17 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <title>404 Not Found - Redirecting...</title>
     <script type="text/javascript">
-      (function (location) {
-        location.replace(
-          location.pathname.replace(
-            /\/[^\/]*$/,
-            "/FEM_space-tourism-website/index.html"
-          )
-        );
-      })(window.location);
+      // Code adapted from https://github.com/rafgraph/spa-github-pages/blob/gh-pages/404.html
+      const l = window.location;
+      const baseUrl = l.protocol + "//" + l.hostname;
+      const repoName = "FEM_space-tourism-website";
+      const pageName = l.pathname.slice(1).split("/")[1];
+
+      l.replace(`${baseUrl}/${repoName}/?/${pageName}`);
     </script>
   </head>
   <body>
