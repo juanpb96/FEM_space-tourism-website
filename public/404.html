@@ -6,7 +6,7 @@
     <script type="text/javascript">
       // Code adapted from https://github.com/rafgraph/spa-github-pages/blob/gh-pages/404.html
       const l = window.location;
-      const baseUrl = l.protocol + "//" + l.hostname;
+      const baseUrl = `${l.protocol}//${l.hostname}`;
       const repoName = "FEM_space-tourism-website";
       const pageName = l.pathname.slice(1).split("/")[1];
 
