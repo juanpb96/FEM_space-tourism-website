@@ -17,7 +17,7 @@ export const Home = () => {
           experience!
         </Description>
       </section>
-      <ExploreButton className={styles["explore"]} />
+      <ExploreButton navigateTo="/destination">Explore</ExploreButton>
     </main>
   );
 };

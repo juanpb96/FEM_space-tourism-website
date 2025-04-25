@@ -46,9 +46,4 @@ $page-name: "home";
   .introduction {
     align-items: flex-start;
   }
-
-  // FIXME: This is set as a conditional style, when passed down to the ExploreButton component it could result as an undefined value
-  .explore {
-    align-self: flex-end;
-  }
 }
