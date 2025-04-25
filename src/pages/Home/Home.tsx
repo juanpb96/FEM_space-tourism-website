@@ -1,5 +1,5 @@
 import { Description } from "../../components/Description/Description";
-import { ExploreButton } from "../../components/ExploreButton/ExploreButton";
+import { Button } from "../../components/Button/Button";
 import { Heading } from "../../components/Heading/Heading";
 import { Subtitle } from "../../components/Subtitle/Subtitle";
 import styles from "./styles/home.module.scss";
@@ -17,7 +17,7 @@ export const Home = () => {
           experience!
         </Description>
       </section>
-      <ExploreButton navigateTo="/destination">Explore</ExploreButton>
+      <Button navigateTo="/destination">Explore</Button>
     </main>
   );
 };

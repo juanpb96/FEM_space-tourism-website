@@ -1,5 +1,5 @@
 import { Description } from "../../components/Description/Description";
-import { ExploreButton } from "../../components/ExploreButton/ExploreButton";
+import { Button } from "../../components/Button/Button";
 import { Heading } from "../../components/Heading/Heading";
 import styles from "./styles/error-page.module.scss";
 
@@ -15,9 +15,9 @@ export const ErrorPage = () => {
           home or explore other pages via the menu.
         </Description>
       </section>
-      <ExploreButton navigateTo="/home" variant="pill">
+      <Button navigateTo="/home" variant="pill">
         Back Home
-      </ExploreButton>
+      </Button>
     </main>
   );
 };

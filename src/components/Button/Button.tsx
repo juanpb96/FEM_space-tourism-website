@@ -1,4 +1,4 @@
-import styles from "./styles/explore-button.module.scss";
+import styles from "./styles/button.module.scss";
 import { NavLink } from "react-router-dom";
 
 interface ExploreButtonProps extends React.PropsWithChildren {
@@ -6,7 +6,7 @@ interface ExploreButtonProps extends React.PropsWithChildren {
   variant?: "circle" | "pill";
 }
 
-export const ExploreButton = ({
+export const Button = ({
   navigateTo,
   variant = "circle",
   children,

@@ -30,4 +30,15 @@ export const ErrorPageOnMobile: Story = {
   },
 };
 
+export const ErrorPageOnTablet: Story = {
+  parameters: {
+    viewport: {
+      defaultViewport: defaultViewport.tablet,
+    },
+    chromatic: {
+      viewports: [chromaticViewport.tablet],
+    },
+  },
+};
+
 export const Default: Story = {};
