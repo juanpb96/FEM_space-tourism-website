@@ -1,7 +1,7 @@
 @use "src/styles/variables" as v;
 @use "src/styles/fonts" as fonts;
 
-.button-explore {
+.button {
   cursor: pointer;
   position: relative;
   text-decoration: none;
@@ -54,7 +54,7 @@
 }
 
 @media screen and (min-width: v.$tablet) {
-  .button-explore {
+  .button {
     font-size: v.$fs-heading-4;
     letter-spacing: 0.125rem;
     padding: 0;
@@ -69,10 +69,20 @@
   .circle {
     width: 15.125rem;
   }
+
+  .pill {
+    padding: 22px 50px 20px;
+
+    &:active {
+      &::before {
+        box-shadow: 0 0 0 2.25rem v.$white;
+      }
+    }
+  }
 }
 
 @media screen and (min-width: v.$desktop) {
-  .button-explore {
+  .button {
     align-self: flex-end;
 
     &:is(:active, :hover) {
@@ -93,7 +103,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .button-explore {
+  .button {
     &::before {
       display: none;
       transition: none;

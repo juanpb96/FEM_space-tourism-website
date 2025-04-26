@@ -14,7 +14,7 @@ export const Button = ({
   return (
     <NavLink
       to={navigateTo}
-      className={`${styles["button-explore"]} ${styles[variant]}`}
+      className={`${styles["button"]} ${styles[variant]}`}
     >
       {children}
     </NavLink>
