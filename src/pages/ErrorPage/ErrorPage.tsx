@@ -2,8 +2,12 @@ import { Description } from "../../components/Description/Description";
 import { Button } from "../../components/Button/Button";
 import { Heading } from "../../components/Heading/Heading";
 import styles from "./styles/error-page.module.scss";
+import { useScreenType } from "../../hooks/useScreenType";
 
 export const ErrorPage = () => {
+  const screenType = useScreenType();
+  const isSmallScreen = screenType === "mobile" || screenType === "tablet";
+
   return (
     <main className={styles["wrapper"]}>
       <section className={styles["introduction"]}>
@@ -15,7 +19,7 @@ export const ErrorPage = () => {
           home or explore other pages via the menu.
         </Description>
       </section>
-      <Button navigateTo="/home" variant="pill">
+      <Button navigateTo="/home" variant={isSmallScreen ? "pill" : "circle"}>
         Back Home
       </Button>
     </main>
