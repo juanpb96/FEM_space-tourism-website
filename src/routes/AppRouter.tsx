@@ -5,6 +5,7 @@ import { Home } from "../pages/Home/Home";
 import { Destination } from "../pages/Destination/Destination";
 import { Crew } from "../pages/Crew/Crew";
 import { Technology } from "../pages/Technology/Technology";
+import { ErrorPage } from "../pages/ErrorPage/ErrorPage";
 
 const routes = [
   {
@@ -28,9 +29,8 @@ const routes = [
         element: <Technology />,
       },
       {
-        // TODO: Create a 404 page to use it here
         path: "*",
-        element: <Home />,
+        element: <ErrorPage />,
       },
     ],
   },
