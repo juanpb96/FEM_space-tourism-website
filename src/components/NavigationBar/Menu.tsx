@@ -50,18 +50,20 @@ export const Menu = () => {
           </li>
         ))}
       </ol>
-      <motion.div
-        ref={barRef}
-        className={styles["bar"]}
-        initial={false}
-        custom={{
-          screenType,
-          options,
-          index: activeMenuOptionIndex,
-        }}
-        animate={getBarAnimation(screenType)}
-        variants={menuVariants}
-      />
+      {activeMenuOptionIndex >= 0 && (
+        <motion.div
+          ref={barRef}
+          className={styles["bar"]}
+          initial={false}
+          custom={{
+            screenType,
+            options,
+            index: activeMenuOptionIndex,
+          }}
+          animate={getBarAnimation(screenType)}
+          variants={menuVariants}
+        />
+      )}
     </nav>
   );
 };

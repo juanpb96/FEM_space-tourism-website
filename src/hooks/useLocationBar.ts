@@ -6,10 +6,11 @@ const baseFontSize = parseFloat(
     .getPropertyValue("font-size")
 );
 
-export const useLocationBar = (items?: unknown[]) => {
+export const useLocationBar = (items?: unknown[], defaultActiveOption = -1) => {
   const olRef = useRef<HTMLOListElement>(null);
   const barRef = useRef<HTMLDivElement>(null);
-  const [activeMenuOptionIndex, setActiveMenuOptionIndex] = useState(0);
+  const [activeMenuOptionIndex, setActiveMenuOptionIndex] =
+    useState(defaultActiveOption);
   const [options, setOptions] = useState<HTMLLIElement[]>([]);
 
   useEffect(() => {
@@ -34,7 +35,7 @@ export const useLocationBar = (items?: unknown[]) => {
     });
 
     const calculateBarWidth = () => {
-      if (options.length > 0 && barElement) {
+      if (activeMenuOptionIndex >= 0 && options.length > 0 && barElement) {
         const activeMenuOption = options[activeMenuOptionIndex];
         resizeObserver.observe(activeMenuOption);
       }
