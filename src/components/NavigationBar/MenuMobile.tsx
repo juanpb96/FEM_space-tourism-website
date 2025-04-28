@@ -23,7 +23,7 @@ interface MenuMobileProps {
 // TODO: Reduce dependency between MenuMobile and Menu
 
 export const MenuMobile = ({ isOpen }: MenuMobileProps) => {
-  const [activeMenuOptionIndex, setActiveMenuOptionIndex] = useState(0);
+  const [activeMenuOptionIndex, setActiveMenuOptionIndex] = useState(-1);
   const olRef = useRef<HTMLOListElement>(null);
   const barRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
@@ -64,17 +64,19 @@ export const MenuMobile = ({ isOpen }: MenuMobileProps) => {
           </li>
         ))}
       </ol>
-      <motion.div
-        ref={barRef}
-        className={styles["bar"]}
-        initial={false}
-        custom={{
-          screenType: "mobile",
-          index: activeMenuOptionIndex,
-        }}
-        animate={getBarAnimation("mobile")}
-        variants={menuVariants}
-      />
+      {activeMenuOptionIndex >= 0 && (
+        <motion.div
+          ref={barRef}
+          className={styles["bar"]}
+          initial={false}
+          custom={{
+            screenType: "mobile",
+            index: activeMenuOptionIndex,
+          }}
+          animate={getBarAnimation("mobile")}
+          variants={menuVariants}
+        />
+      )}
     </motion.nav>
   );
 };

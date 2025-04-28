@@ -23,7 +23,7 @@ export const InnerNavigationBar = ({
     options,
     activeMenuOptionIndex,
     setActiveMenuOptionIndex,
-  } = useLocationBar(pages);
+  } = useLocationBar(pages, 0);
   const screenType = useScreenType();
 
   const onLinkClick = (e: MouseEvent, index: number) => {
