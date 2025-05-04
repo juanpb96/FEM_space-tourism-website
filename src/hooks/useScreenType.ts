@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 const BREAKPOINTS = {
   tablet: "(min-width: 37.5rem) and (max-width: 81.1875rem)",
   desktop: "(min-width: 81.25rem) and (max-width: 89.9375rem)",
-  "large-desktop": "(min-width: 90rem)",
 };
 
 export type ScreenType = keyof typeof BREAKPOINTS | "mobile";
