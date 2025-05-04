@@ -23,7 +23,7 @@ $page-name: "crew";
     margin-inline: auto;
   }
 
-  @media screen and (min-width: v.$large-desktop) {
+  @media screen and (min-width: v.$desktop) {
     width: min(1110px, 80%);
     text-align: left;
   }
@@ -36,7 +36,7 @@ $page-name: "crew";
     margin-left: -58px;
   }
 
-  @media screen and (min-width: v.$large-desktop) {
+  @media screen and (min-width: v.$desktop) {
     flex-basis: 100%;
     margin: 0;
   }
@@ -58,7 +58,7 @@ $page-name: "crew";
       "photo";
   }
 
-  @media screen and (min-width: v.$large-desktop) {
+  @media screen and (min-width: v.$desktop) {
     grid-template-areas:
       "details"
       "pagination";
@@ -84,7 +84,7 @@ $page-name: "crew";
 .photo-wrapper {
   grid-area: photo;
 
-  @media screen and (min-width: v.$large-desktop) {
+  @media screen and (min-width: v.$desktop) {
     position: absolute;
     bottom: 0;
     right: 0;
@@ -101,7 +101,7 @@ $page-name: "crew";
     margin-top: 40px;
   }
 
-  @media screen and (min-width: v.$large-desktop) {
+  @media screen and (min-width: v.$desktop) {
     height: initial;
   }
 }
@@ -134,7 +134,7 @@ $page-name: "crew";
     margin-block: 60px 0;
   }
 
-  @media screen and (min-width: v.$large-desktop) {
+  @media screen and (min-width: v.$desktop) {
     opacity: 0.5042;
     font-size: 2rem;
     margin-top: 154px;
@@ -142,7 +142,7 @@ $page-name: "crew";
 }
 
 .description-wrapper {
-  @media screen and (min-width: v.$large-desktop) {
+  @media screen and (min-width: v.$desktop) {
     width: 27.75rem;
     margin-bottom: 120px;
   }

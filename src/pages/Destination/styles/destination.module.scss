@@ -1,7 +1,7 @@
-@use 'src/styles/variables' as v;
-@use 'src/styles/mixins/page-background' as m;
+@use "src/styles/variables" as v;
+@use "src/styles/mixins/page-background" as m;
 
-$page-name: 'destination';
+$page-name: "destination";
 
 .wrapper {
   display: flex;
@@ -18,7 +18,7 @@ $page-name: 'destination';
     margin-inline: auto;
   }
 
-  @media screen and (min-width: v.$large-desktop) {
+  @media screen and (min-width: v.$desktop) {
     width: min(80%, 1110px);
     padding-block: 76px;
     flex-direction: row;
@@ -34,7 +34,7 @@ $page-name: 'destination';
     margin-left: -58px;
   }
 
-  @media screen and (min-width: v.$large-desktop) {
+  @media screen and (min-width: v.$desktop) {
     flex-basis: 100%;
     margin: 0;
   }
@@ -50,7 +50,7 @@ $page-name: 'destination';
     margin-block: 60px 54px;
   }
 
-  @media screen and (min-width: v.$large-desktop) {
+  @media screen and (min-width: v.$desktop) {
     width: 445px;
     margin-block: 98px 0;
     margin-left: 64px;
