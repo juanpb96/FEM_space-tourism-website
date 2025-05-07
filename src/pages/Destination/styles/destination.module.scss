@@ -86,27 +86,38 @@ $page-name: "destination";
   }
 
   @media screen and (min-width: v.$desktop) {
-    width: min(80%, 1110px);
+    width: fit-content;
   }
 }
 
 .details {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 32px;
-  width: 100%;
+  display: grid;
+  grid-template-areas:
+    "distance"
+    "travel-time";
+  row-gap: 32px;
+  justify-items: center;
   margin-top: 32px;
   padding-top: 32px;
   border-top: 1px solid v.$ship-grey;
 
+  & :first-child {
+    grid-area: distance;
+  }
+
+  & :last-child {
+    grid-area: travel-time;
+  }
+
   @media screen and (min-width: v.$tablet) {
-    flex-direction: row;
-    justify-content: space-evenly;
+    grid-template-areas: "distance travel-time";
+    grid-template-columns: 1fr 1fr;
+    margin-top: 50px;
+    padding-top: 28px;
   }
 
   @media screen and (min-width: v.$desktop) {
-    justify-content: flex-start;
-    gap: 80px;
+    justify-items: start;
+    margin-top: 54px;
   }
 }
