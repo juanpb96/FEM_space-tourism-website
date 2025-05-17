@@ -18,13 +18,12 @@ $page-name: "crew";
   @media screen and (min-width: v.$tablet) {
     padding: 0;
     padding-top: 40px;
-    // TODO: Check once validating page view with the navigation bar
-    width: calc(573 / 16 * 1rem);
     margin-inline: auto;
   }
 
   @media screen and (min-width: v.$desktop) {
-    width: min(1110px, 80%);
+    max-width: 1110px;
+    padding-top: 76px;
     text-align: left;
   }
 }
@@ -33,7 +32,7 @@ $page-name: "crew";
 .wrapper h2 {
   @media screen and (min-width: v.$tablet) {
     text-align: left;
-    margin-left: -58px;
+    margin-left: 40px;
   }
 
   @media screen and (min-width: v.$desktop) {
@@ -50,12 +49,17 @@ $page-name: "crew";
     "divider"
     "pagination"
     "details";
+  grid-template-rows: 222px auto auto auto;
+  margin-top: 32px;
 
   @media screen and (min-width: v.$tablet) {
     grid-template-areas:
       "details"
       "pagination"
       "photo";
+    row-gap: 40px;
+    grid-template-rows: auto auto minmax(222px, 528px);
+    margin-top: revert;
   }
 
   @media screen and (min-width: v.$desktop) {
@@ -75,14 +79,12 @@ $page-name: "crew";
 
 .details {
   grid-area: details;
-
-  @media screen and (min-width: v.$tablet) {
-    margin-bottom: 40px;
-  }
 }
 
 .photo-wrapper {
   grid-area: photo;
+  height: 100%;
+  object-fit: contain;
 
   @media screen and (min-width: v.$desktop) {
     position: absolute;
@@ -92,14 +94,7 @@ $page-name: "crew";
 }
 
 .photo {
-  height: 222px;
-  margin-top: 32px;
-
-  // TODO: Need to check how it looks when the screen displays the navbar
-  @media screen and (min-width: v.$tablet) {
-    height: 532px;
-    margin-top: 40px;
-  }
+  max-height: 100%;
 
   @media screen and (min-width: v.$desktop) {
     height: initial;
@@ -142,9 +137,14 @@ $page-name: "crew";
 }
 
 .description-wrapper {
+  @media screen and (min-width: v.$tablet) {
+    width: 37rem;
+    text-wrap: balance;
+  }
+
   @media screen and (min-width: v.$desktop) {
     width: 27.75rem;
-    margin-bottom: 120px;
+    text-wrap: revert;
   }
 }
 

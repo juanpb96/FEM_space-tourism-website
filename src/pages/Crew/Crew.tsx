@@ -20,6 +20,7 @@ export const Crew = () => {
     return <></>;
   }
 
+  // TODO: Test keyboard navigation with Screen Reader
   return (
     <main className={styles["wrapper"]}>
       <Subtitle prefix="02" title="Meet your crew" />
