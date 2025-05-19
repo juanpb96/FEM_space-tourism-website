@@ -64,12 +64,11 @@ $page-name: "crew";
 
   @media screen and (min-width: v.$desktop) {
     grid-template-areas:
-      "details"
-      "pagination";
-    grid-template-rows: 545px 1fr;
-    position: relative;
+      "details photo"
+      "pagination photo";
+    grid-template-rows: 545px 109px;
+    gap: 0;
     place-items: revert;
-    height: calc(100dvh - 130px - 80px);
   }
 }
 
@@ -87,9 +86,8 @@ $page-name: "crew";
   object-fit: contain;
 
   @media screen and (min-width: v.$desktop) {
-    position: absolute;
-    bottom: 0;
-    right: 0;
+    align-self: self-end;
+    height: revert;
   }
 }
 
