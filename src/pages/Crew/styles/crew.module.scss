@@ -152,4 +152,8 @@ $page-name: "crew";
   @media screen and (min-width: v.$tablet) {
     height: 6px;
   }
+
+  @media screen and (min-width: v.$desktop) {
+    height: 28px;
+  }
 }
