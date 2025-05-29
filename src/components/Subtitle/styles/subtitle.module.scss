@@ -1,6 +1,6 @@
-@use 'src/styles/variables' as v;
-@use 'src/styles/fonts' as fonts;
-@use 'src/styles/mixins/responsive-font' as m;
+@use "src/styles/variables" as v;
+@use "src/styles/fonts" as fonts;
+@use "src/styles/mixins/responsive-font" as m;
 
 .subtitle {
   @include fonts.barlow-condensed;
@@ -41,5 +41,11 @@
     $font-size: 28;
     $line-height: 34;
     @include m.responsive-font($font-size, $line-height);
+
+    &--with-prefix {
+      span {
+        margin-right: 28px;
+      }
+    }
   }
 }

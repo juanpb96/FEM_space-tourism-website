@@ -1,9 +1,9 @@
 /* Colors */
-$charcoal: #0B0D17;
-$lilac: #D0D6F9;
-$white: #FFFFFF;
+$charcoal: #0b0d17;
+$lilac: #d0d6f9;
+$white: #ffffff;
 $grey: #979797;
-$ship-grey: #383B4B;
+$ship-grey: #383b4b;
 
 // Opacity
 $opacity-1: 50%;
@@ -33,6 +33,5 @@ $ls-nav-text: 0.1688rem;
 // TODO: Body text depends on viewport size
 
 /* Viewport */
-$tablet: 48rem;
-$desktop: 64rem;
-$large-desktop: 90rem;
+$tablet: 600px;
+$desktop: 1300px;

@@ -31,10 +31,12 @@ export const Destination = () => {
         <InnerNavigationBar pages={pages} setActivePage={onPaginationClick} />
         <div className={styles["spacer"]} />
         <Heading text={name} variant="medium" />
-        <Description>{description}</Description>
-        <div className={styles["details"]}>
-          <DestinationDetails title="Avg. Distance" value={distance} />
-          <DestinationDetails title="Est. Travel Time" value={travel} />
+        <div className={styles["description-wrapper"]}>
+          <Description>{description}</Description>
+          <div className={styles["details"]}>
+            <DestinationDetails title="Avg. Distance" value={distance} />
+            <DestinationDetails title="Est. Travel Time" value={travel} />
+          </div>
         </div>
       </div>
     </main>

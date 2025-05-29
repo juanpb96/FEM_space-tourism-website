@@ -1,7 +1,7 @@
-@use 'src/styles/variables' as v;
-@use 'src/styles/mixins/page-background' as m;
+@use "src/styles/variables" as v;
+@use "src/styles/mixins/page-background" as m;
 
-$page-name: 'destination';
+$page-name: "destination";
 
 .wrapper {
   display: flex;
@@ -13,13 +13,11 @@ $page-name: 'destination';
 
   @media screen and (min-width: v.$tablet) {
     padding: 40px 0;
-    // TODO: Check once validating page view with the navigation bar
-    width: calc(573 / 16 * 1rem);
     margin-inline: auto;
   }
 
-  @media screen and (min-width: v.$large-desktop) {
-    width: min(80%, 1110px);
+  @media screen and (min-width: v.$desktop) {
+    max-width: 1110px;
     padding-block: 76px;
     flex-direction: row;
     flex-wrap: wrap;
@@ -31,10 +29,10 @@ $page-name: 'destination';
 .wrapper h2 {
   @media screen and (min-width: v.$tablet) {
     align-self: flex-start;
-    margin-left: -58px;
+    margin-left: 40px;
   }
 
-  @media screen and (min-width: v.$large-desktop) {
+  @media screen and (min-width: v.$desktop) {
     flex-basis: 100%;
     margin: 0;
   }
@@ -50,7 +48,7 @@ $page-name: 'destination';
     margin-block: 60px 54px;
   }
 
-  @media screen and (min-width: v.$large-desktop) {
+  @media screen and (min-width: v.$desktop) {
     width: 445px;
     margin-block: 98px 0;
     margin-left: 64px;
@@ -82,23 +80,44 @@ $page-name: 'destination';
   }
 }
 
+.description-wrapper {
+  @media screen and (min-width: v.$tablet) {
+    width: calc(573 / 16 * 1rem);
+  }
+
+  @media screen and (min-width: v.$desktop) {
+    width: fit-content;
+  }
+}
+
 .details {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 32px;
-  width: 100%;
+  display: grid;
+  grid-template-areas:
+    "distance"
+    "travel-time";
+  row-gap: 32px;
+  justify-items: center;
   margin-top: 32px;
   padding-top: 32px;
   border-top: 1px solid v.$ship-grey;
 
+  & :first-child {
+    grid-area: distance;
+  }
+
+  & :last-child {
+    grid-area: travel-time;
+  }
+
   @media screen and (min-width: v.$tablet) {
-    flex-direction: row;
-    justify-content: space-evenly;
+    grid-template-areas: "distance travel-time";
+    grid-template-columns: 1fr 1fr;
+    margin-top: 50px;
+    padding-top: 28px;
   }
 
   @media screen and (min-width: v.$desktop) {
-    justify-content: flex-start;
-    gap: 80px;
+    justify-items: start;
+    margin-top: 54px;
   }
 }

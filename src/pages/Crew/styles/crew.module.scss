@@ -18,13 +18,12 @@ $page-name: "crew";
   @media screen and (min-width: v.$tablet) {
     padding: 0;
     padding-top: 40px;
-    // TODO: Check once validating page view with the navigation bar
-    width: calc(573 / 16 * 1rem);
     margin-inline: auto;
   }
 
-  @media screen and (min-width: v.$large-desktop) {
-    width: min(1110px, 80%);
+  @media screen and (min-width: v.$desktop) {
+    max-width: 1110px;
+    padding-top: 76px;
     text-align: left;
   }
 }
@@ -33,10 +32,10 @@ $page-name: "crew";
 .wrapper h2 {
   @media screen and (min-width: v.$tablet) {
     text-align: left;
-    margin-left: -58px;
+    margin-left: 40px;
   }
 
-  @media screen and (min-width: v.$large-desktop) {
+  @media screen and (min-width: v.$desktop) {
     flex-basis: 100%;
     margin: 0;
   }
@@ -50,22 +49,26 @@ $page-name: "crew";
     "divider"
     "pagination"
     "details";
+  grid-template-rows: 222px auto auto auto;
+  margin-top: 32px;
 
   @media screen and (min-width: v.$tablet) {
     grid-template-areas:
       "details"
       "pagination"
       "photo";
+    row-gap: 40px;
+    grid-template-rows: auto auto minmax(222px, 528px);
+    margin-top: revert;
   }
 
-  @media screen and (min-width: v.$large-desktop) {
+  @media screen and (min-width: v.$desktop) {
     grid-template-areas:
-      "details"
-      "pagination";
-    grid-template-rows: 545px 1fr;
-    position: relative;
+      "details photo"
+      "pagination photo";
+    grid-template-rows: 545px 109px;
+    gap: 0;
     place-items: revert;
-    height: calc(100dvh - 130px - 80px);
   }
 }
 
@@ -75,33 +78,23 @@ $page-name: "crew";
 
 .details {
   grid-area: details;
-
-  @media screen and (min-width: v.$tablet) {
-    margin-bottom: 40px;
-  }
 }
 
 .photo-wrapper {
   grid-area: photo;
+  height: 100%;
+  object-fit: contain;
 
-  @media screen and (min-width: v.$large-desktop) {
-    position: absolute;
-    bottom: 0;
-    right: 0;
+  @media screen and (min-width: v.$desktop) {
+    align-self: self-end;
+    height: revert;
   }
 }
 
 .photo {
-  height: 222px;
-  margin-top: 32px;
+  max-height: 100%;
 
-  // TODO: Need to check how it looks when the screen displays the navbar
-  @media screen and (min-width: v.$tablet) {
-    height: 532px;
-    margin-top: 40px;
-  }
-
-  @media screen and (min-width: v.$large-desktop) {
+  @media screen and (min-width: v.$desktop) {
     height: initial;
   }
 }
@@ -134,7 +127,7 @@ $page-name: "crew";
     margin-block: 60px 0;
   }
 
-  @media screen and (min-width: v.$large-desktop) {
+  @media screen and (min-width: v.$desktop) {
     opacity: 0.5042;
     font-size: 2rem;
     margin-top: 154px;
@@ -142,9 +135,14 @@ $page-name: "crew";
 }
 
 .description-wrapper {
-  @media screen and (min-width: v.$large-desktop) {
+  @media screen and (min-width: v.$tablet) {
+    width: 37rem;
+    text-wrap: balance;
+  }
+
+  @media screen and (min-width: v.$desktop) {
     width: 27.75rem;
-    margin-bottom: 120px;
+    text-wrap: revert;
   }
 }
 
@@ -153,5 +151,9 @@ $page-name: "crew";
 
   @media screen and (min-width: v.$tablet) {
     height: 6px;
+  }
+
+  @media screen and (min-width: v.$desktop) {
+    height: 28px;
   }
 }
