@@ -55,7 +55,6 @@ $page-name: "technology";
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
-    align-items: center;
     gap: 130px;
     margin-top: 26px;
   }
@@ -88,6 +87,9 @@ article {
   @media screen and (min-width: v.$desktop) {
     display: flex;
     gap: 80px;
+    margin-top: calc(
+      137px - 26px
+    ); // 137px total space minus 26px from the top margin of the content
   }
 }
 
