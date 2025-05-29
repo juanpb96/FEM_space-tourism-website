@@ -25,7 +25,7 @@ export const Technology = () => {
         {/* TODO: Add avif fallback for portrait images */}
         <picture>
           <source
-            media="(min-width: 64rem)"
+            media="(min-width: 81.25rem)"
             srcSet={currentTechnology.images.portrait}
           />
           {/* <source

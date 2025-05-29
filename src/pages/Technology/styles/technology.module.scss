@@ -1,9 +1,9 @@
-@use 'src/styles/variables' as v;
-@use 'src/styles/fonts' as fonts;
-@use 'src/styles/mixins/page-background' as bg;
-@use 'src/styles/mixins/responsive-font' as m;
+@use "src/styles/variables" as v;
+@use "src/styles/fonts" as fonts;
+@use "src/styles/mixins/page-background" as bg;
+@use "src/styles/mixins/responsive-font" as m;
 
-$page-name: 'technology';
+$page-name: "technology";
 
 .wrapper {
   padding: 24px;
@@ -16,7 +16,8 @@ $page-name: 'technology';
   }
 
   @media screen and (min-width: v.$tablet) {
-    padding-top: 40px;
+    padding-inline: 0;
+    padding-block: 40px;
 
     & h2 {
       text-align: left;
@@ -34,6 +35,18 @@ $page-name: 'technology';
   // TODO: Adjust once breakpoints get updated - Issue #59
   @media screen and (min-width: 100rem) {
     margin-inline: auto;
+  }
+}
+
+.wrapper h2 {
+  @media screen and (min-width: v.$tablet) {
+    text-align: left;
+    margin-left: 40px;
+  }
+
+  @media screen and (min-width: v.$desktop) {
+    flex-basis: 100%;
+    margin: 0;
   }
 }
 
@@ -59,6 +72,8 @@ $page-name: 'technology';
 
   @media screen and (min-width: v.$tablet) {
     margin-block: 60px 56px;
+    margin-inline: 0;
+    width: 100%;
     min-height: 310px;
   }
 
@@ -85,7 +100,6 @@ article {
     margin-bottom: 44px;
   }
 }
-
 
 // TODO: Move terminology styles into a separated component and reuse it in destination details - Issue #50
 .terminology {
