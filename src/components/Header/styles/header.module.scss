@@ -1,11 +1,14 @@
-@use 'src/styles/variables' as v;
+@use "src/styles/variables" as v;
 
 .header {
+  padding-top: 24px;
+  padding-inline: 24px;
+}
+
+.header-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 24px;
-  padding-inline: 24px;
 }
 
 .line {
@@ -29,12 +32,17 @@
 
 @media screen and (min-width: v.$desktop) {
   .header {
+    display: grid;
+    grid-template-columns: auto min(100%, 1440px) auto;
     padding-top: 40px;
     padding-left: 55px;
+  }
+
+  .header-content {
+    grid-column-start: 2;
   }
 
   .line {
     display: initial;
   }
 }
-
