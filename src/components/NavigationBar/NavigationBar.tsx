@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { MenuButton } from "./MenuButton";
 import { Menu } from "./Menu";
 import { useScreenType } from "../../hooks/useScreenType";
 import { MenuMobile } from "./MenuMobile";
@@ -19,9 +18,11 @@ export const NavigationBar = () => {
 
   return (
     <div className={styles["nav-container"]}>
-      {screenType === "mobile" ? <MenuMobile isOpen={isOpen} /> : <Menu />}
-      {/* TODO: Increase button clickable area to enhance usability - Issue #48 */}
-      <MenuButton isOpen={isOpen} onToggle={onToggle} />
+      {screenType === "mobile" ? (
+        <MenuMobile isOpen={isOpen} onToggle={onToggle} />
+      ) : (
+        <Menu />
+      )}
     </div>
   );
 };
