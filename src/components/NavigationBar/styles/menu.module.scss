@@ -1,8 +1,8 @@
-@use 'src/styles/variables' as v;
-@use 'src/styles/fonts' as fonts;
+@use "src/styles/variables" as v;
+@use "src/styles/fonts" as fonts;
 
 @mixin bar-mixin {
-  content: '';
+  content: "";
   width: 0.25rem;
   height: 0;
   position: absolute;
@@ -41,26 +41,17 @@
   }
 
   &:focus::before {
-    @include bar-transitions
+    @include bar-transitions;
   }
 
-  @media (hover: hover) {
+  @media (hover: hover) and (pointer: fine) {
     &:hover::before {
-      @include bar-transitions
+      @include bar-transitions;
     }
   }
 }
 
 .menu {
-  width: 15.875rem;
-  height: 100vh;
-  height: 100dvh;
-  position: fixed;
-  inset: 0 0 0 auto;
-  background-color: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(40.77px);
-  z-index: 1;
-
   & ol {
     display: flex;
     flex-direction: column;
@@ -69,6 +60,13 @@
     padding-left: 2rem;
     counter-reset: item -1;
     list-style: none;
+    width: 15.875rem;
+    height: 100dvh;
+    position: fixed;
+    inset: 0 0 0 auto;
+    background-color: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(40.77px);
+    z-index: 1;
 
     & li {
       @include fonts.barlow-condensed;
@@ -83,6 +81,12 @@
         color: v.$white;
         text-decoration: none;
         @include pseudo-bar;
+
+        &::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+        }
       }
 
       .counter {
@@ -92,6 +96,12 @@
       }
     }
   }
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: transparent;
 }
 
 .bar {
