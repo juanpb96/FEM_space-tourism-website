@@ -12,14 +12,14 @@ interface MenuHorizontalVariantProps extends WithOptionsProps {
   screenType: ScreenType;
 }
 
-// TODO: Check if it could be a better approach to move functions to another file
+// TODO: Check if it could be a better approach to move functions to another file - Issue #50
 const sumOptionsWidth = ({ options, index }: WithOptionsProps) => {
   return options
     .slice(0, index)
     .reduce((acc, option) => acc + option.offsetWidth, 0);
 };
 
-// TODO: Create constant values for numbers without a clear explanation
+// TODO: Create constant values for numbers without a clear explanation - Issue #50
 const calculateHorizontalMoveByViewport = ({
   screenType,
   options,
@@ -38,12 +38,11 @@ const menuVariants = {
   }),
 };
 
-// TODO: Get more knowledge on the declaration added in the transition object
+// TODO: Get more knowledge on the declaration added in the transition object - Issue #109
 const optionsVariants = {
   open: {
     opacity: 1,
     x: 0,
-    display: "flex",
     transition: {
       type: "spring",
       stiffness: 50,
@@ -53,7 +52,6 @@ const optionsVariants = {
   closed: {
     opacity: 0,
     x: "100%",
-    display: "none",
     transition: {
       delay: 0.1,
       type: "spring",
