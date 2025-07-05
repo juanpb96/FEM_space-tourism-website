@@ -49,6 +49,10 @@
       @include bar-transitions;
     }
   }
+
+  &[aria-current="page"]::before {
+    content: none;
+  }
 }
 
 .menu {
@@ -104,13 +108,20 @@
   background-color: transparent;
 }
 
+.bar-wrapper {
+  position: fixed;
+  right: 0;
+  top: -0.375rem;
+  width: 15.875rem; // Same width as the menu
+  z-index: 1;
+}
+
 .bar {
   position: absolute;
+  right: 0;
   width: 0.25rem;
   height: 2rem;
   background-color: v.$white;
-  right: 0;
-  top: -0.375rem;
 }
 
 // TODO: Move mobile styles to a file dedicated to `MenuMobile` and adjust the other styles here - Issue #50

@@ -3,9 +3,9 @@ import { NavLink, useLocation } from "react-router-dom";
 import {
   getActiveClass,
   getBarAnimation,
-  getMobileAnimation,
+  // getMobileAnimation, TODO: Check if this function is still needed - Issue #50
 } from "./utils/Menu.utils";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { menuVariants, optionsVariants } from "./animations/menu.variants";
 import styles from "./styles/menu.module.scss";
 import { MenuButton } from "./MenuButton";
@@ -17,10 +17,7 @@ interface MenuMobileProps {
   onToggle: () => void;
 }
 
-// TODO: Continue with the implementation following https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
-
-// TODO: Reduce dependency between MenuMobile and Menu
-
+// TODO: Reduce dependency between MenuMobile and Menu - Issue #50
 export const MenuMobile = ({ isOpen, onToggle }: MenuMobileProps) => {
   const [activeMenuOptionIndex, setActiveMenuOptionIndex] = useState(-1);
   const olRef = useRef<HTMLOListElement>(null);
@@ -40,6 +37,8 @@ export const MenuMobile = ({ isOpen, onToggle }: MenuMobileProps) => {
     activeElement?.focus();
     document.body.style.overflow = "revert";
   }
+
+  // TODO: Close the menu when the user press the Escape key - Issue #48
 
   // Preferred way compared to onAnimationComplete since it ensures the focus is set during the animation
   useEffect(() => {
@@ -66,7 +65,7 @@ export const MenuMobile = ({ isOpen, onToggle }: MenuMobileProps) => {
     }
   }, [location.pathname, setActiveMenuOptionIndex]);
 
-  // TODO: Refactor this code to use a more declarative approach and commit changes
+  // TODO: Refactor this code to use a more declarative approach and commit changes - Issue #50
   useEffect(() => {
     let focusCloseButton = true;
     let focusFirstLink = false;
@@ -148,39 +147,52 @@ export const MenuMobile = ({ isOpen, onToggle }: MenuMobileProps) => {
           aria-hidden="true"
         />
       )}
-      <motion.ol
-        ref={olRef}
-        initial={false}
-        animate={getMobileAnimation(isOpen)}
-        variants={optionsVariants}
-      >
-        {PAGES.map((page, index) => (
-          <li key={page}>
-            <NavLink
-              to={`/${page}`}
-              ref={(el) => (interactiveElementsRef.current[index] = el)}
-              className={getActiveClass}
-              onClick={() => onLinkClick(index)}
-            >
-              <span className={styles["counter"]}>0{index}</span>
-              {page}
-            </NavLink>
-          </li>
-        ))}
-      </motion.ol>
-      {/* TODO: Fix bar as it is being shown always and overlapped when the menu opens - Issue #48 */}
-      {activeMenuOptionIndex >= 0 && (
+      <AnimatePresence>
+        {isOpen && (
+          <motion.ol
+            ref={olRef}
+            initial="closed"
+            animate="open"
+            exit="closed"
+            variants={optionsVariants}
+          >
+            {PAGES.map((page, index) => (
+              <li key={page}>
+                <NavLink
+                  to={`/${page}`}
+                  ref={(el) => (interactiveElementsRef.current[index] = el)}
+                  className={getActiveClass}
+                  onClick={() => onLinkClick(index)}
+                >
+                  <span className={styles["counter"]}>0{index}</span>
+                  {page}
+                </NavLink>
+              </li>
+            ))}
+          </motion.ol>
+        )}
+      </AnimatePresence>
+
+      {isOpen && activeMenuOptionIndex >= 0 && (
         <motion.div
-          ref={barRef}
-          className={styles["bar"]}
-          initial={false}
-          custom={{
-            screenType: "mobile",
-            index: activeMenuOptionIndex,
-          }}
-          animate={getBarAnimation("mobile")}
-          variants={menuVariants}
-        />
+          initial="closed"
+          animate="open"
+          exit="closed"
+          variants={optionsVariants}
+          className={styles["bar-wrapper"]}
+        >
+          <motion.div
+            ref={barRef}
+            className={styles["bar"]}
+            initial={false}
+            custom={{
+              screenType: "mobile",
+              index: activeMenuOptionIndex,
+            }}
+            animate={getBarAnimation("mobile")}
+            variants={menuVariants}
+          />
+        </motion.div>
       )}
       <MenuButton ref={buttonRef} isOpen={isOpen} onToggle={onToggle} />
     </nav>
