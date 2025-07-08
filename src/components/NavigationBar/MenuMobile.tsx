@@ -38,7 +38,19 @@ export const MenuMobile = ({ isOpen, onToggle }: MenuMobileProps) => {
     document.body.style.overflow = "revert";
   }
 
-  // TODO: Close the menu when the user press the Escape key - Issue #48
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (isOpen && event.key === "Escape") {
+        onToggle();
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [isOpen, onToggle]);
 
   // Preferred way compared to onAnimationComplete since it ensures the focus is set during the animation
   useEffect(() => {
