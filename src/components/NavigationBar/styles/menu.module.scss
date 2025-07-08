@@ -127,15 +127,14 @@
 // TODO: Move mobile styles to a file dedicated to `MenuMobile` and adjust the other styles here - Issue #50
 @media screen and (min-width: v.$tablet) {
   .menu {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: auto;
-    height: 6rem;
-    position: revert;
-
     & ol {
+      display: flex;
       flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      width: auto;
+      height: 6rem;
+      position: revert;
       gap: 2.375rem;
       padding: 0 3rem;
 

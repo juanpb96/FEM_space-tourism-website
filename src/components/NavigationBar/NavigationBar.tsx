@@ -16,7 +16,6 @@ export const NavigationBar = () => {
     setIsOpen(!isOpen);
   };
 
-  // TODO: Fix menu mobile being combined with larger screen menu - Issue #48
   return (
     <div className={styles["nav-container"]}>
       {screenType === "mobile" ? (
