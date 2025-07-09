@@ -142,8 +142,8 @@ export const MenuMobile = ({ isOpen, onToggle }: MenuMobileProps) => {
   }, [isOpen]);
 
   const onLinkClick = (index: number) => {
-    // TODO: Investigate if closing the Menu here enhances UX - Issue #48
     setActiveMenuOptionIndex(index);
+    onToggle();
   };
 
   return (
