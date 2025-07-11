@@ -40,7 +40,7 @@
     @include bar-mixin;
   }
 
-  &:focus::before {
+  &:focus-visible::before {
     @include bar-transitions;
   }
 

@@ -29,14 +29,18 @@ export const MenuMobile = ({ isOpen, onToggle }: MenuMobileProps) => {
     (HTMLAnchorElement | HTMLButtonElement | null)[]
   >([]);
 
-  if (isOpen) {
-    document.body.style.overflow = "hidden";
-  }
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+    }
 
-  if (!isOpen) {
-    activeElement?.focus();
-    document.body.style.overflow = "revert";
-  }
+    return () => {
+      activeElement?.focus();
+      document.body.style.overflow = "revert";
+      document.documentElement.style.overflow = "revert";
+    };
+  }, [isOpen, activeElement]);
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
