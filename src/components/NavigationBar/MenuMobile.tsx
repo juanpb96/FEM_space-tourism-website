@@ -17,6 +17,8 @@ interface MenuMobileProps {
   onToggle: () => void;
 }
 
+// TODO: Check full-bleed menu on 200% zoom (try remote debugging) - Issue #48
+
 // TODO: Reduce dependency between MenuMobile and Menu - Issue #50
 export const MenuMobile = ({ isOpen, onToggle }: MenuMobileProps) => {
   const [activeMenuOptionIndex, setActiveMenuOptionIndex] = useState(-1);
