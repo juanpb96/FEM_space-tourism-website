@@ -1,8 +1,8 @@
-@use 'src/styles/variables' as v;
-@use 'src/styles/fonts' as fonts;
+@use "src/styles/variables" as v;
+@use "src/styles/fonts" as fonts;
 
 @mixin bar-mixin {
-  content: '';
+  content: "";
   width: 0.25rem;
   height: 0;
   position: absolute;
@@ -40,27 +40,22 @@
     @include bar-mixin;
   }
 
-  &:focus::before {
-    @include bar-transitions
+  &:focus-visible::before {
+    @include bar-transitions;
   }
 
-  @media (hover: hover) {
+  @media (hover: hover) and (pointer: fine) {
     &:hover::before {
-      @include bar-transitions
+      @include bar-transitions;
     }
+  }
+
+  &[aria-current="page"]::before {
+    content: none;
   }
 }
 
 .menu {
-  width: 15.875rem;
-  height: 100vh;
-  height: 100dvh;
-  position: fixed;
-  inset: 0 0 0 auto;
-  background-color: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(40.77px);
-  z-index: 1;
-
   & ol {
     display: flex;
     flex-direction: column;
@@ -69,6 +64,13 @@
     padding-left: 2rem;
     counter-reset: item -1;
     list-style: none;
+    width: 15.875rem;
+    height: 100dvh;
+    position: fixed;
+    inset: 0 0 0 auto;
+    background-color: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(40.77px);
+    z-index: 1;
 
     & li {
       @include fonts.barlow-condensed;
@@ -83,6 +85,12 @@
         color: v.$white;
         text-decoration: none;
         @include pseudo-bar;
+
+        &::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+        }
       }
 
       .counter {
@@ -94,27 +102,39 @@
   }
 }
 
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: transparent;
+}
+
+.bar-wrapper {
+  position: fixed;
+  right: 0;
+  top: -0.375rem;
+  width: 15.875rem; // Same width as the menu
+  z-index: 1;
+}
+
 .bar {
   position: absolute;
+  right: 0;
   width: 0.25rem;
   height: 2rem;
   background-color: v.$white;
-  right: 0;
-  top: -0.375rem;
 }
 
 // TODO: Move mobile styles to a file dedicated to `MenuMobile` and adjust the other styles here - Issue #50
 @media screen and (min-width: v.$tablet) {
   .menu {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: auto;
-    height: 6rem;
-    position: revert;
-
     & ol {
+      display: flex;
       flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      width: auto;
+      height: 6rem;
+      position: revert;
       gap: 2.375rem;
       padding: 0 3rem;
 
