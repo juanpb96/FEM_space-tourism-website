@@ -5,7 +5,7 @@ import { useScreenType } from "../../hooks/useScreenType";
 import { calculateHorizontalMoveByViewport } from "./animations/horizontal-move";
 import styles from "./styles/inner-navigation-bar.module.scss";
 
-interface InnerNavigationBarProps {
+interface DestinationPaginationProps {
   pages: string[];
   setActivePage: (page: string) => void;
 }
@@ -13,10 +13,11 @@ interface InnerNavigationBarProps {
 // TODO: Increase options clickable area to enhance usability - Issue #48
 // TODO: Rename the component to be more specific
 // TODO: Consider if keeping the onClick function in this component is the best approach or if it should be received as a prop
-export const InnerNavigationBar = ({
+// TODO: Options should be focusable with keyboard navigation
+export const DestinationPagination = ({
   pages,
   setActivePage,
-}: InnerNavigationBarProps) => {
+}: DestinationPaginationProps) => {
   const {
     olRef,
     barRef,
