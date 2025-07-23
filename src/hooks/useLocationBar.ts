@@ -6,19 +6,27 @@ const baseFontSize = parseFloat(
     .getPropertyValue("font-size")
 );
 
-export const useLocationBar = (items?: unknown[], defaultActiveOption = -1) => {
-  const olRef = useRef<HTMLOListElement>(null);
+export const useLocationBar = <
+  TContainer extends HTMLElement,
+  TOptions extends HTMLElement
+>(
+  items?: unknown[],
+  defaultActiveOption = -1
+) => {
+  const containerRef = useRef<TContainer>(null);
   const barRef = useRef<HTMLDivElement>(null);
   const [activeMenuOptionIndex, setActiveMenuOptionIndex] =
     useState(defaultActiveOption);
-  const [options, setOptions] = useState<HTMLLIElement[]>([]);
+  const [options, setOptions] = useState<TOptions[]>([]);
 
   useEffect(() => {
-    const olElement = olRef.current;
+    const paginationElement = containerRef.current;
 
-    if (olElement) {
-      const liElements = Array.from(olElement.getElementsByTagName("li"));
-      setOptions(liElements);
+    if (paginationElement) {
+      const optionElements = Array.from(
+        paginationElement.children
+      ) as TOptions[];
+      setOptions(optionElements);
     }
   }, [items]);
 
@@ -49,7 +57,7 @@ export const useLocationBar = (items?: unknown[], defaultActiveOption = -1) => {
   }, [activeMenuOptionIndex, options]);
 
   return {
-    olRef,
+    containerRef,
     barRef,
     options,
     activeMenuOptionIndex,

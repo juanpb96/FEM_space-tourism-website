@@ -1,19 +1,31 @@
-import type { ScreenType } from '../../../hooks/useScreenType';
+import type { ScreenType } from "../../../hooks/useScreenType";
 
-interface ListProps {
+interface ListProps<TOptions extends HTMLElement> {
   index: number;
-  options: HTMLLIElement[];
+  options: TOptions[];
 }
 
-interface HorizontalMoveProps extends ListProps {
-  screenType: ScreenType,
+interface HorizontalMoveProps<TOptions extends HTMLElement>
+  extends ListProps<TOptions> {
+  screenType: ScreenType;
 }
 
-const sumOptionsWidth = ({options, index}: ListProps) => {    
-  return options.slice(0, index).reduce((acc, option) => acc + option.offsetWidth, 0);
+const sumOptionsWidth = <TOptions extends HTMLElement>({
+  options,
+  index,
+}: ListProps<TOptions>) => {
+  return options
+    .slice(0, index)
+    .reduce((acc, option) => acc + option.offsetWidth, 0);
 };
 
-export const calculateHorizontalMoveByViewport = ({screenType, options, index}: HorizontalMoveProps) => {
-  const optionsGap = screenType === 'mobile' ? 26 : 36;
-  return sumOptionsWidth({options, index}) + index * optionsGap;
+export const calculateHorizontalMoveByViewport = <
+  TOptions extends HTMLElement
+>({
+  screenType,
+  options,
+  index,
+}: HorizontalMoveProps<TOptions>) => {
+  const optionsGap = screenType === "mobile" ? 26 : 36;
+  return sumOptionsWidth({ options, index }) + index * optionsGap;
 };
