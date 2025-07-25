@@ -63,6 +63,7 @@ $page-name: "destination";
   @media screen and (min-width: v.$desktop) {
     display: revert;
     max-width: calc(445 / 16 * 1rem);
+    margin-bottom: 6px;
   }
 }
 
@@ -72,11 +73,19 @@ $page-name: "destination";
   @media screen and (min-width: v.$tablet) {
     height: 32px;
   }
+
+  @media screen and (min-width: v.$desktop) {
+    height: 37px;
+  }
 }
 
 .wrapper h3 {
   @media screen and (min-width: v.$tablet) {
     margin-bottom: 8px;
+  }
+
+  @media screen and (min-width: v.$desktop) {
+    margin-bottom: 14px;
   }
 }
 
