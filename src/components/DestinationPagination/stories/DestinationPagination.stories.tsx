@@ -9,10 +9,10 @@ const meta: Meta<typeof DestinationPagination> = {
   component: DestinationPagination,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const liElement = await canvas.findByText(/europa/i);
+    const destination = await canvas.findByText(/europa/i);
 
-    await expect(liElement).toBeInTheDocument();
-    await userEvent.click(liElement);
+    await expect(destination).toBeInTheDocument();
+    await userEvent.click(destination);
   },
   args: {
     pages: ["Moon", "Mars", "Europa", "Titan"],
