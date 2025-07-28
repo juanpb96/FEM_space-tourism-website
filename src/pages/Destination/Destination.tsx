@@ -1,7 +1,7 @@
 import { Description } from "../../components/Description/Description";
 import { DestinationDetails } from "../../components/DestinationDetails/DestinationDetails";
 import { Heading } from "../../components/Heading/Heading";
-import { InnerNavigationBar } from "../../components/InnerNavigationBar/InnerNavigationBar";
+import { DestinationPagination } from "../../components/DestinationPagination/DestinationPagination";
 import { Subtitle } from "../../components/Subtitle/Subtitle";
 import { usePageData } from "../../hooks/usePageData";
 import styles from "./styles/destination.module.scss";
@@ -28,7 +28,10 @@ export const Destination = () => {
         <img src={images.png} alt="" />
       </picture>
       <div className={styles["info"]}>
-        <InnerNavigationBar pages={pages} setActivePage={onPaginationClick} />
+        <DestinationPagination
+          pages={pages}
+          setActivePage={onPaginationClick}
+        />
         <div className={styles["spacer"]} />
         <Heading text={name} variant="medium" />
         <div className={styles["description-wrapper"]}>

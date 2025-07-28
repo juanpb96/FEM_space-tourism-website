@@ -11,12 +11,12 @@ const PAGES = ["Home", "Destination", "Crew", "Technology"];
 
 export const Menu = () => {
   const {
-    olRef,
+    containerRef,
     barRef,
     options,
     activeMenuOptionIndex,
     setActiveMenuOptionIndex,
-  } = useLocationBar();
+  } = useLocationBar<HTMLOListElement, HTMLLIElement>();
   const screenType = useScreenType();
   const location = useLocation();
 
@@ -36,7 +36,7 @@ export const Menu = () => {
 
   return (
     <nav className={styles["menu"]}>
-      <ol ref={olRef}>
+      <ol ref={containerRef}>
         {PAGES.map((page, index) => (
           <li key={page}>
             <NavLink
