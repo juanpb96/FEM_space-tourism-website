@@ -1,20 +1,18 @@
 @use "src/styles/variables" as v;
 
 .wrapper {
+  --gap: 16px;
   display: flex;
   width: fit-content;
   flex-wrap: nowrap;
-  gap: 16px;
+  gap: var(--gap);
   list-style-type: none;
   padding: 0;
 }
 
-// TODO: Check how to increase the size of this element without altering the current structure - Issue #48
-// .clickable-area {
-// }
-
 .button {
   cursor: pointer;
+  padding: 0;
   width: 10px;
   aspect-ratio: 1 / 1;
   border: none;
@@ -22,8 +20,15 @@
   background-color: v.$white;
   border-color: v.$grey;
   opacity: 0.1744;
+  position: relative;
 
-  &.active {
+  &::before {
+    content: "";
+    position: absolute;
+    inset: calc(var(--gap) / 2 * -1);
+  }
+
+  &[aria-pressed="true"] {
     opacity: 1;
   }
 
@@ -36,7 +41,7 @@
 
 @media screen and (min-width: v.$desktop) {
   .wrapper {
-    gap: 24px;
+    --gap: 24px;
   }
 
   .button {
