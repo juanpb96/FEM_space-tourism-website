@@ -12,7 +12,7 @@ export const Technology = () => {
     onPaginationClick,
   } = usePageData("technology");
 
-  // TODO: Add a loading screen instead of returning nothing
+  // TODO: Add a loading screen instead of returning nothing - Issue #88
   if (!currentTechnology) {
     return <></>;
   }
@@ -22,7 +22,7 @@ export const Technology = () => {
       <Subtitle prefix="03" title="Space Launch 101" />
 
       <div className={styles["content"]}>
-        {/* TODO: Add avif fallback for portrait images */}
+        {/* TODO: Add avif fallback for portrait images - Issue #88 */}
         <picture>
           <source
             media="(min-width: 81.25rem)"

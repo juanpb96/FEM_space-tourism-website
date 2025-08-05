@@ -13,18 +13,22 @@ export const TechnologyPagination = ({
   onClick,
 }: TechnologyPaginationProps) => {
   return (
-    <ol className={styles["wrapper"]}>
+    <div
+      role="group"
+      aria-label="Select the technology you want to learn about"
+      className={styles["wrapper"]}
+    >
       {technologies.map((technology, index) => (
-        <li
+        <button
           key={technology.name}
           onClick={() => onClick(technology.name)}
-          className={
-            selectedTechnologyName === technology.name ? styles["active"] : ""
-          }
+          className={styles["button"]}
+          aria-label={technology.name}
+          aria-pressed={selectedTechnologyName === technology.name}
         >
-          {index + 1}
-        </li>
+          <span aria-hidden="true">{index + 1}</span>
+        </button>
       ))}
-    </ol>
+    </div>
   );
 };
