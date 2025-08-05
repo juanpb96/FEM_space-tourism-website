@@ -2,7 +2,7 @@ import { Description } from "../../components/Description/Description";
 import { Heading } from "../../components/Heading/Heading";
 import { Subtitle } from "../../components/Subtitle/Subtitle";
 import { usePageData } from "../../hooks/usePageData";
-import { Pagination } from "./components/Pagination";
+import { TechnologyPagination } from "./components/TechnologyPagination";
 import styles from "./styles/technology.module.scss";
 
 export const Technology = () => {
@@ -41,7 +41,7 @@ export const Technology = () => {
 
         <article>
           <div className={styles["pagination"]}>
-            <Pagination
+            <TechnologyPagination
               technologies={technologies}
               selectedTechnologyName={currentTechnology.name}
               onClick={onPaginationClick}

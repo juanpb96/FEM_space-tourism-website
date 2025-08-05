@@ -1,0 +1,1 @@
+export { TechnologyPagination } from "./TechnologyPagination";

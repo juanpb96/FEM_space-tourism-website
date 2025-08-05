@@ -1,17 +1,17 @@
 import { Technology } from "../../types";
-import styles from "./styles/pagination.module.scss";
+import styles from "./styles/technology-pagination.module.scss";
 
-interface PaginationProps {
+interface TechnologyPaginationProps {
   technologies: Technology[];
   selectedTechnologyName: string;
   onClick: (name: string) => void;
 }
 
-export const Pagination = ({
+export const TechnologyPagination = ({
   technologies,
   selectedTechnologyName,
   onClick,
-}: PaginationProps) => {
+}: TechnologyPaginationProps) => {
   return (
     <ol className={styles["wrapper"]}>
       {technologies.map((technology, index) => (
