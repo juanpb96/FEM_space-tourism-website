@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Pagination } from "../Pagination";
+import { TechnologyPagination } from "../TechnologyPagination";
 import {
   mobileParameters,
   tabletParameters,
@@ -8,7 +8,7 @@ import {
 import { Technology } from "../../../types";
 import { useState } from "react";
 
-// TODO: Start - Check if the code needed for the renderFn can be moved to a separate file
+// TODO: Start - Check if the code needed for the renderFn can be moved to a separate file - Issue #50
 const defaultData = {
   images: {
     portrait: "",
@@ -31,7 +31,7 @@ const renderFn = () => {
 
   const onClick = (name: string) => setSelectedTechnology(name);
   return (
-    <Pagination
+    <TechnologyPagination
       technologies={technologies}
       selectedTechnologyName={selectedTechnology}
       onClick={onClick}
@@ -40,9 +40,9 @@ const renderFn = () => {
 };
 // TODO: End - Check if the code needed for the renderFn can be moved to a separate file
 
-const meta: Meta<typeof Pagination> = {
-  title: "Technology/Components/Pagination",
-  component: Pagination,
+const meta: Meta<typeof TechnologyPagination> = {
+  title: "Technology/Components/TechnologyPagination",
+  component: TechnologyPagination,
   parameters: {
     layout: "fullscreen",
   },
@@ -50,13 +50,13 @@ const meta: Meta<typeof Pagination> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof Pagination>;
+type Story = StoryObj<typeof TechnologyPagination>;
 
-export const PaginationOnMobile: Story = {
+export const TechnologyPaginationOnMobile: Story = {
   parameters: mobileParameters,
 };
 
-export const PaginationOnTablet: Story = {
+export const TechnologyPaginationOnTablet: Story = {
   parameters: tabletParameters,
 };
 
