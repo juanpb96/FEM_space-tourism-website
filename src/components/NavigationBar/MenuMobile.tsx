@@ -2,11 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import {
   getActiveClass,
-  getBarAnimation,
   // getMobileAnimation, TODO: Check if this function is still needed - Issue #50
 } from "./utils/Menu.utils";
 import { motion, AnimatePresence } from "framer-motion";
-import { menuVariants, optionsVariants } from "./animations/menu.variants";
+import { optionsVariants } from "./animations/menu.variants";
 import styles from "./styles/menu.module.scss";
 import { MenuButton } from "./MenuButton";
 
@@ -23,7 +22,6 @@ interface MenuMobileProps {
 export const MenuMobile = ({ isOpen, onToggle }: MenuMobileProps) => {
   const [activeMenuOptionIndex, setActiveMenuOptionIndex] = useState(-1);
   const olRef = useRef<HTMLOListElement>(null);
-  const barRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const location = useLocation();
   const activeElement = document.activeElement as HTMLElement | null;
@@ -185,33 +183,15 @@ export const MenuMobile = ({ isOpen, onToggle }: MenuMobileProps) => {
                   <span className={styles["counter"]}>0{index}</span>
                   {page}
                 </NavLink>
+                {activeMenuOptionIndex === index && (
+                  <div className={styles["bar"]} />
+                )}
               </li>
             ))}
           </motion.ol>
         )}
       </AnimatePresence>
 
-      {isOpen && activeMenuOptionIndex >= 0 && (
-        <motion.div
-          initial="closed"
-          animate="open"
-          exit="closed"
-          variants={optionsVariants}
-          className={styles["bar-wrapper"]}
-        >
-          <motion.div
-            ref={barRef}
-            className={styles["bar"]}
-            initial={false}
-            custom={{
-              screenType: "mobile",
-              index: activeMenuOptionIndex,
-            }}
-            animate={getBarAnimation("mobile")}
-            variants={menuVariants}
-          />
-        </motion.div>
-      )}
       <MenuButton ref={buttonRef} isOpen={isOpen} onToggle={onToggle} />
     </nav>
   );
