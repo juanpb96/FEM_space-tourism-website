@@ -110,19 +110,12 @@ $landscape-bar-height: 0.1875rem;
   background-color: transparent;
 }
 
-.bar-wrapper {
-  position: fixed;
-  right: 0;
-  top: -0.375rem;
-  width: 15.875rem; // Same width as the menu
-  z-index: 1;
-}
-
 .bar {
-  position: absolute;
-  right: 0;
   width: 0.25rem;
   height: 2rem;
+  position: absolute;
+  top: -0.375rem;
+  right: 0;
   background-color: v.$white;
 }
 
@@ -142,7 +135,7 @@ $landscape-bar-height: 0.1875rem;
 
       & li {
         font-size: v.$fs-secondary-nav-text;
-        letter-spacing: 0.14763rem;
+        letter-spacing: 0.1476rem;
 
         a {
           display: flex;
@@ -158,9 +151,9 @@ $landscape-bar-height: 0.1875rem;
   }
 
   .bar {
-    width: 2.25rem;
-    height: 0.1875rem;
-    inset: auto auto 0 3rem;
+    inset: auto 0 0 0;
+    height: 3px;
+    width: revert;
   }
 }
 
@@ -180,9 +173,5 @@ $landscape-bar-height: 0.1875rem;
         }
       }
     }
-  }
-
-  .bar {
-    left: 7.6875rem;
   }
 }
