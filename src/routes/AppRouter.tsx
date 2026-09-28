@@ -14,22 +14,27 @@ const routes = [
     children: [
       {
         path: "home",
+        handle: { title: "Home" },
         element: <Home />,
       },
       {
         path: "destination",
+        handle: { title: "Destination" },
         element: <Destination />,
       },
       {
         path: "crew",
+        handle: { title: "Crew" },
         element: <Crew />,
       },
       {
         path: "technology",
+        handle: { title: "Technology" },
         element: <Technology />,
       },
       {
         path: "*",
+        handle: { title: "Page not found" },
         element: <ErrorPage />,
       },
     ],
