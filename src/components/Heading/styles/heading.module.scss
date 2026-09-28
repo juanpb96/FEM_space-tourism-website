@@ -1,6 +1,13 @@
 @use 'src/styles/variables' as v;
 @use 'src/styles/mixins/responsive-font' as m;
 
+// Caps the font size relative to the viewport width, so long words (e.g.
+// "SPACE" or "EUROPA") don't overflow the screen on small viewports or when
+// zooming at 200%. It has no effect with the design sizes at 375px or wider.
+@mixin max-viewport-font-size($font-size, $max-vw) {
+  font-size: min(calc($font-size / 16 * 1rem), $max-vw);
+}
+
 .heading {
   color: v.$white;
   text-transform: uppercase;
@@ -16,12 +23,14 @@
     $font-size: 56;
     $line-height: 64;
     @include m.responsive-font($font-size, $line-height);
+    @include max-viewport-font-size($font-size, 15vw);
   }
 
   &--large {
     $font-size: 80;
     $line-height: 100;
     @include m.responsive-font($font-size, $line-height);
+    @include max-viewport-font-size($font-size, 27vw);
   }
 }
 
@@ -37,12 +46,14 @@
       $font-size: 80;
       $line-height: 92;
       @include m.responsive-font($font-size, $line-height);
+      @include max-viewport-font-size($font-size, 15vw);
     }
 
     &--large {
       $font-size: 150;
       $line-height: 150;
       @include m.responsive-font($font-size, $line-height);
+      @include max-viewport-font-size($font-size, 27vw);
     }
   }
 }
@@ -59,12 +70,14 @@
       $font-size: 100;
       $line-height: 115;
       @include m.responsive-font($font-size, $line-height);
+      @include max-viewport-font-size($font-size, 15vw);
     }
 
     &--large {
       $font-size: 150;
       $line-height: 172;
       @include m.responsive-font($font-size, $line-height);
+      @include max-viewport-font-size($font-size, 27vw);
     }
   }
 }

@@ -5,21 +5,21 @@
   @return calc($px / 16 * 1rem);
 }
 
-.pagination-wrapper {
-  position: relative;
-}
-
 .pagination {
   display: flex;
-  gap: convertPxToRem(26);
-  height: convertPxToRem(28);
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: convertPxToRem(26);
+  // Only visible when the options wrap (e.g. zoom at 200% on mobile)
+  row-gap: convertPxToRem(12);
 }
 
 .destination {
   cursor: pointer;
+  position: relative;
   display: flex;
   align-items: flex-start;
-  height: 100%;
+  min-height: convertPxToRem(28);
   @include fonts.barlow-condensed;
   text-transform: uppercase;
   color: v.$lilac;
@@ -37,19 +37,25 @@
 
 .bar {
   position: absolute;
-  bottom: 0;
+  inset: auto 0 0;
   height: 3px;
   background-color: v.$white;
 }
 
 @media screen and (min-width: v.$tablet) {
   .pagination {
-    gap: convertPxToRem(36);
-    height: convertPxToRem(34);
+    column-gap: convertPxToRem(36);
   }
 
   .destination {
+    min-height: convertPxToRem(34);
     font-size: 1rem;
     letter-spacing: convertPxToRem(2.7);
+  }
+}
+
+@media screen and (min-width: v.$desktop) {
+  .pagination {
+    justify-content: flex-start;
   }
 }
