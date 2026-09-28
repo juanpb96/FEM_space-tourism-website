@@ -2,6 +2,7 @@ import { Description } from "../../components/Description/Description";
 import { Heading } from "../../components/Heading/Heading";
 import { Subtitle } from "../../components/Subtitle/Subtitle";
 import { usePageData } from "../../hooks/usePageData";
+import { DataStatusBadge } from "../../components/DataStatusBadge/DataStatusBadge";
 import { TechnologyPagination } from "./components/TechnologyPagination";
 import styles from "./styles/technology.module.scss";
 
@@ -10,6 +11,8 @@ export const Technology = () => {
     pageData: technologies,
     currentTab: currentTechnology,
     onPaginationClick,
+    dataState,
+    retry,
   } = usePageData("technology");
 
   // TODO: Add a loading screen instead of returning nothing - Issue #88
@@ -59,6 +62,7 @@ export const Technology = () => {
           </div>
         </article>
       </div>
+      <DataStatusBadge dataState={dataState} onRetry={retry} />
     </main>
   );
 };
