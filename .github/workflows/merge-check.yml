@@ -2,10 +2,11 @@ name: Merge check for pull requests
 
 on:
   pull_request:
-    types: ["opened", "reopened", "edited", "synchronize", "ready_for_review"]
+    types: ["opened", "reopened", "edited", "synchronize", "ready_for_review", "closed"]
 
 jobs:
   merge-check:
+    if: ${{ github.event.action != 'closed' }}
     runs-on: ubuntu-latest
 
     steps:
@@ -35,6 +36,7 @@ jobs:
         run: echo "::error::Pull Request cannot be merged due to failed checks." && exit 1
 
   storybook-check:
+    if: ${{ github.event.action != 'closed' }}
     timeout-minutes: 60
     runs-on: ubuntu-22.04
     steps:
@@ -64,3 +66,33 @@ jobs:
       - name: The job has failed
         if: ${{ failure() }}
         run: echo "::error::Pull Request cannot be merged due to failed storybook check." && exit 1
+
+  delete-merged-branch:
+    # Only for merged PRs whose branch lives in this repository (not forks)
+    if: ${{ github.event.action == 'closed' && github.event.pull_request.merged && github.event.pull_request.head.repo.full_name == github.repository }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Delete merged branch
+        uses: actions/github-script@v8
+        env:
+          BRANCH: ${{ github.event.pull_request.head.ref }}
+        with:
+          script: |
+            const branch = process.env.BRANCH;
+            try {
+              await github.rest.git.deleteRef({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                ref: `heads/${branch}`,
+              });
+              core.info(`Deleted branch "${branch}"`);
+            } catch (error) {
+              // 422: branch was already deleted (e.g. via the "Delete branch" button)
+              if (error.status === 422) {
+                core.info(`Branch "${branch}" no longer exists, nothing to delete`);
+              } else {
+                throw error;
+              }
+            }
