@@ -5,6 +5,12 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Frontend Mentor | Space tourism website</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Barlow&family=Barlow+Condensed&family=Bellefair&display=swap"
+    />
 
     <script type="text/javascript">
       // Code adapted from https://github.com/rafgraph/spa-github-pages
@@ -25,6 +31,36 @@
           );
         }
       })(window.location);
+    </script>
+
+    <script type="text/javascript">
+      // Preload the background image of the requested page for the current
+      // breakpoint, so it is downloaded in parallel with the JS bundle instead
+      // of popping in after the page has been rendered.
+      // Keep in sync with src/styles/mixins/_page-background.scss
+      (function (l, d) {
+        // e.g. ["FEM_space-tourism-website", "crew"]
+        var segments = l.pathname.split("/").filter(Boolean);
+        // Deeper paths would break the relative asset URLs below
+        if (segments.length > 2) return;
+        var pages = ["home", "destination", "crew", "technology"];
+        var page = segments[1] || "home";
+        var name = pages.indexOf(page) >= 0 ? page : "error-page";
+        var breakpoints = [
+          ["mobile", "(max-width: 599.98px)"],
+          ["tablet", "(min-width: 600px) and (max-width: 1299.98px)"],
+          ["desktop", "(min-width: 1300px)"],
+        ];
+        breakpoints.forEach(function (breakpoint) {
+          var link = d.createElement("link");
+          link.rel = "preload";
+          link.as = "image";
+          link.media = breakpoint[1];
+          link.href =
+            "./assets/" + name + "/background-" + name + "-" + breakpoint[0] + ".jpg";
+          d.head.appendChild(link);
+        });
+      })(window.location, document);
     </script>
   </head>
   <body style="background-color: #0b0d17">
