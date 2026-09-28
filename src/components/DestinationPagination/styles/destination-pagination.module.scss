@@ -1,9 +1,6 @@
 @use "src/styles/variables" as v;
 @use "src/styles/fonts" as fonts;
-
-@function convertPxToRem($px) {
-  @return calc($px / 16 * 1rem);
-}
+@use "src/styles/utils/functions" as f;
 
 .pagination-wrapper {
   position: relative;
@@ -11,8 +8,8 @@
 
 .pagination {
   display: flex;
-  gap: convertPxToRem(26);
-  height: convertPxToRem(28);
+  gap: f.convertPxToRem(26);
+  height: f.convertPxToRem(28);
 }
 
 .destination {
@@ -23,8 +20,8 @@
   @include fonts.barlow-condensed;
   text-transform: uppercase;
   color: v.$lilac;
-  font-size: convertPxToRem(14);
-  letter-spacing: convertPxToRem(2.36);
+  font-size: f.convertPxToRem(14);
+  letter-spacing: f.convertPxToRem(2.36);
   line-height: 1.21;
   background: none;
   border: none;
@@ -44,12 +41,12 @@
 
 @media screen and (min-width: v.$tablet) {
   .pagination {
-    gap: convertPxToRem(36);
-    height: convertPxToRem(34);
+    gap: f.convertPxToRem(36);
+    height: f.convertPxToRem(34);
   }
 
   .destination {
     font-size: 1rem;
-    letter-spacing: convertPxToRem(2.7);
+    letter-spacing: f.convertPxToRem(2.7);
   }
 }

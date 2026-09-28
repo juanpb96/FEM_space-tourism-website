@@ -1,0 +1,59 @@
+// Mixins shared by `menu.module.scss` (Menu) and `menu-mobile.module.scss`
+// (MenuMobile): the bar displayed when hovering/focusing a link
+@use "src/styles/variables" as v;
+
+$landscape-bar-height: 0.1875rem;
+
+@mixin bar-mixin {
+  content: "";
+  width: 0.25rem;
+  height: 0;
+  position: absolute;
+  top: -0.375rem;
+  right: 0;
+  background-color: v.$white;
+  opacity: v.$opacity-1;
+  transform: scaleY(0);
+  transform-origin: center bottom;
+  transition: height 0.2s ease-in-out, transform 0.2s ease-in-out;
+
+  @media screen and (min-width: v.$tablet) {
+    width: 100%;
+    height: $landscape-bar-height;
+    top: initial;
+    bottom: -$landscape-bar-height;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, bottom 0.3s ease-in-out;
+  }
+}
+
+@mixin bar-transitions {
+  height: 2rem;
+  transform: scaleY(1);
+
+  @media screen and (min-width: v.$tablet) {
+    height: $landscape-bar-height;
+    opacity: v.$opacity-1;
+    bottom: 0;
+  }
+}
+
+@mixin pseudo-bar {
+  &::before {
+    @include bar-mixin;
+  }
+
+  &:focus-visible::before {
+    @include bar-transitions;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover::before {
+      @include bar-transitions;
+    }
+  }
+
+  &[aria-current="page"]::before {
+    content: none;
+  }
+}

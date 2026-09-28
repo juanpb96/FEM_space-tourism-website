@@ -1,0 +1,19 @@
+@use "sass:math";
+
+$base-font-size: 16;
+
+/**
+ * Function: convertPxToRem
+ * Converts a unitless pixel value from the design into `rem`, so sizes scale
+ * with the user's default font size.
+ *
+ * @param {number} $px - Size in pixels, without unit (e.g. 28).
+ * @param {number} $base - Root font size in pixels. Defaults to 16.
+ *
+ * Usage:
+ *   @use "src/styles/utils/functions" as f;
+ *   height: f.convertPxToRem(28); // 1.75rem
+ */
+@function convertPxToRem($px, $base: $base-font-size) {
+  @return math.div($px, $base) * 1rem;
+}
