@@ -69,6 +69,8 @@ $mobile-menu-overshoot-space: 2rem;
     padding-top: 7.38rem;
     padding-left: 2rem;
     counter-reset: item -1;
+    // Exposed so other declarations (e.g. a max-width) can account for it
+    --mobile-menu-overshoot-space: #{$mobile-menu-overshoot-space};
     list-style: none;
     width: calc($mobile-menu-width + $mobile-menu-overshoot-space);
     height: 100dvh;
