@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { ErrorPage } from "../ErrorPage";
 import {
@@ -20,10 +20,10 @@ export default meta;
 type Story = StoryObj<typeof ErrorPage>;
 
 export const ErrorPageOnMobile: Story = {
+  globals: {
+    viewport: { value: defaultViewport.mobile, isRotated: false },
+  },
   parameters: {
-    viewport: {
-      defaultViewport: defaultViewport.mobile,
-    },
     chromatic: {
       viewports: [chromaticViewport.mobile],
     },
@@ -31,10 +31,10 @@ export const ErrorPageOnMobile: Story = {
 };
 
 export const ErrorPageOnTablet: Story = {
+  globals: {
+    viewport: { value: defaultViewport.tablet, isRotated: false },
+  },
   parameters: {
-    viewport: {
-      defaultViewport: defaultViewport.tablet,
-    },
     chromatic: {
       viewports: [chromaticViewport.tablet],
     },

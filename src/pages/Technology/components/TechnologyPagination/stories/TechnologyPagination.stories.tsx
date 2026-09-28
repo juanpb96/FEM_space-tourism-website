@@ -1,8 +1,10 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { TechnologyPagination } from "../TechnologyPagination";
 import {
+  mobileGlobals,
   mobileParameters,
+  tabletGlobals,
   tabletParameters,
 } from "../../../../../components/constants/stories-viewports";
 import { Technology } from "../../../types";
@@ -24,7 +26,6 @@ const technologies: Technology[] = [
 ];
 
 const renderFn = () => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [selectedTechnology, setSelectedTechnology] = useState(
     technologies[1].name
   );
@@ -53,10 +54,12 @@ export default meta;
 type Story = StoryObj<typeof TechnologyPagination>;
 
 export const TechnologyPaginationOnMobile: Story = {
+  globals: mobileGlobals,
   parameters: mobileParameters,
 };
 
 export const TechnologyPaginationOnTablet: Story = {
+  globals: tabletGlobals,
   parameters: tabletParameters,
 };
 

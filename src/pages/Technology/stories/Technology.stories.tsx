@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { Technology } from '../Technology';
-import { mobileParameters, tabletParameters } from '../../../components/constants/stories-viewports';
+import { mobileGlobals, mobileParameters, tabletGlobals, tabletParameters } from '../../../components/constants/stories-viewports';
 
 const meta: Meta<typeof Technology> = {
   title: 'Pages/Technology',
@@ -15,10 +15,12 @@ export default meta;
 type Story = StoryObj<typeof Technology>;
 
 export const TechnologyOnMobile: Story = {
+  globals: mobileGlobals,
   parameters: mobileParameters
 };
 
 export const TechnologyOnTablet: Story = {
+  globals: tabletGlobals,
   parameters: tabletParameters
 };
 

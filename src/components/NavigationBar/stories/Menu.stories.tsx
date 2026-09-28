@@ -1,8 +1,7 @@
-import type { Decorator, Meta, StoryObj } from "@storybook/react";
+import type { Decorator, Meta, StoryObj } from "@storybook/react-vite";
+import { expect, userEvent, within } from "storybook/test";
 import { MemoryRouter } from "react-router-dom";
 import { Menu } from "../Menu";
-import { userEvent, within } from "@storybook/testing-library";
-import { expect } from "@storybook/jest";
 
 const withRouter: Decorator = (Story) => (
   <MemoryRouter initialEntries={["/"]}>
@@ -32,18 +31,14 @@ type Story = StoryObj<typeof meta>;
 
 // TODO: Check if this story belongs to this file or if it should be moved to MenuMobile.stories.tsx
 export const MenuOnMobile: Story = {
-  parameters: {
-    viewport: {
-      defaultViewport: "iphone6",
-    },
+  globals: {
+    viewport: { value: "iphone6", isRotated: false },
   },
 };
 
 export const MenuOnTablet: Story = {
-  parameters: {
-    viewport: {
-      defaultViewport: "ipad",
-    },
+  globals: {
+    viewport: { value: "ipad", isRotated: false },
   },
 };
 

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { Header } from '../Header';
 import { chromaticViewport, defaultViewport } from '../../constants/stories-viewports';
@@ -17,10 +17,10 @@ export default meta;
 type Story = StoryObj<typeof Header>;
 
 export const HeaderOnMobile: Story = {
+  globals: {
+    viewport: { value: defaultViewport.mobile, isRotated: false },
+  },
   parameters: {
-    viewport: {
-      defaultViewport: defaultViewport.mobile
-    },
     chromatic: {
       viewports: [chromaticViewport.mobile]
     }
@@ -28,10 +28,10 @@ export const HeaderOnMobile: Story = {
 };
 
 export const HeaderOnTablet: Story = {
+  globals: {
+    viewport: { value: defaultViewport.tablet, isRotated: false },
+  },
   parameters: {
-    viewport: {
-      defaultViewport: defaultViewport.tablet
-    },
     chromatic: {
       viewports: [chromaticViewport.tablet]
     }

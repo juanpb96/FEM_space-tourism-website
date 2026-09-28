@@ -1,8 +1,7 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect, userEvent, within } from "storybook/test";
 
 import { DestinationPagination } from "../DestinationPagination";
-import { userEvent, within } from "@storybook/testing-library";
-import { expect } from "@storybook/jest";
 
 const meta: Meta<typeof DestinationPagination> = {
   title: "Components/DestinationPagination",
