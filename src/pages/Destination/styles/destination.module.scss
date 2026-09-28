@@ -1,5 +1,6 @@
 @use "src/styles/variables" as v;
 @use "src/styles/mixins/page-background" as m;
+@use "src/styles/utils/functions" as f;
 
 $page-name: "destination";
 
@@ -62,7 +63,7 @@ $page-name: "destination";
 
   @media screen and (min-width: v.$desktop) {
     display: revert;
-    max-width: calc(445 / 16 * 1rem);
+    max-width: f.convertPxToRem(445);
     margin-bottom: 6px;
   }
 }
@@ -91,7 +92,7 @@ $page-name: "destination";
 
 .description-wrapper {
   @media screen and (min-width: v.$tablet) {
-    width: calc(573 / 16 * 1rem);
+    width: f.convertPxToRem(573);
   }
 
   @media screen and (min-width: v.$desktop) {

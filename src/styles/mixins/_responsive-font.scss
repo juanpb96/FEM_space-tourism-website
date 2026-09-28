@@ -8,8 +8,9 @@
  * Usage:
  *   @include responsive-font(16, 24);
  */
+@use "../utils/functions" as f;
+
 @mixin responsive-font($font-size, $line-height) {
-  $base-rem: 16;
-  font-size: calc($font-size / $base-rem * 1rem);
+  font-size: f.convertPxToRem($font-size);
   line-height: calc($line-height / $font-size);
 }
