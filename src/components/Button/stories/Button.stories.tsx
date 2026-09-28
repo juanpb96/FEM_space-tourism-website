@@ -1,6 +1,5 @@
-import type { Decorator, Meta, StoryObj } from "@storybook/react";
-import { userEvent, within } from "@storybook/testing-library";
-import { expect } from "@storybook/jest";
+import type { Decorator, Meta, StoryObj } from "@storybook/react-vite";
+import { expect, userEvent, within } from "storybook/test";
 
 import { Button } from "../Button";
 import { defaultViewport } from "../../constants/stories-viewports";
@@ -38,18 +37,14 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const ButtonOnMobile: Story = {
-  parameters: {
-    viewport: {
-      defaultViewport: defaultViewport.mobile,
-    },
+  globals: {
+    viewport: { value: defaultViewport.mobile, isRotated: false },
   },
 };
 
 export const ButtonOnTablet: Story = {
-  parameters: {
-    viewport: {
-      defaultViewport: defaultViewport.tablet,
-    },
+  globals: {
+    viewport: { value: defaultViewport.tablet, isRotated: false },
   },
 };
 

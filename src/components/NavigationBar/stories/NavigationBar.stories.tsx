@@ -1,12 +1,11 @@
-import type { Decorator, Meta, StoryObj } from "@storybook/react";
+import type { Decorator, Meta, StoryObj } from "@storybook/react-vite";
+import { expect, userEvent, within } from "storybook/test";
 
 import { NavigationBar } from "../NavigationBar";
 import {
   defaultViewport,
   chromaticViewport,
 } from "../../constants/stories-viewports";
-import { userEvent, within } from "@storybook/testing-library";
-import { expect } from "@storybook/jest";
 import { withRouter } from "../../helpers/stories/withRouter";
 
 const meta = {
@@ -30,10 +29,10 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const NavigationBarOnMobile: Story = {
+  globals: {
+    viewport: { value: defaultViewport.mobile, isRotated: false },
+  },
   parameters: {
-    viewport: {
-      defaultViewport: defaultViewport.mobile,
-    },
     chromatic: {
       viewports: [chromaticViewport.mobile],
     },
@@ -67,10 +66,10 @@ const withWrapper: Decorator = (Story) => (
 );
 
 export const NavigationBarOnTablet: Story = {
+  globals: {
+    viewport: { value: defaultViewport.tablet, isRotated: false },
+  },
   parameters: {
-    viewport: {
-      defaultViewport: defaultViewport.tablet,
-    },
     chromatic: {
       viewports: [chromaticViewport.tablet],
     },
