@@ -2,6 +2,10 @@
 @use "src/styles/fonts" as fonts;
 
 $landscape-bar-height: 0.1875rem;
+$mobile-menu-width: 15.875rem;
+// Extra space rendered off-screen on the right side of the mobile menu, so a
+// spring overshoot in the enter animation never reveals the panel's edge
+$mobile-menu-overshoot-space: 2rem;
 
 @mixin bar-mixin {
   content: "";
@@ -66,10 +70,11 @@ $landscape-bar-height: 0.1875rem;
     padding-left: 2rem;
     counter-reset: item -1;
     list-style: none;
-    width: 15.875rem;
+    width: calc($mobile-menu-width + $mobile-menu-overshoot-space);
     height: 100dvh;
+    padding-right: $mobile-menu-overshoot-space;
     position: fixed;
-    inset: 0 0 0 auto;
+    inset: 0 calc($mobile-menu-overshoot-space * -1) 0 auto;
     background-color: rgba(255, 255, 255, 0.04);
     backdrop-filter: blur(40.77px);
     z-index: 1;

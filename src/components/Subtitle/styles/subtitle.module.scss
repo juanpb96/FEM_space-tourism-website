@@ -23,7 +23,9 @@
       display: initial;
       font-weight: 700;
       margin-right: 18px;
-      opacity: v.$opacity-2;
+      // The design uses 25% opacity, which fails WCAG AA contrast (2.19:1).
+      // 50% keeps the de-emphasized look with a 5.33:1 contrast ratio.
+      opacity: v.$opacity-1;
     }
   }
 }
