@@ -2,7 +2,8 @@
 import { TestRunnerConfig, getStoryContext } from '@storybook/test-runner';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 
-const DEFAULT_VIEWPORT_SIZE = { width: 1280, height: 720 };
+// Desktop layout starts at 1300px (see src/styles/_variables.scss)
+const DEFAULT_VIEWPORT_SIZE = { width: 1440, height: 900 };
 
 // TODO: Fix types
 const config: TestRunnerConfig = {
