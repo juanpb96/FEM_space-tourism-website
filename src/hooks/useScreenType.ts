@@ -1,37 +1,50 @@
 import { useEffect, useState } from "react";
 
-const BREAKPOINTS = {
-  tablet: "(min-width: 37.5rem) and (max-width: 81.1875rem)",
+// Keep in sync with `$tablet` and `$desktop` in src/styles/_variables.scss.
+// Using the same values as the SCSS media queries guarantees JS and CSS agree
+// on the current layout, even when the user changes the default font size.
+const MEDIA_QUERIES = {
   desktop: "(min-width: 81.25rem)",
-};
+  tablet: "(min-width: 37.5rem)",
+} as const;
 
-export type ScreenType = keyof typeof BREAKPOINTS | "mobile";
+export type ScreenType = keyof typeof MEDIA_QUERIES | "mobile";
 
-const getWindowType = () => {
-  for (const breakpoint in BREAKPOINTS) {
-    if (
-      window.matchMedia(BREAKPOINTS[breakpoint as keyof typeof BREAKPOINTS])
-        .matches
-    ) {
-      return breakpoint as keyof typeof BREAKPOINTS;
-    }
+// Only `min-width` checks, from the largest breakpoint down, so there are no
+// gaps between ranges (e.g. 81.2rem / 1299.5px at some zoom levels) that would fall
+// back to "mobile"
+const getScreenType = (): ScreenType => {
+  if (window.matchMedia(MEDIA_QUERIES.desktop).matches) {
+    return "desktop";
+  }
+
+  if (window.matchMedia(MEDIA_QUERIES.tablet).matches) {
+    return "tablet";
   }
 
   return "mobile";
 };
 
 export const useScreenType = () => {
-  const [screenType, setScreenType] = useState<ScreenType>(getWindowType);
+  const [screenType, setScreenType] = useState<ScreenType>(getScreenType);
 
   useEffect(() => {
-    const onResize = () => {
-      setScreenType(getWindowType());
+    const mediaQueryLists = Object.values(MEDIA_QUERIES).map((query) =>
+      window.matchMedia(query)
+    );
+
+    const onChange = () => {
+      setScreenType(getScreenType());
     };
 
-    window.addEventListener("resize", onResize);
+    mediaQueryLists.forEach((mediaQueryList) =>
+      mediaQueryList.addEventListener("change", onChange)
+    );
 
     return () => {
-      window.removeEventListener("resize", onResize);
+      mediaQueryLists.forEach((mediaQueryList) =>
+        mediaQueryList.removeEventListener("change", onChange)
+      );
     };
   }, []);
 
