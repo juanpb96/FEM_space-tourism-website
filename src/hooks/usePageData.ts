@@ -8,13 +8,19 @@ export const usePageData = <T extends Pages>(pageName: T) => {
   const [pageData, setPageData] = useState(() =>
     DataCacheInstance.getPageData(pageName)
   );
-  const [currentTab, setCurrentTab] = useState<SpaceTourismData[T][0]>(
-    pageData[0]
+  const [dataState, setDataState] = useState(() =>
+    DataCacheInstance.getPageDataState(pageName)
   );
+  // The index (not the item) is stored, so the current tab displays the API
+  // data once it replaces the fallback data
+  const [currentTabIndex, setCurrentTabIndex] = useState(0);
+  const currentTab: SpaceTourismData[T][0] | undefined =
+    pageData[currentTabIndex] ?? pageData[0];
 
   useEffect(() => {
     const updateData = () => {
       setPageData(DataCacheInstance.getPageData(pageName));
+      setDataState(DataCacheInstance.getPageDataState(pageName));
     };
 
     DataCacheInstance.subscribe(updateData);
@@ -29,13 +35,19 @@ export const usePageData = <T extends Pages>(pageName: T) => {
     const tabIndex = pageData.findIndex((item) => item.name === name);
 
     if (tabIndex >= 0) {
-      setCurrentTab(pageData[tabIndex]);
+      setCurrentTabIndex(tabIndex);
     }
+  };
+
+  const retry = () => {
+    DataCacheInstance.updatePageDataFromApi(pageName);
   };
 
   return {
     pageData,
+    dataState,
     currentTab,
     onPaginationClick,
+    retry,
   };
 };

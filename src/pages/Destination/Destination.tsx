@@ -4,6 +4,7 @@ import { Heading } from "../../components/Heading/Heading";
 import { DestinationPagination } from "../../components/DestinationPagination/DestinationPagination";
 import { Subtitle } from "../../components/Subtitle/Subtitle";
 import { usePageData } from "../../hooks/usePageData";
+import { DataStatusBadge } from "../../components/DataStatusBadge/DataStatusBadge";
 import styles from "./styles/destination.module.scss";
 
 export const Destination = () => {
@@ -11,6 +12,8 @@ export const Destination = () => {
     pageData: destinations,
     currentTab: currentDestination,
     onPaginationClick,
+    dataState,
+    retry,
   } = usePageData("destinations");
 
   if (!currentDestination) {
@@ -42,6 +45,7 @@ export const Destination = () => {
           </div>
         </div>
       </div>
+      <DataStatusBadge dataState={dataState} onRetry={retry} />
     </main>
   );
 };

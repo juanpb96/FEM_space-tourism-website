@@ -3,6 +3,7 @@ import { Description } from "../../components/Description/Description";
 import { Heading } from "../../components/Heading/Heading";
 import { Subtitle } from "../../components/Subtitle/Subtitle";
 import { usePageData } from "../../hooks/usePageData";
+import { DataStatusBadge } from "../../components/DataStatusBadge/DataStatusBadge";
 import styles from "./styles/crew.module.scss";
 
 // TODO: Check this before working on the Carousel: https://www.w3.org/WAI/tutorials/carousels/ - Issue #80
@@ -13,6 +14,8 @@ export const Crew = () => {
     pageData: crew,
     currentTab: currentCrewMember,
     onPaginationClick,
+    dataState,
+    retry,
   } = usePageData("crew");
 
   // TODO: Consider adding a loading screen instead of returning nothing
@@ -56,6 +59,7 @@ export const Crew = () => {
           </div>
         </section>
       </article>
+      <DataStatusBadge dataState={dataState} onRetry={retry} />
     </main>
   );
 };

@@ -1,0 +1,97 @@
+@use "src/styles/variables" as v;
+@use "src/styles/fonts" as fonts;
+
+.region {
+  position: fixed;
+  inset: auto 1.5rem 1.5rem;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+
+  @media screen and (min-width: v.$tablet) {
+    inset: auto 2.5rem 2.5rem auto;
+  }
+}
+
+.badge {
+  pointer-events: auto;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  width: min(100%, 22rem);
+  padding: 1rem 1rem 1rem 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-left: 3px solid v.$lilac;
+  border-radius: 0.5rem;
+  background-color: rgba(11, 13, 23, 0.85);
+  backdrop-filter: blur(20px);
+  text-align: left;
+
+  &[data-badge="error"] {
+    border-left-color: v.$white;
+  }
+}
+
+.content {
+  flex-grow: 1;
+}
+
+.title {
+  @include fonts.barlow-condensed;
+  color: v.$white;
+  font-size: 0.875rem;
+  letter-spacing: 0.15em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.description {
+  @include fonts.barlow;
+  margin-top: 0.25rem;
+  color: v.$lilac;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+.retry,
+.dismiss {
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: v.$white;
+
+  &:focus-visible {
+    outline: 2px solid v.$white;
+    outline-offset: 2px;
+  }
+}
+
+.retry {
+  @include fonts.barlow-condensed;
+  margin-top: 0.5rem;
+  padding: 0.25rem 0;
+  font-size: 0.875rem;
+  letter-spacing: 0.15em;
+  text-decoration: underline;
+  text-transform: uppercase;
+  text-underline-offset: 0.25em;
+}
+
+.dismiss {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  // 44px touch target
+  width: 2.75rem;
+  aspect-ratio: 1 / 1;
+  margin: -0.75rem -0.75rem 0 0;
+  padding: 0;
+  opacity: 0.75;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
