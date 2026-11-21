@@ -30,15 +30,6 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// TODO: Check if this story belongs to this file or if it should be moved to MenuMobile.stories.tsx
-export const MenuOnMobile: Story = {
-  parameters: {
-    viewport: {
-      defaultViewport: "iphone6",
-    },
-  },
-};
-
 export const MenuOnTablet: Story = {
   parameters: {
     viewport: {

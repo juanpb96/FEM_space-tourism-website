@@ -1,12 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import {
-  getActiveClass,
-  // getMobileAnimation, TODO: Check if this function is still needed - Issue #50
-} from "./utils/Menu.utils";
 import { motion, AnimatePresence } from "framer-motion";
 import { optionsVariants } from "./animations/menu.variants";
-import styles from "./styles/menu.module.scss";
+import styles from "./styles/menu-mobile.module.scss";
 import { MenuButton } from "./MenuButton";
 
 const PAGES = ["Home", "Destination", "Crew", "Technology"];
@@ -177,7 +173,6 @@ export const MenuMobile = ({ isOpen, onToggle }: MenuMobileProps) => {
                 <NavLink
                   to={`/${page}`}
                   ref={(el) => (interactiveElementsRef.current[index] = el)}
-                  className={getActiveClass}
                   onClick={() => onLinkClick(index)}
                 >
                   <span className={styles["counter"]}>0{index}</span>
