@@ -1,29 +1,28 @@
-// Reference: https://storybook.js.org/addons/@storybook/test-runner#preconfiguring-viewport-size
-import { TestRunnerConfig, getStoryContext } from '@storybook/test-runner';
-import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
+// Reference: https://storybook.js.org/docs/writing-tests/integrations/test-runner#preconfiguring-viewport-size
+import { TestRunnerConfig, getStoryContext } from "@storybook/test-runner";
+import { INITIAL_VIEWPORTS } from "storybook/viewport";
 
 const DEFAULT_VIEWPORT_SIZE = { width: 1280, height: 720 };
 
-// TODO: Fix types
 const config: TestRunnerConfig = {
-  async preRender(page, story) {
+  async preVisit(page, story) {
     const context = await getStoryContext(page, story);
-    const viewportName = context.parameters?.viewport?.defaultViewport;
-    const viewportParameter = INITIAL_VIEWPORTS[viewportName];
+    // Storybook 9 sets the viewport through `globals.viewport.value`
+    const viewportName: string | undefined =
+      context.storyGlobals?.viewport?.value ?? context.globals?.viewport?.value;
+    const viewportParameter =
+      viewportName && viewportName in INITIAL_VIEWPORTS
+        ? INITIAL_VIEWPORTS[viewportName]
+        : undefined;
 
     if (viewportParameter) {
-      const viewportSize = Object.entries(viewportParameter.styles).reduce(
-        (acc, [screen, size]) => ({
-          ...acc,
-          // make sure your viewport config in Storybook only uses numbers, not percentages
-          [screen]: parseInt(size),
-        }),
-        {}
-      );
-      
-      page.setViewportSize(viewportSize);
+      // Viewport sizes are strings such as "375px"
+      await page.setViewportSize({
+        width: parseInt(viewportParameter.styles.width, 10),
+        height: parseInt(viewportParameter.styles.height, 10),
+      });
     } else {
-      page.setViewportSize(DEFAULT_VIEWPORT_SIZE);
+      await page.setViewportSize(DEFAULT_VIEWPORT_SIZE);
     }
   },
 };

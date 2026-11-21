@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { Crew } from '../Crew';
-import { mobileParameters, tabletParameters } from '../../../components/constants/stories-viewports';
+import { mobileGlobals, mobileParameters, tabletGlobals, tabletParameters } from '../../../components/constants/stories-viewports';
 
 const meta: Meta<typeof Crew> = {
   title: 'Pages/Crew',
@@ -15,10 +15,12 @@ export default meta;
 type Story = StoryObj<typeof Crew>;
 
 export const CrewOnMobile: Story = {
+  globals: mobileGlobals,
   parameters: mobileParameters
 };
 
 export const CrewOnTablet: Story = {
+  globals: tabletGlobals,
   parameters: tabletParameters
 };
 
