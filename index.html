@@ -34,18 +34,16 @@
     </script>
 
     <script type="text/javascript">
-      // Preload the background image of the requested page for the current
-      // breakpoint, so it is downloaded in parallel with the JS bundle instead
-      // of popping in after the page has been rendered.
+      // Preload the Home background for the current breakpoint, so it is
+      // downloaded in parallel with the JS bundle instead of popping in after
+      // the page has been rendered. Only Home: it is the landing page and its
+      // background is the most noticeable one.
       // Keep in sync with src/styles/mixins/_page-background.scss
       (function (l, d) {
-        // e.g. ["FEM_space-tourism-website", "crew"]
+        // e.g. ["FEM_space-tourism-website", "home"]
         var segments = l.pathname.split("/").filter(Boolean);
-        // Deeper paths would break the relative asset URLs below
-        if (segments.length > 2) return;
-        var pages = ["home", "destination", "crew", "technology"];
         var page = segments[1] || "home";
-        var name = pages.indexOf(page) >= 0 ? page : "error-page";
+        if (segments.length > 2 || page !== "home") return;
         var breakpoints = [
           ["mobile", "(max-width: 599.98px)"],
           ["tablet", "(min-width: 600px) and (max-width: 1299.98px)"],
@@ -56,8 +54,7 @@
           link.rel = "preload";
           link.as = "image";
           link.media = breakpoint[1];
-          link.href =
-            "./assets/" + name + "/background-" + name + "-" + breakpoint[0] + ".jpg";
+          link.href = "./assets/home/background-home-" + breakpoint[0] + ".jpg";
           d.head.appendChild(link);
         });
       })(window.location, document);
