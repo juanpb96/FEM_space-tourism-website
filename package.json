@@ -4,6 +4,9 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "dev": "vite",
     "test": "jest",
@@ -53,6 +56,14 @@
     "ts-jest": "^29.1.2",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
+  },
+  "resolutions": {
+    "playwright": "1.61.1",
+    "playwright-core": "1.61.1"
+  },
+  "overrides": {
+    "playwright": "1.61.1",
+    "playwright-core": "1.61.1"
   },
   "readme": "ERROR: No README data found!",
   "_id": "fem-space-tourism-website@0.0.0"
