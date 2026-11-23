@@ -1,7 +1,5 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { useLocationBar } from "../../hooks/useLocationBar";
-import { useScreenType } from "../../hooks/useScreenType";
-import { calculateHorizontalMoveByViewport } from "./animations/horizontal-move";
 import styles from "./styles/destination-pagination.module.scss";
 
 interface DestinationPaginationProps {
@@ -13,56 +11,41 @@ export const DestinationPagination = ({
   pages,
   setActivePage,
 }: DestinationPaginationProps) => {
-  const {
-    containerRef,
-    barRef,
-    options,
-    activeMenuOptionIndex,
-    setActiveMenuOptionIndex,
-  } = useLocationBar<HTMLDivElement, HTMLButtonElement>(pages, 0);
-  const screenType = useScreenType();
+  const [activePageIndex, setActivePageIndex] = useState(0);
 
   return (
-    <div className={styles["pagination-wrapper"]}>
-      <div
-        ref={containerRef}
-        role="group"
-        aria-label="Choose your destination"
-        className={styles["pagination"]}
-      >
-        {pages.map((page, index) => {
-          const isActive = activeMenuOptionIndex === index;
-          const activeClass = isActive ? styles["active"] : "";
-          const buttonClass = `${styles["destination"]} ${activeClass}`;
+    <div
+      role="group"
+      aria-label="Choose your destination"
+      className={styles["pagination"]}
+    >
+      {pages.map((page, index) => {
+        const isActive = activePageIndex === index;
+        const activeClass = isActive ? styles["active"] : "";
+        const buttonClass = `${styles["destination"]} ${activeClass}`;
 
-          return (
-            <button
-              type="button"
-              className={buttonClass}
-              key={page}
-              onClick={() => {
-                setActiveMenuOptionIndex(index);
-                setActivePage(page);
-              }}
-              aria-pressed={isActive}
-            >
-              {page}
-            </button>
-          );
-        })}
-      </div>
-
-      <motion.div
-        ref={barRef}
-        className={styles["bar"]}
-        animate={{
-          x: calculateHorizontalMoveByViewport({
-            screenType,
-            options,
-            index: activeMenuOptionIndex,
-          }),
-        }}
-      />
+        return (
+          <button
+            type="button"
+            className={buttonClass}
+            key={page}
+            onClick={() => {
+              setActivePageIndex(index);
+              setActivePage(page);
+            }}
+            aria-pressed={isActive}
+          >
+            {page}
+            {/* A layout animation moves the bar between options, even when they wrap into several rows */}
+            {isActive && (
+              <motion.span
+                layoutId="destination-bar"
+                className={styles["bar"]}
+              />
+            )}
+          </button>
+        );
+      })}
     </div>
   );
 };

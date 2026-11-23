@@ -21,7 +21,11 @@
   &::before {
     content: '';
     position: fixed;
-    inset: 0;
+    inset: 0 0 auto;
+    // Cover the largest viewport, so there is no gap at the bottom when mobile
+    // browsers hide their toolbars while scrolling
+    height: 100vh;
+    height: 100lvh;
     background-image: url($background-mobile);
     background-repeat: no-repeat;
     background-size: cover;
