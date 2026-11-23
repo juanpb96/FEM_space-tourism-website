@@ -2,11 +2,14 @@ import { useEffect } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { MotionConfig } from "framer-motion";
 import { Header } from "./components/Header/Header";
+import { useDocumentTitle } from "./hooks/useDocumentTitle";
 import "./styles/main.scss";
 
 export const SpaceTourismWebsite = () => {
   const location = useLocation();
   const navigate = useNavigate();
+
+  useDocumentTitle();
 
   useEffect(() => {
     if (location.pathname === "/") {
