@@ -33,5 +33,9 @@ $ls-nav-text: 0.1688rem;
 // TODO: Body text depends on viewport size
 
 /* Viewport */
-$tablet: 600px;
-$desktop: 1300px;
+// Breakpoints use `rem` so the layout adapts to the user default font size
+// (600px and 1300px with the default 16px). Media queries resolve `rem` against
+// the browser default font size, not the `html` font size.
+// Keep in sync with src/hooks/useScreenType.ts
+$tablet: 37.5rem;
+$desktop: 81.25rem;
