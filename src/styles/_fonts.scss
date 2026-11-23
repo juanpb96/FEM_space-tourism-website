@@ -1,5 +1,7 @@
 // TODO: Add missing font weights
-@import url("https://fonts.googleapis.com/css2?family=Barlow&family=Barlow+Condensed&family=Bellefair&display=swap");
+// Font files are requested from `index.html` (and `.storybook/preview-head.html`)
+// so the download starts in parallel with the JS bundle instead of after the CSS
+// is parsed, which reduces the flash of unstyled text on page load.
 
 @mixin bellefair {
   font-family: "Bellefair", Georgia, "Times New Roman", Baskerville, serif;
