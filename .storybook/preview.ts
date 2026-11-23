@@ -1,6 +1,7 @@
 import type { Preview } from "@storybook/react";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 
+import { chromaticViewport } from "../src/components/constants/stories-viewports";
 import "../src/styles/main.scss";
 
 const preview: Preview = {
@@ -18,6 +19,11 @@ const preview: Preview = {
     },
     viewport: {
       viewports: INITIAL_VIEWPORTS,
+    },
+    // Chromatic snapshots are 1200px wide by default, which renders the tablet
+    // layout. Stories without a viewport show the desktop layout instead
+    chromatic: {
+      viewports: [chromaticViewport.desktop],
     },
   },
 };
