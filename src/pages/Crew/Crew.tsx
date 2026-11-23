@@ -1,15 +1,14 @@
-import { useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { CrewPagination } from "../../components/CrewPagination/CrewPagination";
 import { Description } from "../../components/Description/Description";
 import { Heading } from "../../components/Heading/Heading";
 import { Subtitle } from "../../components/Subtitle/Subtitle";
 import { usePageData } from "../../hooks/usePageData";
+import { useTabDirection } from "../../hooks/useTabDirection";
 import {
-  Direction,
-  detailsVariants,
-  photoVariants,
-} from "./animations/crew.variants";
+  imageVariants,
+  textVariants,
+} from "../../animations/tab-transition.variants";
 import styles from "./styles/crew.module.scss";
 
 export const Crew = () => {
@@ -18,24 +17,13 @@ export const Crew = () => {
     currentTab: currentCrewMember,
     onPaginationClick,
   } = usePageData("crew");
-  const [direction, setDirection] = useState<Direction>(1);
-  const shouldReduceMotion = useReducedMotion();
-  const motionDirection: Direction = shouldReduceMotion ? 0 : direction;
+  const { direction: motionDirection, onTabChange: onCrewMemberClick } =
+    useTabDirection(crew, currentCrewMember?.name, onPaginationClick);
 
   // TODO: Consider adding a loading screen instead of returning nothing
   if (!currentCrewMember) {
     return <></>;
   }
-
-  const onCrewMemberClick = (name: string) => {
-    const currentIndex = crew.findIndex(
-      (member) => member.name === currentCrewMember.name
-    );
-    const nextIndex = crew.findIndex((member) => member.name === name);
-
-    setDirection(nextIndex < currentIndex ? -1 : 1);
-    onPaginationClick(name);
-  };
 
   // TODO: Test keyboard navigation with Screen Reader
   return (
@@ -48,7 +36,7 @@ export const Crew = () => {
             key={currentCrewMember.name}
             className={styles["photo-wrapper"]}
             custom={motionDirection}
-            variants={photoVariants}
+            variants={imageVariants}
             initial="enter"
             animate="center"
             exit="exit"
@@ -77,7 +65,7 @@ export const Crew = () => {
             <motion.div
               key={currentCrewMember.name}
               custom={motionDirection}
-              variants={detailsVariants}
+              variants={textVariants}
               initial="enter"
               animate="center"
               exit="exit"
