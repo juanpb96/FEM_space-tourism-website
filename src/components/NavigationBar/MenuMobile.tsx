@@ -176,7 +176,9 @@ export const MenuMobile = ({ isOpen, onToggle }: MenuMobileProps) => {
               <li key={page}>
                 <NavLink
                   to={`/${page}`}
-                  ref={(el) => (interactiveElementsRef.current[index] = el)}
+                  ref={(el) => {
+                    interactiveElementsRef.current[index] = el;
+                  }}
                   className={getActiveClass}
                   onClick={() => onLinkClick(index)}
                 >

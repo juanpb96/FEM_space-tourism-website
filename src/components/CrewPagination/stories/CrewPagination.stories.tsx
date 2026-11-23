@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { CrewPagination } from "../CrewPagination";
 import { CrewMember } from "../../../pages/Crew/types";
@@ -27,7 +27,6 @@ const crew: CrewMember[] = [
 
 export const Default: Story = {
   render: () => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [currentCrewMemberName, setCurrentCrewMemberName] = useState("Paul");
 
     const onClick = (selectedCrewMember: string) =>

@@ -44,7 +44,7 @@ Users should be able to:
 - Semantic HTML5 markup
 - CSS / SASS custom properties
 - Mobile-first workflow
-- [React 18](https://react.dev/) - JS library
+- [React 19](https://react.dev/) - JS library
 - [TypeScript](https://www.typescriptlang.org/) - TypeScript is JavaScript with syntax for types
 - [Storybook](https://storybook.js.org/) - Build UI components in isolation
 - [Framer Motion](https://www.framer.com/motion/) - Animation library

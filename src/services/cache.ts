@@ -1,4 +1,4 @@
-import jsonData from "./data.json" assert { type: "json" };
+import jsonData from "./data.json";
 import { Pages, SpaceTourismData } from "./types";
 import { getPageAdapter } from "./getPageAdapter";
 

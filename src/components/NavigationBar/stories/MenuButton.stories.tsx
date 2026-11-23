@@ -1,10 +1,9 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { useArgs } from '@storybook/preview-api';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, userEvent, within } from 'storybook/test';
+import { useArgs } from 'storybook/preview-api';
 
 import { MenuButton } from '../MenuButton';
 import { MotionConfig } from 'framer-motion';
-import { userEvent, within } from '@storybook/testing-library';
-import { expect } from '@storybook/jest';
 
 const meta = {
   title: 'Components/NavigationBar/MenuButton',
@@ -35,7 +34,6 @@ type Story = StoryObj<typeof meta>;
 
 export const MenuButtonMobile: Story = {
   render: () => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [{ isOpen }, updateArgs] = useArgs();    
     const onToggle = () => updateArgs({ isOpen: !isOpen });
 
