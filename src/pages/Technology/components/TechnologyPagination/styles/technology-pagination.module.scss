@@ -11,7 +11,7 @@
 
 .button {
   cursor: pointer;
-  width: 40px;
+  width: 2.5rem;
   aspect-ratio: 1 / 1;
   border: 1px solid hsl(0 0% 100% / 0.25);
   border-radius: 50%;
@@ -38,7 +38,7 @@
 
 @media screen and (min-width: v.$tablet) {
   .button {
-    width: 60px;
+    width: 3.75rem;
     font-size: 1.5rem;
   }
 }
@@ -50,7 +50,7 @@
   }
 
   .button {
-    width: 80px;
+    width: 5rem;
     font-size: 2rem;
   }
 }
