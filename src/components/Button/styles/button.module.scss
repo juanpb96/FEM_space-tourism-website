@@ -11,6 +11,8 @@
   text-transform: uppercase;
   letter-spacing: 0.07813rem;
   line-height: normal;
+  // Keeps the text centered when it wraps (e.g. zoom at 200%)
+  text-align: center;
   display: grid;
   place-items: center;
   border: none;
