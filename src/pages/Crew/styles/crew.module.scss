@@ -3,6 +3,11 @@
 @use "src/styles/mixins/page-background" as m;
 
 $page-name: "crew";
+// Height of the <Header /> on tablet, used to make the page fill the remaining
+// viewport so the crew photo adapts to the available space
+$header-height-tablet: 6rem;
+// Tablet only: desktop keeps its fixed layout
+$tablet-only: "screen and (min-width: #{v.$tablet}) and (max-width: #{v.$desktop - 0.02px})";
 
 .wrapper {
   padding: 24px;
@@ -19,6 +24,13 @@ $page-name: "crew";
     padding: 0;
     padding-top: 40px;
     margin-inline: auto;
+  }
+
+  @media #{$tablet-only} {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - $header-height-tablet);
+    min-height: calc(100dvh - $header-height-tablet);
   }
 
   @media screen and (min-width: v.$desktop) {
@@ -58,7 +70,8 @@ $page-name: "crew";
       "pagination"
       "photo";
     row-gap: 40px;
-    grid-template-rows: auto auto minmax(222px, 528px);
+    grid-template-rows: auto auto minmax(222px, 1fr);
+    flex-grow: 1;
     margin-top: revert;
   }
 
@@ -85,6 +98,16 @@ $page-name: "crew";
   height: 100%;
   object-fit: contain;
 
+  @media #{$tablet-only} {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    // Ignore the image height when sizing the grid rows so the photo adapts
+    // to the available space instead of stretching the page
+    height: 0;
+    min-height: 100%;
+  }
+
   @media screen and (min-width: v.$desktop) {
     align-self: self-end;
     height: revert;
@@ -93,6 +116,10 @@ $page-name: "crew";
 
 .photo {
   max-height: 100%;
+
+  @media #{$tablet-only} {
+    max-height: min(100%, 33rem);
+  }
 
   @media screen and (min-width: v.$desktop) {
     height: initial;
