@@ -8,6 +8,9 @@ $page-name: "destination";
   flex-direction: column;
   align-items: center;
   padding: 24px;
+  // The planet slides horizontally when changing destination; clip it so it
+  // never adds horizontal scroll (`clip` doesn't create a scroll container)
+  overflow-x: clip;
 
   @include m.page-background($page-name);
 
@@ -64,6 +67,18 @@ $page-name: "destination";
     display: revert;
     max-width: calc(445 / 16 * 1rem);
     margin-bottom: 6px;
+  }
+}
+
+// Animated block with the destination name and details. It keeps the flex
+// layout of `.info` so its content stays centered on mobile and tablet
+.text {
+  display: inherit;
+  flex-direction: inherit;
+  align-items: inherit;
+
+  @media screen and (min-width: v.$desktop) {
+    display: revert;
   }
 }
 
