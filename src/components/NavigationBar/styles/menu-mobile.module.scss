@@ -19,6 +19,12 @@
     background-color: rgba(255, 255, 255, 0.04);
     backdrop-filter: blur(40.77px);
     z-index: 1;
+    // Full-bleed menu when the viewport is narrower than the menu (e.g. zoom
+    // at 200%)
+    max-width: 100%;
+    // Keep every option reachable on short viewports (e.g. landscape + zoom)
+    overflow-x: hidden;
+    overflow-y: auto;
 
     & li {
       @include fonts.barlow-condensed;
@@ -30,6 +36,10 @@
       position: relative;
 
       a {
+        // Let the counter and the page name wrap into two lines when the
+        // menu is too narrow for both (e.g. zoom at 200%)
+        display: inline-flex;
+        flex-wrap: wrap;
         color: v.$white;
         text-decoration: none;
         @include shared.pseudo-bar;

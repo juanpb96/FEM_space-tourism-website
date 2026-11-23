@@ -2,21 +2,21 @@
 @use "src/styles/fonts" as fonts;
 @use "src/styles/utils/functions" as f;
 
-.pagination-wrapper {
-  position: relative;
-}
-
 .pagination {
   display: flex;
-  gap: f.convertPxToRem(26);
-  height: f.convertPxToRem(28);
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: f.convertPxToRem(26);
+  // Only visible when the options wrap (e.g. zoom at 200% on mobile)
+  row-gap: f.convertPxToRem(12);
 }
 
 .destination {
   cursor: pointer;
+  position: relative;
   display: flex;
   align-items: flex-start;
-  height: 100%;
+  min-height: f.convertPxToRem(28);
   @include fonts.barlow-condensed;
   text-transform: uppercase;
   color: v.$lilac;
@@ -34,19 +34,25 @@
 
 .bar {
   position: absolute;
-  bottom: 0;
+  inset: auto 0 0;
   height: 3px;
   background-color: v.$white;
 }
 
 @media screen and (min-width: v.$tablet) {
   .pagination {
-    gap: f.convertPxToRem(36);
-    height: f.convertPxToRem(34);
+    column-gap: f.convertPxToRem(36);
   }
 
   .destination {
+    min-height: f.convertPxToRem(34);
     font-size: 1rem;
     letter-spacing: f.convertPxToRem(2.7);
+  }
+}
+
+@media screen and (min-width: v.$desktop) {
+  .pagination {
+    justify-content: flex-start;
   }
 }
