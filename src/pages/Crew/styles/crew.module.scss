@@ -7,7 +7,7 @@ $page-name: "crew";
 // viewport so the crew photo adapts to the available space
 $header-height-tablet: 6rem;
 // Tablet only: desktop keeps its fixed layout
-$tablet-only: "screen and (min-width: #{v.$tablet}) and (max-width: #{v.$desktop - 0.02px})";
+$tablet-only: "screen and (min-width: #{v.$tablet}) and (width < #{v.$desktop})";
 
 .wrapper {
   padding: 24px;
