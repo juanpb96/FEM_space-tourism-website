@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { MotionConfig } from "framer-motion";
 import type { Meta, StoryObj } from "@storybook/react";
 import { userEvent, waitFor, within } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";
@@ -31,6 +32,10 @@ const StatusSequence = ({ steps }: { steps: PageDataState[] }) => {
   );
 };
 
+/** The badge (stack item) that displays the given text */
+const getBadge = (text: HTMLElement) =>
+  text.closest<HTMLElement>("[data-badge-id]") as HTMLElement;
+
 // A request that started before the threshold displays the "slow" badge right away
 const slowRequest: PageDataState = {
   status: "loading",
@@ -43,6 +48,14 @@ const meta = {
   parameters: {
     layout: "fullscreen",
   },
+  // Same motion settings as the app (SpaceTourismWebsite)
+  decorators: [
+    (Story) => (
+      <MotionConfig reducedMotion="user">
+        <Story />
+      </MotionConfig>
+    ),
+  ],
 } satisfies Meta<typeof StatusSequence>;
 
 export default meta;
@@ -61,7 +74,8 @@ export const Slow: Story = {
 export const RequestFailed: Story = {
   args: {
     steps: [
-      { status: "loading", requestedAt: Date.now() },
+      // Without `requestedAt` the request counts as just started
+      { status: "loading" },
       { status: "error" },
     ],
   },
@@ -76,29 +90,56 @@ export const RequestFailed: Story = {
   },
 };
 
+/**
+ * The previous badge stays stacked above the new one, dimmed, until it
+ * dismisses itself. Dismissing it keeps the new badge in place.
+ */
 export const UpdatedAfterBeingSlow: Story = {
   args: {
     steps: [slowRequest, slowRequest, { status: "success" }],
   },
   play: async () => {
     const body = within(document.body);
-    await expect(await body.findByText(/up to date/i)).toBeInTheDocument();
-  },
-};
+    const updatedBadge = getBadge(await body.findByText(/up to date/i));
+    const slowBadge = getBadge(body.getByText(/still loading/i));
 
-export const Dismissed: Story = {
-  args: {
-    steps: [slowRequest],
-  },
-  play: async () => {
-    const body = within(document.body);
-    await body.findByText(/still loading/i);
+    await expect(slowBadge.querySelector("[data-stale]")).toHaveAttribute(
+      "data-stale",
+      "true"
+    );
+
     await userEvent.click(
-      body.getByRole("button", { name: /dismiss notification/i })
+      within(slowBadge).getByRole("button", { name: /dismiss notification/i })
     );
     // Waits for the exit animation
     await waitFor(() =>
       expect(body.queryByText(/still loading/i)).not.toBeInTheDocument()
     );
+    await expect(updatedBadge).toBeInTheDocument();
+  },
+};
+
+/** "Try again" marks the error as stale, and the result stacks below it */
+export const UpdatedAfterFailing: Story = {
+  args: {
+    steps: [
+      // Without `requestedAt` the request counts as just started
+      { status: "loading" },
+      { status: "error" },
+      { status: "loading" },
+      { status: "success" },
+    ],
+  },
+  play: async () => {
+    const body = within(document.body);
+    await body.findByText(/up to date/i);
+    const errorBadge = getBadge(
+      body.getByText(/couldn't load the latest data/i)
+    );
+
+    // Only the current error can be retried
+    await expect(
+      within(errorBadge).queryByRole("button", { name: /try again/i })
+    ).not.toBeInTheDocument();
   },
 };
