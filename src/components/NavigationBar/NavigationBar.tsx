@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Menu } from "./Menu";
 import { useScreenType } from "../../hooks/useScreenType";
-import { MenuMobile } from "./MenuMobile";
+import { MenuMobile } from "./MenuMobile/MenuMobile";
 import styles from "./styles/navigation-bar.module.scss";
 
 export const NavigationBar = () => {

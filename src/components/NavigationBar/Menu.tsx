@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { NavLink, useLocation } from "react-router-dom";
-import { getActiveClass } from "./utils/Menu.utils";
 import { useLocationBar } from "../../hooks/useLocationBar";
 import styles from "./styles/menu.module.scss";
 import { useEffect } from "react";
@@ -36,7 +35,6 @@ export const Menu = () => {
           <li key={page}>
             <NavLink
               to={`/${page.toLowerCase()}`}
-              className={getActiveClass}
               onClick={() => onLinkClick(index)}
             >
               <span className={styles["counter"]}>0{index}</span>

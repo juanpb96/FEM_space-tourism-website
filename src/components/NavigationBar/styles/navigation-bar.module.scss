@@ -2,23 +2,10 @@
 
 .nav-container {
   position: relative;
-  min-width: 24px;
-  min-height: 21px;
-
-  & button {
-    position: absolute;
-    inset: 0 0 0 auto;
-    height: fit-content;
-    z-index: 2;
-  }
 }
 
 @media screen and (min-width: v.$tablet) {
   .nav-container {
     width: fit-content;
-  }
-
-  .nav-container button {
-    display: none;
   }
 }
