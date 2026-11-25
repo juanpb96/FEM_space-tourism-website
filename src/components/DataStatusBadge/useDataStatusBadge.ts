@@ -1,17 +1,25 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useReducer, useRef, useState } from "react";
 import type { PageDataState } from "../../services/cache";
 import {
   AUTO_DISMISS_DELAY_MS,
   BadgeKind,
   SLOW_REQUEST_THRESHOLD_MS,
+  STALE_DISMISS_DELAY_MS,
 } from "./messages";
 import { getBadgeTransition } from "./getBadgeTransition";
+import { BadgeEntry, badgeStackReducer } from "./badgeStack";
+
+const getDismissDelay = ({ kind, isStale }: BadgeEntry) =>
+  isStale
+    ? Math.min(STALE_DISMISS_DELAY_MS, AUTO_DISMISS_DELAY_MS[kind])
+    : AUTO_DISMISS_DELAY_MS[kind];
 
 export const useDataStatusBadge = ({ status, requestedAt }: PageDataState) => {
-  const [badge, setBadge] = useState<BadgeKind | null>(null);
+  const [badges, dispatch] = useReducer(badgeStackReducer, []);
   const [isPaused, setIsPaused] = useState(false);
   const previousStatusRef = useRef<PageDataState["status"]>();
   const hasWarnedRef = useRef(false);
+  const nextIdRef = useRef(0);
 
   const show = useCallback((kind: BadgeKind | null) => {
     if (kind === "slow" || kind === "error") {
@@ -22,9 +30,13 @@ export const useDataStatusBadge = ({ status, requestedAt }: PageDataState) => {
       hasWarnedRef.current = false;
     }
 
-    setBadge(kind);
-    // Focus/hover events aren't fired when the badge is removed
-    setIsPaused(false);
+    if (kind === null) {
+      dispatch({ type: "markStale" });
+      return;
+    }
+
+    nextIdRef.current += 1;
+    dispatch({ type: "show", id: nextIdRef.current, kind });
   }, []);
 
   // Error, success and new requests
@@ -56,24 +68,31 @@ export const useDataStatusBadge = ({ status, requestedAt }: PageDataState) => {
     return () => clearTimeout(timeoutId);
   }, [status, requestedAt, show]);
 
-  // Auto dismiss, paused while the user interacts with the badge
+  // Auto dismiss, paused while the user interacts with any badge. The timers
+  // restart when the stack changes, and stale badges always leave first
   useEffect(() => {
-    if (!badge || isPaused) {
+    if (isPaused) {
       return;
     }
 
-    const timeoutId = setTimeout(
-      () => setBadge(null),
-      AUTO_DISMISS_DELAY_MS[badge]
+    const timeoutIds = badges.map((badge) =>
+      setTimeout(
+        () => dispatch({ type: "dismiss", id: badge.id }),
+        getDismissDelay(badge)
+      )
     );
 
-    return () => clearTimeout(timeoutId);
-  }, [badge, isPaused]);
+    return () => timeoutIds.forEach(clearTimeout);
+  }, [badges, isPaused]);
 
   return {
-    badge,
-    dismiss: () => show(null),
-    pause: () => setIsPaused(true),
-    resume: () => setIsPaused(false),
+    badges,
+    dismiss: (id: number) => dispatch({ type: "dismiss", id }),
+    /**
+     * Pauses the auto dismiss while the user hovers or focuses a badge. Keep
+     * it in sync when the stack changes: removed elements don't fire
+     * `mouseleave`/`blur`
+     */
+    setIsPaused,
   };
 };
