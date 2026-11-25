@@ -78,11 +78,13 @@ const proudOfThisFunc = () => {
 
 ### Continued development
 
-<!-- Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
+These are the topics I want to keep learning about. Each one is tracked in its own issue:
 
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.** -->
-
-**Note: WIP**
+- [#109 - Increase knowledge on difficult topics](https://github.com/juanpb96/FEM_space-tourism-website/issues/109) - Revisit and document Framer Motion transitions and other concepts that were hard to understand during the project.
+- [#25 - Code coverage](https://github.com/juanpb96/FEM_space-tourism-website/issues/25) - Learn how to measure and report test coverage with Jest.
+- [#40 - Use tags for project releases](https://github.com/juanpb96/FEM_space-tourism-website/issues/40) - Understand how GitHub Releases work and whether they fit this project.
+- [#97 - Three.js model for destinations](https://github.com/juanpb96/FEM_space-tourism-website/issues/97) - Explore 3D models to enhance the destination interactions.
+- Path aliases - Understand how to configure import aliases (e.g. `@components/...`) instead of long relative paths such as `../../../`.
 
 ### Useful resources
 
@@ -97,8 +99,9 @@ const proudOfThisFunc = () => {
 
 - Website - [juanbonilla.me](https://juanbonilla.me/)
 - Frontend Mentor - [@juanpb96](https://www.frontendmentor.io/profile/juanpb96)
-- LinkedIn - [Juan Bonilla](https://www.linkedin.com/in/juan-pablo-bonilla-6b8730115/)
+- LinkedIn - [Juan Bonilla](https://www.linkedin.com/in/juanpablobonilla/)
 
 ## Acknowledgments
 
-**Note: WIP**
+- Design and assets provided by [Frontend Mentor](https://www.frontendmentor.io/challenges/space-tourism-multipage-website-gRWj1URZ3).
+- 404 page background: Photo taken by [eduardo rosal](https://unsplash.com/es/@eduardorosal) on [Unsplash](https://unsplash.com/es/fotos/cielo-azul-con-estrellas-durante-la-noche-21Q8MadVbRU).
