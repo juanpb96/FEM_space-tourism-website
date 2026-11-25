@@ -1,0 +1,157 @@
+@use "src/styles/variables" as v;
+@use "src/styles/fonts" as fonts;
+
+// Opacity of the content of a stale badge (replaced by a newer one). Keeps the
+// description (lilac) above 4.5:1 even if the page behind the badge is white
+$stale-opacity: 0.65;
+
+.region {
+  position: fixed;
+  inset: auto 1.5rem 1.5rem;
+  z-index: 3;
+  // Stack: the newest badge is the last one, at the bottom
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  pointer-events: none;
+
+  @media screen and (min-width: v.$tablet) {
+    inset: auto 2.5rem 2.5rem auto;
+    width: 22rem;
+  }
+}
+
+.item {
+  pointer-events: auto;
+  width: min(100%, 22rem);
+}
+
+.badge {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem 1rem 1rem 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-left: 3px solid v.$lilac;
+  border-radius: 0.5rem;
+  background-color: rgba(11, 13, 23, 0.85);
+  backdrop-filter: blur(20px);
+  text-align: left;
+
+  &[data-badge="error"] {
+    border-left-color: v.$white;
+  }
+
+  // Only the content is dimmed: the background stays opaque, so the stale badge
+  // doesn't show the page through it. Hovering/focusing it restores it
+  &[data-stale="true"] {
+    border-left-color: rgba(v.$white, 0.25);
+
+    .content {
+      opacity: $stale-opacity;
+    }
+
+    .dismiss {
+      opacity: 0.75 * $stale-opacity;
+
+      @media (hover: hover) and (pointer: fine) {
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+
+    &:hover,
+    &:focus-within {
+      .content {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.content {
+  flex-grow: 1;
+  transition: opacity 0.2s ease-out;
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+.title {
+  @include fonts.barlow-condensed;
+  color: v.$white;
+  font-size: 0.875rem;
+  letter-spacing: 0.15em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.description {
+  @include fonts.barlow;
+  margin-top: 0.25rem;
+  color: v.$lilac;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+.retry,
+.dismiss {
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: v.$white;
+
+  &:focus-visible {
+    outline: 2px solid v.$white;
+    outline-offset: 2px;
+  }
+}
+
+.retry {
+  @include fonts.barlow-condensed;
+  // 44px touch target, the extra height is visual spacing above the text
+  min-height: 2.75rem;
+  margin-bottom: -0.75rem;
+  padding: 0;
+  font-size: 0.875rem;
+  letter-spacing: 0.15em;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-transform: uppercase;
+  text-underline-offset: 0.25em;
+  transition: opacity 0.15s ease-out;
+
+  // White text at 0.8 opacity on the badge background: 12.4:1 over the page
+  // background, 8.9:1 even if the page behind is white (WCAG AA: 4.5:1)
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      opacity: 0.8;
+      text-decoration-thickness: 2px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+.dismiss {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  // 44px touch target
+  width: 2.75rem;
+  aspect-ratio: 1 / 1;
+  margin: -0.75rem -0.75rem 0 0;
+  padding: 0;
+  opacity: 0.75;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      opacity: 1;
+    }
+  }
+}

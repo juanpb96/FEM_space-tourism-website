@@ -5,6 +5,7 @@ import { Heading } from "../../components/Heading/Heading";
 import { DestinationPagination } from "../../components/DestinationPagination/DestinationPagination";
 import { Subtitle } from "../../components/Subtitle/Subtitle";
 import { usePageData } from "../../hooks/usePageData";
+import { DataStatusBadge } from "../../components/DataStatusBadge/DataStatusBadge";
 import { useTabDirection } from "../../hooks/useTabDirection";
 import {
   imageVariants,
@@ -17,6 +18,8 @@ export const Destination = () => {
     pageData: destinations,
     currentTab: currentDestination,
     onPaginationClick,
+    dataState,
+    retry,
   } = usePageData("destinations");
   const { direction, onTabChange } = useTabDirection(
     destinations,
@@ -77,6 +80,7 @@ export const Destination = () => {
           </AnimatePresence>
         </section>
       </div>
+      <DataStatusBadge dataState={dataState} onRetry={retry} />
     </main>
   );
 };
