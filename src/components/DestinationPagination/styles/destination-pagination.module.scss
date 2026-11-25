@@ -1,17 +1,14 @@
 @use "src/styles/variables" as v;
 @use "src/styles/fonts" as fonts;
-
-@function convertPxToRem($px) {
-  @return calc($px / 16 * 1rem);
-}
+@use "src/styles/utils/functions" as f;
 
 .pagination {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  column-gap: convertPxToRem(26);
+  column-gap: f.convertPxToRem(26);
   // Only visible when the options wrap (e.g. zoom at 200% on mobile)
-  row-gap: convertPxToRem(12);
+  row-gap: f.convertPxToRem(12);
 }
 
 .destination {
@@ -19,12 +16,12 @@
   position: relative;
   display: flex;
   align-items: flex-start;
-  min-height: convertPxToRem(28);
+  min-height: f.convertPxToRem(28);
   @include fonts.barlow-condensed;
   text-transform: uppercase;
   color: v.$lilac;
-  font-size: convertPxToRem(14);
-  letter-spacing: convertPxToRem(2.36);
+  font-size: f.convertPxToRem(14);
+  letter-spacing: f.convertPxToRem(2.36);
   line-height: 1.21;
   background: none;
   border: none;
@@ -44,13 +41,13 @@
 
 @media screen and (min-width: v.$tablet) {
   .pagination {
-    column-gap: convertPxToRem(36);
+    column-gap: f.convertPxToRem(36);
   }
 
   .destination {
-    min-height: convertPxToRem(34);
+    min-height: f.convertPxToRem(34);
     font-size: 1rem;
-    letter-spacing: convertPxToRem(2.7);
+    letter-spacing: f.convertPxToRem(2.7);
   }
 }
 
