@@ -1,5 +1,6 @@
-// Mixins shared by `menu.module.scss` (Menu) and `menu-mobile.module.scss`
-// (MenuMobile): the bar displayed when hovering/focusing a link
+// Mixins shared by `menu.module.scss` (Menu) and
+// `MenuMobile/styles/menu-mobile.module.scss` (MenuMobile): the bar displayed
+// when hovering/focusing a link
 @use "src/styles/variables" as v;
 
 $landscape-bar-height: 0.1875rem;

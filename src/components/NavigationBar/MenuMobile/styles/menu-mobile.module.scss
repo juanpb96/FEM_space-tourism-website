@@ -1,9 +1,14 @@
 // Styles for `MenuMobile`, only rendered on mobile screens (see NavigationBar)
 @use "src/styles/variables" as v;
 @use "src/styles/fonts" as fonts;
-@use "menu-shared" as shared;
+@use "../../styles/menu-shared" as shared;
 
 .menu {
+  // Place the menu button at the end of the container; the menu panel and the
+  // backdrop are fixed, so they don't take part in this layout
+  display: flex;
+  justify-content: flex-end;
+
   & ol {
     display: flex;
     flex-direction: column;

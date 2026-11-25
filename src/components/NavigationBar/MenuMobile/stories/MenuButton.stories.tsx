@@ -7,7 +7,7 @@ import { userEvent, within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
 
 const meta = {
-  title: 'Components/NavigationBar/MenuButton',
+  title: 'Components/NavigationBar/Mobile/MenuButton',
   component: MenuButton,
   parameters: {
     layout: 'centered'

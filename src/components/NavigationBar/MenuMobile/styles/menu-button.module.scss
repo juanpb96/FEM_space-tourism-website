@@ -1,0 +1,31 @@
+@use "sass:math";
+
+$icon-size: 24px;
+// Minimum touch target recommended by Apple HIG and WCAG 2.5.5
+$touch-target: 44px;
+// Space between the icon and the edges of the touch target
+$touch-target-offset: math.div($touch-target - $icon-size, 2);
+
+// The button keeps the same box when the menu is open or closed, so the icon
+// (hamburger or close) doesn't move and the focus ring stays centered on it
+.menu-button {
+  display: grid;
+  place-items: center;
+  width: $touch-target;
+  height: $touch-target;
+  // Grow the touch target from the icon's center without moving the icon or
+  // changing the space it takes in the layout
+  margin: -$touch-target-offset;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  // Above the open menu panel (see menu-mobile.module.scss)
+  z-index: 2;
+}
+
+.svg {
+  width: $icon-size;
+  height: $icon-size;
+}

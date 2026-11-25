@@ -1,19 +1,27 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { useArgs } from "@storybook/preview-api";
-import { userEvent, within } from "@storybook/testing-library";
+import { userEvent, waitFor, within } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";
 
 import { MenuMobile } from "../MenuMobile";
-import { withRouter } from "../../helpers/stories/withRouter";
+import { withRouter } from "../../../helpers/stories/withRouter";
 import {
   chromaticViewport,
   defaultViewport,
-} from "../../constants/stories-viewports";
+} from "../../../constants/stories-viewports";
 
 const meta = {
-  title: "Components/NavigationBar/MenuMobile",
+  title: "Components/NavigationBar/Mobile/MenuMobile",
   component: MenuMobile,
-  decorators: [withRouter],
+  decorators: [
+    // Same spacing the menu button has inside the Header on mobile
+    (Story) => (
+      <div style={{ padding: "24px" }}>
+        <Story />
+      </div>
+    ),
+    withRouter,
+  ],
   tags: ["autodocs"],
   parameters: {
     layout: "fullscreen",
@@ -38,7 +46,9 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Closed: Story = {
+// Open and close the menu with the button to see how it behaves. The play
+// function closes the menu at the end, so the story is left in its initial state
+export const Default: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
@@ -47,11 +57,16 @@ export const Closed: Story = {
     await expect(
       await canvas.findByRole("link", { name: /crew/i })
     ).toBeInTheDocument();
-  },
-};
 
-export const Open: Story = {
-  args: {
-    isOpen: true,
+    await userEvent.click(canvas.getByRole("button", { name: /close menu/i }));
+    await expect(
+      await canvas.findByRole("button", { name: /open menu/i })
+    ).toHaveAttribute("aria-expanded", "false");
+    // The links stay in the document until the exit animation ends. Waiting
+    // for it avoids snapshots of the menu half closed
+    await waitFor(
+      () => expect(canvas.queryAllByRole("link")).toHaveLength(0),
+      { timeout: 2000 }
+    );
   },
 };
