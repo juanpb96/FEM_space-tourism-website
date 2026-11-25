@@ -10,6 +10,13 @@ export const AUTO_DISMISS_DELAY_MS: Record<BadgeKind, number> = {
   updated: 5 * 1000,
 };
 
+/**
+ * Time before a stale badge (one replaced by a newer badge or by a new request)
+ * dismisses itself. Shorter than any badge, so the current one is always the
+ * last to leave
+ */
+export const STALE_DISMISS_DELAY_MS = 4 * 1000;
+
 export const BADGE_MESSAGES: Record<
   BadgeKind,
   { title: string; description: string }

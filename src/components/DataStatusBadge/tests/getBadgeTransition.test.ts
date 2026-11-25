@@ -48,7 +48,7 @@ describe("getBadgeTransition", () => {
     ).toBeNull();
   });
 
-  it("should hide the error badge when a new request starts", () => {
+  it("should mark the error badge as outdated when a new request starts", () => {
     expect(
       getBadgeTransition({
         previousStatus: "error",

@@ -10,8 +10,9 @@ interface BadgeTransition {
 
 /**
  * Returns the badge to display when the data status changes:
- * - `undefined`: keep the current badge
- * - `null`: hide the current badge
+ * - `undefined`: keep the current badges as they are
+ * - `null`: no new badge, but the current ones are outdated (they stay
+ *   dimmed until they dismiss themselves)
  *
  * The "slow" badge depends on time, so it is handled by a timer instead.
  */
@@ -31,7 +32,7 @@ export const getBadgeTransition = ({
     case "success":
       return hasWarned ? "updated" : null;
     case "loading":
-      // A new request (e.g. "Try again") replaces the previous error
+      // A new request (e.g. "Try again") makes the previous error outdated
       return null;
     default:
       return undefined;
