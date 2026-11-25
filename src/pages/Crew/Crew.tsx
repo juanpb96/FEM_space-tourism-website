@@ -4,6 +4,7 @@ import { Description } from "../../components/Description/Description";
 import { Heading } from "../../components/Heading/Heading";
 import { Subtitle } from "../../components/Subtitle/Subtitle";
 import { usePageData } from "../../hooks/usePageData";
+import { DataStatusBadge } from "../../components/DataStatusBadge/DataStatusBadge";
 import { useTabDirection } from "../../hooks/useTabDirection";
 import {
   imageVariants,
@@ -16,6 +17,8 @@ export const Crew = () => {
     pageData: crew,
     currentTab: currentCrewMember,
     onPaginationClick,
+    dataState,
+    retry,
   } = usePageData("crew");
   const { direction: motionDirection, onTabChange: onCrewMemberClick } =
     useTabDirection(crew, currentCrewMember?.name, onPaginationClick);
@@ -83,6 +86,7 @@ export const Crew = () => {
           </AnimatePresence>
         </section>
       </article>
+      <DataStatusBadge dataState={dataState} onRetry={retry} />
     </main>
   );
 };

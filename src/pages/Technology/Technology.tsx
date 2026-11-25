@@ -3,6 +3,7 @@ import { Description } from "../../components/Description/Description";
 import { Heading } from "../../components/Heading/Heading";
 import { Subtitle } from "../../components/Subtitle/Subtitle";
 import { usePageData } from "../../hooks/usePageData";
+import { DataStatusBadge } from "../../components/DataStatusBadge/DataStatusBadge";
 import { useTabDirection } from "../../hooks/useTabDirection";
 import {
   imageVariants,
@@ -16,6 +17,8 @@ export const Technology = () => {
     pageData: technologies,
     currentTab: currentTechnology,
     onPaginationClick,
+    dataState,
+    retry,
   } = usePageData("technology");
   const { direction, onTabChange } = useTabDirection(
     technologies,
@@ -91,6 +94,7 @@ export const Technology = () => {
           </section>
         </article>
       </div>
+      <DataStatusBadge dataState={dataState} onRetry={retry} />
     </main>
   );
 };

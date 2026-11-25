@@ -1,16 +1,27 @@
-import jsonData from "./data.json" assert { type: "json" };
+import jsonData from "./data.json";
 import { Pages, SpaceTourismData } from "./types";
 import { getPageAdapter } from "./getPageAdapter";
 
-interface PageDataStatus {
-  isLoading: boolean;
-  hasLoaded: boolean;
+/**
+ * Status of the request that replaces the fallback data (data.json) with the
+ * data from the API:
+ * - `idle`: no request has been made yet (the fallback data is displayed)
+ * - `loading`: waiting for the API (the fallback data is displayed)
+ * - `success`: the API data is displayed
+ * - `error`: the request failed (the fallback data is displayed)
+ */
+export type PageDataStatus = "idle" | "loading" | "success" | "error";
+
+export interface PageDataState {
+  status: PageDataStatus;
+  /** Timestamp (ms) of the last request, used to detect slow requests */
+  requestedAt?: number;
 }
 
 export class DataCache {
   private static readonly instance: DataCache = new DataCache();
   private readonly cache: Map<Pages, SpaceTourismData[Pages]> = new Map();
-  private readonly pageDataUpdates: Map<Pages, PageDataStatus> = new Map();
+  private readonly pageDataUpdates: Map<Pages, PageDataState> = new Map();
   private readonly revalidationInterval: number = 15 * 60 * 1000; // 15 minutes
   private lastUpdate: number | undefined = undefined;
   private listeners: (() => void)[] = [];
@@ -33,22 +44,14 @@ export class DataCache {
 
   private clearPageDataUpdates(): void {
     for (const key of Object.keys(jsonData)) {
-      this.pageDataUpdates.set(key as Pages, {
-        isLoading: false,
-        hasLoaded: false,
-      });
+      this.pageDataUpdates.set(key as Pages, { status: "idle" });
     }
   }
 
   private isPageDataUpdated(name: Pages): boolean {
-    if (this.pageDataUpdates.has(name)) {
-      return (
-        this.pageDataUpdates.get(name)!.isLoading ||
-        this.pageDataUpdates.get(name)!.hasLoaded
-      );
-    }
+    const { status } = this.getPageDataState(name);
 
-    return false;
+    return status === "loading" || status === "success";
   }
 
   private startRevalidation(): void {
@@ -80,6 +83,10 @@ export class DataCache {
     }
   }
 
+  public getPageDataState(name: Pages): PageDataState {
+    return this.pageDataUpdates.get(name) ?? { status: "idle" };
+  }
+
   public async updatePageDataFromApi<T extends Pages>(
     name: Pages
   ): Promise<void> {
@@ -89,24 +96,27 @@ export class DataCache {
 
     try {
       this.pageDataUpdates.set(name, {
-        isLoading: true,
-        hasLoaded: false,
+        status: "loading",
+        requestedAt: Date.now(),
       });
+      this.notifyListeners();
 
       const getPageData = getPageAdapter<SpaceTourismData[T]>(name);
       const data: SpaceTourismData[T] = await getPageData();
 
       this.cache.set(name, data);
-      this.pageDataUpdates.set(name, {
-        isLoading: false,
-        hasLoaded: true,
-      });
+      this.pageDataUpdates.set(name, { status: "success" });
       this.lastUpdate = new Date().getTime();
       this.notifyListeners();
     } catch (error) {
       if (error instanceof Error) {
         console.error(error.message);
       }
+
+      // The fallback data stays in the cache. A new call (e.g. the user
+      // visiting the page again) will retry the request
+      this.pageDataUpdates.set(name, { status: "error" });
+      this.notifyListeners();
     }
   }
 
