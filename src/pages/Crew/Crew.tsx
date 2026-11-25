@@ -70,7 +70,7 @@ export const Crew = () => {
               animate="center"
               exit="exit"
             >
-              <h4 className={styles["rank"]}>{currentCrewMember.role}</h4>
+              <p className={styles["rank"]}>{currentCrewMember.role}</p>
 
               <Heading variant="small" text={currentCrewMember.name} />
 
